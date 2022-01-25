@@ -3,7 +3,7 @@ import './app.css';
 function App() {
     return(
         <p>
-            Hello React Using TypeScript!
+            This is React with TypeScript!!!
         </p>
     )
 }
