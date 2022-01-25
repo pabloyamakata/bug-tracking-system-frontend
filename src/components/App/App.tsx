@@ -1,10 +1,14 @@
+import Navbar from '../Navbar/Navbar';
 import './app.css';
 
 function App() {
     return(
-        <p>
-            Hello React Using TypeScript!
-        </p>
+        <div>
+            <Navbar />
+            <p>
+                This is React with TypeScript!!!
+            </p>
+        </div>
     )
 }
 
