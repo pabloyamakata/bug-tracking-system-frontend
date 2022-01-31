@@ -1,13 +1,11 @@
 import Navbar from '../Navbar/Navbar';
-import './app.css';
+import BugForm from '../BugForm/BugForm';
 
 function App() {
     return(
         <div>
             <Navbar />
-            <p>
-                This is React with TypeScript!!!
-            </p>
+            <BugForm />
         </div>
     )
 }
