@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material';
 
 export const CustomGrid = styled(Grid)({
     display: 'flex',
