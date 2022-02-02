@@ -1,12 +1,8 @@
-import Navbar from '../Navbar/Navbar';
-import ProjectForm from '../ProjectForm/ProjectForm';
+import Login from "../Login/Login";
 
 function App() {
     return(
-        <div>
-            <Navbar />
-            <ProjectForm />
-        </div>
+        <Login />
     )
 }
 
