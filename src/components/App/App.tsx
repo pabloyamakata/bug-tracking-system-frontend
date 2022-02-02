@@ -1,11 +1,11 @@
 import Navbar from '../Navbar/Navbar';
-import BugForm from '../BugForm/BugForm';
+import ProjectForm from '../ProjectForm/ProjectForm';
 
 function App() {
     return(
         <div>
             <Navbar />
-            <BugForm />
+            <ProjectForm />
         </div>
     )
 }

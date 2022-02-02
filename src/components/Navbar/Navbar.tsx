@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { CustomNavbar } from './Styles';
+import { CustomNavbar } from './styles';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
