@@ -3,3 +3,8 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+:root {
+    --primary-color: rgba(250, 250,250, 1);
+    --secondary-color: rgba(255, 190, 0, 1);
+}
