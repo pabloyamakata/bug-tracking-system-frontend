@@ -41,25 +41,26 @@ export const Title = styled(Typography)({
 export const LoginTextField = styled(TextField)({
     width: '90%',
     maxWidth: '300px',
-    '& .MuiOutlinedInput-input': {
+    '.MuiOutlinedInput-input': {
         color: 'var(--primary-color)'
     },
-    '& .MuiInputLabel-root': {
+    '.MuiInputLabel-root': {
         color: 'rgba(250, 250, 250, .7)'
     },
-    '& .MuiOutlinedInput-notchedOutline': {
+    '.MuiOutlinedInput-notchedOutline': {
         color: 'var(--secondary-color)'
     },
-    '& .MuiOutlinedInput-root': {
+    '&:nth-of-type(2)': {
+        marginTop: '15px'
+    },
+    '.MuiOutlinedInput-root': {
         '& fieldset': {
           borderColor: 'rgba(250, 250, 250, .5)',
           transition: '.1s ease'
         },
         '&:hover fieldset': {
           border: '2px solid var(--secondary-color)'
-        }},
-    '&:nth-of-type(2)': {
-        marginTop: '15px'
+        }
     }
 });
 

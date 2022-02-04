@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { 
     MainContainer, 
     LoginContainer, 
@@ -7,10 +9,18 @@ import {
 } from './Styles';
 
 import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
 import PersonIcon from '@mui/icons-material/Person';
 import KeyIcon from '@mui/icons-material/Key';
+import KeyOffIcon from '@mui/icons-material/KeyOff';
 
 function Login() {
+    const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+
+    const handlePasswordVisibility = () => {
+      setIsPasswordVisible(!isPasswordVisible);
+    }
+
     return(
         <MainContainer>
             <LoginContainer component='form'>
@@ -26,22 +36,30 @@ function Login() {
                 InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
-                        <PersonIcon style={{color: 'var(--primary-color)'}} />
+                        <PersonIcon sx={{color: 'var(--primary-color)'}} />
                       </InputAdornment>
                     )
                 }} />
                 
                 <LoginTextField
-                type='password'
+                type={isPasswordVisible ? 'text' : 'password'}
                 label='Password'
                 name='password'
-                autoComplete='off' 
+                autoComplete='off'
                 variant='outlined' 
-                size='small' 
+                size='small'
                 InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
-                        <KeyIcon style={{color: 'var(--primary-color)'}} />
+                        <IconButton 
+                        onClick={handlePasswordVisibility}
+                        sx={{padding: 0}}>
+                          {
+                            isPasswordVisible ? 
+                            <KeyOffIcon sx={{color: 'var(--primary-color)'}} /> :
+                            <KeyIcon sx={{color: 'var(--primary-color)'}} />
+                          }
+                        </IconButton>
                       </InputAdornment>
                     )
                 }} />
