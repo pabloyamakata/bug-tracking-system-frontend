@@ -24,12 +24,12 @@ function Login() {
     return(
         <MainContainer>
             <LoginContainer component='form'>
-                <Title>Sign In</Title>
+                <Title variant='h5'>Sign In</Title>
                 
                 <LoginTextField
-                type='email'
-                label='Email'
-                name='email'
+                type='text'
+                label='Username'
+                name='username'
                 autoComplete='off' 
                 variant='outlined' 
                 size='small' 

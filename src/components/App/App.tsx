@@ -1,18 +1,13 @@
-import { createTheme, ThemeProvider } from '@mui/material';
-import Login from '../Login/Login';
-
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: 'rgba(255, 190, 0, 1)'
-        }
-    }
-});
+import { ThemeProvider } from '@mui/material';
+import { theme } from '../../theme';
+import Navbar from '../Navbar/Navbar';
+import Bugs from '../Reports/Bugs';
 
 function App() {
     return(
         <ThemeProvider theme={theme}>
-            <Login />
+            <Navbar />
+            <Bugs />
         </ThemeProvider>
     )
 }
