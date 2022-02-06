@@ -13,8 +13,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['Dashboard', 'Report Bug', 'New Project', 'Bugs', 'Projects'];
-const settings = ['Dashboard', 'Logout'];
+const pages = ['Dashboard', 'New Bug', 'New Project', 'Bug Reports', 'Project Reports'];
+const settings = ['Logout'];
 
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -43,7 +43,7 @@ function Navbar() {
                     variant='h6'
                     noWrap
                     component='div'
-                    sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}>
+                    sx={{ color: '#ffffff', mr: 2, display: { xs: 'none', md: 'flex' } }}>
                     Bug Tracker
                     </Typography>
 
@@ -54,7 +54,7 @@ function Navbar() {
                         aria-controls='menu-appbar'
                         aria-haspopup='true'
                         onClick={handleOpenNavMenu}
-                        color='inherit'>
+                        sx={{ color: '#ffffff' }}>
                             <MenuIcon />
                         </IconButton>
                         <Menu
@@ -86,7 +86,7 @@ function Navbar() {
                     variant='h6'
                     noWrap
                     component='div'
-                    sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                    sx={{ color: '#ffffff', flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                     Bug Tracker
                     </Typography>
                     
