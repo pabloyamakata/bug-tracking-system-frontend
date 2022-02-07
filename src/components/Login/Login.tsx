@@ -56,8 +56,8 @@ function Login() {
                         sx={{padding: 0}}>
                           {
                             isPasswordVisible ? 
-                            <KeyOffIcon sx={{color: 'var(--primary-color)'}} /> :
-                            <KeyIcon sx={{color: 'var(--primary-color)'}} />
+                            <KeyIcon sx={{color: 'var(--primary-color)'}} /> :
+                            <KeyOffIcon sx={{color: 'var(--primary-color)'}} /> 
                           }
                         </IconButton>
                       </InputAdornment>

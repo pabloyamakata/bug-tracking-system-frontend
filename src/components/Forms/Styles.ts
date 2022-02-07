@@ -23,12 +23,12 @@ export const ButtonContainer = styled(Box)({
     marginTop: '40px'
 });
 
-export const CustomButton = styled(Button)({
+export const CustomButton = styled(Button)(({ theme }) => ({
     width: '64px',
     textTransform: 'capitalize',
     '&:nth-of-type(2)': {
         marginLeft: '20px',
-        color: 'var(--primary-color)',
-        backgroundColor: 'rgba(35, 35, 35, 1)'
+        color: theme.palette.secondary.contrastText,
+        backgroundColor: theme.palette.primary.contrastText
     }
-});
+}));
