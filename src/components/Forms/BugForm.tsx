@@ -1,4 +1,5 @@
 import {
+    CustomPaper,
     CustomGrid, 
     CustomTextField, 
     ButtonContainer, 
@@ -12,10 +13,10 @@ import Typography from '@mui/material/Typography';
 
 function BugForm() {
     return(
-        <Box sx={{paddingBottom: '30px'}}>
+        <CustomPaper>
             <Typography 
             variant='h5' 
-            sx={{margin: '25px 0 0 20px'}}>
+            sx={{marginLeft: '20px', paddingTop: '25px'}}>
             Report Bug
             </Typography>
             
@@ -100,7 +101,7 @@ function BugForm() {
                     </CustomGrid>
                 </Grid>
             </Box>
-        </Box>
+        </CustomPaper>
     )
 }
 
