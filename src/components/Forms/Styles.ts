@@ -1,8 +1,15 @@
+import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material';
+
+export const CustomPaper = styled(Paper)({
+    minHeight: '100vh',
+    paddingBottom: '30px',
+    borderRadius: 0
+});
 
 export const CustomGrid = styled(Grid)({
     display: 'flex',
