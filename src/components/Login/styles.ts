@@ -32,23 +32,20 @@ export const LoginContainer = styled(Box)({
     borderRadius: '7px'
 });
 
-export const Title = styled(Typography)({
+export const Title = styled(Typography)(({ theme }) => ({
     marginBottom: '30px',
     fontSize: '24px',
-    color: 'var(--primary-color)'
-});
+    color: theme.palette.secondary.contrastText
+}));
 
-export const LoginTextField = styled(TextField)({
+export const LoginTextField = styled(TextField)(({ theme }) => ({
     width: '90%',
     maxWidth: '300px',
     '.MuiOutlinedInput-input': {
-        color: 'var(--primary-color)'
+        color: theme.palette.secondary.contrastText
     },
     '.MuiInputLabel-root': {
-        color: 'rgba(250, 250, 250, .7)'
-    },
-    '.MuiOutlinedInput-notchedOutline': {
-        color: 'var(--secondary-color)'
+        color: theme.palette.secondary.contrastText
     },
     '&:nth-of-type(2)': {
         marginTop: '15px'
@@ -59,23 +56,23 @@ export const LoginTextField = styled(TextField)({
           transition: '.1s ease'
         },
         '&:hover fieldset': {
-          border: '2px solid var(--secondary-color)'
+          borderWidth: '2px',
+          borderColor: theme.palette.primary.main
         }
     }
-});
+}));
 
-export const SubmitButton = styled(Button)({
+export const SubmitButton = styled(Button)(({ theme }) => ({
     alignSelf: 'flex-end',
     width: '100px',
     marginTop: '20px',
     marginRight: '50px',
-    color: 'rgba(0, 0, 0, 1)',
-    backgroundColor: 'var(--secondary-color)',
+    color: theme.palette.primary.contrastText,
+    backgroundColor: theme.palette.primary.main,
     textTransform: 'capitalize',
     transition: '.1s ease',
     '&:hover': {
-        backgroundColor: 'var(--secondary-color)',
-        transform: 'scale(1.03)'
+        transform: 'scale(1.02)'
     },
     '@media (max-width: 440px)': {
         width: '90%',
@@ -83,5 +80,5 @@ export const SubmitButton = styled(Button)({
         marginLeft: 'auto',
         marginRight: 'auto'
     }
-});
+}));
 
