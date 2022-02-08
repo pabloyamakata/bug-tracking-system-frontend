@@ -72,7 +72,7 @@ export const SubmitButton = styled(Button)(({ theme }) => ({
     textTransform: 'capitalize',
     transition: '.1s ease',
     '&:hover': {
-        transform: 'scale(1.02)'
+        transform: 'scale(1.03)'
     },
     '@media (max-width: 440px)': {
         width: '90%',
