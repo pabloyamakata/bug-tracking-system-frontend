@@ -1,4 +1,5 @@
 import {
+    CustomPaper,
     CustomGrid, 
     CustomTextField, 
     ButtonContainer, 
@@ -12,7 +13,7 @@ import Typography from '@mui/material/Typography';
 
 function ProjectForm() {
     return(
-        <Box sx={{paddingBottom: '30px'}}>
+        <CustomPaper elevation={0}>
             <Typography 
             variant='h5' 
             sx={{margin: '25px 0 0 20px'}}>
@@ -81,7 +82,7 @@ function ProjectForm() {
                     </CustomGrid>
                 </Grid>
             </Box>
-        </Box>
+        </CustomPaper>
     )
 }
 
