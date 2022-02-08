@@ -7,6 +7,7 @@ import { styled } from '@mui/material';
 
 export const CustomPaper = styled(Paper)({
     minHeight: '100vh',
+    paddingTop: '70px',
     paddingBottom: '30px',
     borderRadius: 0
 });

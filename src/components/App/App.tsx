@@ -1,13 +1,13 @@
 import { ThemeProvider } from '@mui/material';
 import { lightTheme } from '../../themes';
 import Navbar from '../Navbar/Navbar';
-import BugForm from '../Forms/BugForm';
+import Bugs from '../Reports/Bugs';
 
 function App() {
     return(
         <ThemeProvider theme={lightTheme}>
             <Navbar />
-            <BugForm />
+            <Bugs />
         </ThemeProvider>
     )
 }

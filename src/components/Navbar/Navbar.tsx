@@ -36,7 +36,7 @@ function Navbar() {
         setAnchorElUser(null);
     };
     return(
-        <CustomNavbar position='static'>
+        <CustomNavbar>
             <Container maxWidth='xl'>
                 <Toolbar disableGutters>
                     <Typography
