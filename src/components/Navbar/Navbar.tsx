@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { CustomNavbar } from './Styles';
+import { CustomNavbar, CustomSwitch } from './Styles';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -16,7 +16,12 @@ import MenuItem from '@mui/material/MenuItem';
 const pages = ['Dashboard', 'New Bug', 'New Project', 'Bug Reports', 'Project Reports'];
 const settings = ['Logout'];
 
-function Navbar() {
+interface modeProps {
+    isDarkMode: boolean;
+    setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function Navbar({isDarkMode, setIsDarkMode}: modeProps) {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -34,6 +39,9 @@ function Navbar() {
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+    };
+    const changeThemeMode = () => {
+        setIsDarkMode(!isDarkMode);
     };
     return(
         <CustomNavbar>
@@ -107,6 +115,9 @@ function Navbar() {
                         ))}
                     </Box>
 
+                    <CustomSwitch
+                    onClick={changeThemeMode} />
+                        
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title='Open settings'>
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
