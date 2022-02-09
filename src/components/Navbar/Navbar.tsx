@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { Link } from "react-router-dom";
+
 import { CustomNavbar, CustomSwitch } from './Styles';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,15 +15,15 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['Dashboard', 'New Bug', 'New Project', 'Bug Reports', 'Project Reports'];
+const pages = ['New Bug', 'New Project', 'Bug Reports', 'Project Reports'];
 const settings = ['Logout'];
 
-interface modeProps {
+interface ModeProps {
     isDarkMode: boolean;
     setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Navbar({isDarkMode, setIsDarkMode}: modeProps) {
+function Navbar({isDarkMode, setIsDarkMode}: ModeProps) {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -82,9 +84,17 @@ function Navbar({isDarkMode, setIsDarkMode}: modeProps) {
                         sx={{
                         display: { xs: 'block', md: 'none' },
                         }}>
+                            <MenuItem onClick={handleCloseNavMenu}>
+                                <Link to='/'>
+                                    Dashboard
+                                </Link>
+                            </MenuItem>
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign='center'>{page}</Typography>
+                                    <Link 
+                                    to={`/${page.toString().toLowerCase().replace(/ /g, '')}`}>
+                                        {page}
+                                    </Link>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -99,6 +109,18 @@ function Navbar({isDarkMode, setIsDarkMode}: modeProps) {
                     </Typography>
                     
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                        <Button
+                        onClick={handleCloseNavMenu}
+                        sx={{
+                            my: 2,  
+                            display: 'block', 
+                            textTransform: 'capitalize',
+                            fontWeight: '300' 
+                        }}>
+                            <Link to='/'>
+                                Dashboard
+                            </Link>
+                        </Button>
                         {pages.map((page) => (
                             <Button
                             key={page}
@@ -110,7 +132,10 @@ function Navbar({isDarkMode, setIsDarkMode}: modeProps) {
                                 textTransform: 'capitalize',
                                 fontWeight: '300' 
                             }}>
-                            {page}
+                                <Link
+                                to={`/${page.toString().toLowerCase().replace(/ /g, '')}`}>
+                                    {page}
+                                </Link>
                             </Button>
                         ))}
                     </Box>
@@ -139,11 +164,11 @@ function Navbar({isDarkMode, setIsDarkMode}: modeProps) {
                         }}
                         open={Boolean(anchorElUser)}
                         onClose={handleCloseUserMenu}>
-                        {settings.map((setting) => (
-                            <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                <Typography textAlign='center'>{setting}</Typography>
-                            </MenuItem>
-                        ))}
+                            {settings.map((setting) => (
+                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                    <Typography textAlign='center'>{setting}</Typography>
+                                </MenuItem>
+                            ))}
                         </Menu>
                     </Box>
                 </Toolbar>
