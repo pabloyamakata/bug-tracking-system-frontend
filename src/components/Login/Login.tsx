@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import {
     MainContainer, 
     LoginContainer, 
@@ -56,18 +58,21 @@ function Login() {
                         sx={{padding: 0}}>
                           {
                             isPasswordVisible ? 
-                            <KeyIcon sx={{color: 'var(--primary-color)'}} /> :
-                            <KeyOffIcon sx={{color: 'var(--primary-color)'}} /> 
+                            <KeyOffIcon sx={{color: 'var(--primary-color)'}} /> : 
+                            <KeyIcon sx={{color: 'var(--primary-color)'}} /> 
                           }
                         </IconButton>
                       </InputAdornment>
                     )
                 }} />
 
-                <SubmitButton 
+                <SubmitButton
                 variant="contained"
                 size='medium'>
-                Login
+                  <Link
+                  to='/dashboard'>
+                  Login
+                  </Link>
                 </SubmitButton>
             </LoginContainer>
         </MainContainer>

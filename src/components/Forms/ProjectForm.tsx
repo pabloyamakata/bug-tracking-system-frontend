@@ -17,7 +17,7 @@ function ProjectForm() {
             <Typography 
             variant='h5' 
             sx={{margin: '25px 0 0 20px'}}>
-            New Project
+            Add Project
             </Typography>
         
             <Box component='form'>
