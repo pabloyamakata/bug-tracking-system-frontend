@@ -15,7 +15,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['New Bug', 'New Project', 'Bug Reports', 'Project Reports'];
+const pages = ['Dashboard', 'New Bug', 'New Project', 'Bug Reports', 'Project Reports'];
 const settings = ['Logout'];
 
 interface ModeProps {
@@ -84,11 +84,6 @@ function Navbar({isDarkMode, setIsDarkMode}: ModeProps) {
                         sx={{
                         display: { xs: 'block', md: 'none' },
                         }}>
-                            <MenuItem onClick={handleCloseNavMenu}>
-                                <Link to='/'>
-                                    Dashboard
-                                </Link>
-                            </MenuItem>
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                                     <Link 
@@ -109,18 +104,6 @@ function Navbar({isDarkMode, setIsDarkMode}: ModeProps) {
                     </Typography>
                     
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        <Button
-                        onClick={handleCloseNavMenu}
-                        sx={{
-                            my: 2,  
-                            display: 'block', 
-                            textTransform: 'capitalize',
-                            fontWeight: '300' 
-                        }}>
-                            <Link to='/'>
-                                Dashboard
-                            </Link>
-                        </Button>
                         {pages.map((page) => (
                             <Button
                             key={page}
