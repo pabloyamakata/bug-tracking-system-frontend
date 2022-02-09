@@ -1,6 +1,6 @@
 function Dashboard() {
     return(
-        <div>Here goes Dashboard component!</div>
+        <h3 style={{paddingTop: '70px'}}>Here goes Dashboard component!</h3>
 
         // Perhaps Chart.js library should be used in order to
         // display information related to bugs. For example,
