@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import {
     MainContainer, 
@@ -18,14 +18,22 @@ import KeyOffIcon from '@mui/icons-material/KeyOff';
 
 function Login() {
     const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const handlePasswordVisibility = () => {
       setIsPasswordVisible(!isPasswordVisible);
-    }
-
+    };
+    const handleLoginSubmit = (event: React.FormEvent<HTMLDivElement>) => {
+      event.preventDefault();
+      navigate('/dashboard');    
+    };
     return(
         <MainContainer>
-            <LoginContainer component='form'>
+            <LoginContainer 
+            component='form' 
+            onSubmit={
+              event => handleLoginSubmit(event)
+            }>
                 <Title variant='h5'>Sign In</Title>
                 
                 <LoginTextField
@@ -67,12 +75,10 @@ function Login() {
                 }} />
 
                 <SubmitButton
-                variant="contained"
+                type='submit'
+                variant='contained'
                 size='medium'>
-                  <Link
-                  to='/dashboard'>
-                  Login
-                  </Link>
+                Login
                 </SubmitButton>
             </LoginContainer>
         </MainContainer>

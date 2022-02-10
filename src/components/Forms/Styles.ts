@@ -7,9 +7,15 @@ import { styled } from '@mui/material';
 
 export const CustomPaper = styled(Paper)({
     minHeight: '100vh',
-    paddingTop: '70px',
+    paddingTop: '65px',
     paddingBottom: '30px',
-    borderRadius: 0
+    borderRadius: 0,
+    '@media (max-width: 599px)': {
+        paddingTop: '58px'
+    },
+    '@media (min-width: 600px) and (max-width: 899px)': {
+        paddingTop: '64px'
+    }
 });
 
 export const CustomGrid = styled(Grid)({
