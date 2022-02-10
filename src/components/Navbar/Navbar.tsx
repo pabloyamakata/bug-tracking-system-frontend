@@ -1,17 +1,18 @@
 import { useState } from 'react';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 import { CustomNavbar, CustomSwitch } from './Styles';
+
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
@@ -85,11 +86,12 @@ function Navbar({isDarkMode, setIsDarkMode}: ModeProps) {
                         display: { xs: 'block', md: 'none' },
                         }}>
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Link 
-                                    to={`/${page.toString().toLowerCase().replace(/ /g, '')}`}>
-                                        {page}
-                                    </Link>
+                                <MenuItem 
+                                key={page}
+                                component={Link} 
+                                to={`/${page.toString().toLowerCase().replace(/ /g, '')}`} 
+                                onClick={handleCloseNavMenu}>
+                                    {page}
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -107,18 +109,17 @@ function Navbar({isDarkMode, setIsDarkMode}: ModeProps) {
                         {pages.map((page) => (
                             <Button
                             key={page}
-                            onClick={handleCloseNavMenu}
+                            component={Link}
                             sx={{
-                                my: 2, 
-                                color: 'white', 
-                                display: 'block', 
-                                textTransform: 'capitalize',
-                                fontWeight: '300' 
-                            }}>
-                                <Link
-                                to={`/${page.toString().toLowerCase().replace(/ /g, '')}`}>
-                                    {page}
-                                </Link>
+                                display: 'block',
+                                my: 2,
+                                color: 'white',
+                                fontWeight: '300',
+                                textTransform: 'capitalize'
+                            }}
+                            to={`/${page.toString().toLowerCase().replace(/ /g, '')}`}
+                            onClick={handleCloseNavMenu}>
+                                {page}
                             </Button>
                         ))}
                     </Box>
