@@ -20,7 +20,7 @@ export const MainContainer = styled(Box)({
     backgroundRepeat: 'no-repeat'
 });
 
-export const LoginContainer = styled(Box)({
+export const LoginForm = styled('form')({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
