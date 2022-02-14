@@ -29,8 +29,8 @@ function BugForm() {
         },
         validationSchema: yup.object({
             name: yup.string()
-            .min(3, 'Name must contain between 3 and 20 characters')
-            .max(20, 'Name must contain between 3 and 20 characters')
+            .min(3, 'Name must contain between 3 and 30 characters')
+            .max(30, 'Name must contain between 3 and 30 characters')
             .required('Name is required'),
             description: yup.string()
             .max(100, 'Description must be 100 characters or less')
@@ -226,6 +226,7 @@ function BugForm() {
                         type='date'
                         label='Initial Date' 
                         name='initialDate'
+                        InputLabelProps={{ shrink: true }}
                         error={
                             formik.touched.initialDate &&
                             formik.errors.initialDate ?
@@ -246,6 +247,7 @@ function BugForm() {
                         type='date'
                         label='Final Date'
                         name='finalDate'
+                        InputLabelProps={{ shrink: true }}
                         error={
                             formik.touched.finalDate &&
                             formik.errors.finalDate ?
