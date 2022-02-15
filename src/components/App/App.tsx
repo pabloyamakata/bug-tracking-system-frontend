@@ -1,4 +1,5 @@
-import { useState, createContext } from 'react';
+import { useState } from 'react';
+import { AppContext } from '../../context';
 import { globalState } from '../../globalState';
 
 import { ThemeProvider } from '@mui/material';
@@ -20,12 +21,11 @@ import ProjectForm from '../Forms/ProjectForm';
 import Bugs from '../Reports/Bugs';
 import Projects from '../Reports/Projects';
 
-export const AppContext = createContext<any>(null);
-
 function App() {
     const [state, setState] = useState(globalState);
     const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
     const location = useLocation();
+
     return(
         <AppContext.Provider value={{state, setState}}>
             <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>

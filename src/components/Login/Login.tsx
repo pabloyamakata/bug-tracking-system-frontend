@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { AppContext } from '../App/App';
+import { AppContext } from '../../context';
 
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -43,10 +43,7 @@ function Login() {
   });
     
   const handlePasswordVisibility = () => {
-    setState({
-      ...state,
-      isPasswordVisible: !isPasswordVisible 
-    });
+    setState({ ...state, isPasswordVisible: !isPasswordVisible });
   };
   return(
     <MainContainer>
