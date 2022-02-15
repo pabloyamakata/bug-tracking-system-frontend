@@ -131,6 +131,51 @@ function ProjectForm() {
                         onBlur={formik.handleBlur} 
                         variant='outlined' 
                         size='small' />
+                        <CustomTextField
+                        type='date' 
+                        label='Start Date'
+                        name='startDate'
+                        InputLabelProps={{ shrink: true }}
+                        error={
+                            formik.touched.startDate &&
+                            formik.errors.startDate ?
+                            true : false
+                        }
+                        helperText={
+                            formik.touched.startDate &&
+                            formik.errors.startDate ?
+                            formik.errors.startDate :
+                            null 
+                        }
+                        value={formik.values.startDate} 
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur} 
+                        variant='outlined' 
+                        size='small' />
+                        <CustomTextField
+                        type='date'
+                        label='Deadline'
+                        name='deadLine'
+                        InputLabelProps={{ shrink: true }}
+                        error={
+                            formik.touched.deadLine &&
+                            formik.errors.deadLine ?
+                            true : false
+                        }
+                        helperText={
+                            formik.touched.deadLine &&
+                            formik.errors.deadLine ?
+                            formik.errors.deadLine :
+                            null 
+                        }
+                        value={formik.values.deadLine} 
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur} 
+                        variant='outlined' 
+                        size='small' />
+                    </CustomGrid>
+        
+                    <CustomGrid item xs={12} sm={6}>
                         <CustomTextField 
                         label='Current Status'
                         name='currentStatus'
@@ -155,51 +200,6 @@ function ProjectForm() {
                             <MenuItem value='Pending'>Pending</MenuItem>
                             <MenuItem value='Finished'>Completed</MenuItem>
                         </CustomTextField>
-                        <CustomTextField
-                        type='date' 
-                        label='Start Date'
-                        name='startDate'
-                        InputLabelProps={{ shrink: true }}
-                        error={
-                            formik.touched.startDate &&
-                            formik.errors.startDate ?
-                            true : false
-                        }
-                        helperText={
-                            formik.touched.startDate &&
-                            formik.errors.startDate ?
-                            formik.errors.startDate :
-                            null 
-                        }
-                        value={formik.values.startDate} 
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur} 
-                        variant='outlined' 
-                        size='small' />
-                    </CustomGrid>
-        
-                    <CustomGrid item xs={12} sm={6}>
-                        <CustomTextField
-                        type='date'
-                        label='Deadline'
-                        name='deadLine'
-                        InputLabelProps={{ shrink: true }}
-                        error={
-                            formik.touched.deadLine &&
-                            formik.errors.deadLine ?
-                            true : false
-                        }
-                        helperText={
-                            formik.touched.deadLine &&
-                            formik.errors.deadLine ?
-                            formik.errors.deadLine :
-                            null 
-                        }
-                        value={formik.values.deadLine} 
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur} 
-                        variant='outlined' 
-                        size='small' />
                         <CustomTextField 
                         label='Frontend'
                         name='frontend'
