@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { AppContext } from '../../context';
+import { AppContext } from '../App/App';
 
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';

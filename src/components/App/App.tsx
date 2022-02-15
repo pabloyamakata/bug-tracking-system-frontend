@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { AppContext } from '../../context';
+import { useState, createContext } from 'react';
 import { globalState } from '../../globalState';
 
 import { ThemeProvider } from '@mui/material';
@@ -20,6 +19,8 @@ import BugForm from '../Forms/BugForm';
 import ProjectForm from '../Forms/ProjectForm';
 import Bugs from '../Reports/Bugs';
 import Projects from '../Reports/Projects';
+
+export const AppContext = createContext<any>(null);
 
 function App() {
     const [state, setState] = useState(globalState);
