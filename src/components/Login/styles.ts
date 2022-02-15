@@ -82,3 +82,16 @@ export const SubmitButton = styled(Button)(({ theme }) => ({
     }
 }));
 
+export const RegistrationLink = styled(Typography)({
+    marginTop: '20px',
+    color: '#ffffff',
+    '@media (max-width: 270px)': {
+        fontSize: '13px',
+        paddingLeft: '10px',
+        paddingRight: '10px'
+    },
+    '@media (min-width: 271px) and (max-width: 300px)': {
+        fontSize: '14px'    
+    }
+});
+

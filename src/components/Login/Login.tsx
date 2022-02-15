@@ -1,5 +1,7 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AppContext } from '../App/App';
+
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
@@ -8,7 +10,8 @@ import {
   LoginForm,
   Title, 
   LoginTextField, 
-  SubmitButton
+  SubmitButton,
+  RegistrationLink
 } from './Styles';
 
 import InputAdornment from '@mui/material/InputAdornment';
@@ -18,7 +21,7 @@ import KeyIcon from '@mui/icons-material/Key';
 import KeyOffIcon from '@mui/icons-material/KeyOff';
 
 function Login() {
-  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+  const { state, state: { isPasswordVisible }, setState } = useContext(AppContext);
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -40,12 +43,15 @@ function Login() {
   });
     
   const handlePasswordVisibility = () => {
-    setIsPasswordVisible(!isPasswordVisible);
+    setState({
+      ...state,
+      isPasswordVisible: !isPasswordVisible 
+    });
   };
   return(
     <MainContainer>
       <LoginForm onSubmit={formik.handleSubmit}>
-        <Title variant='h5'>Sign In</Title>
+        <Title variant='h5'>Sign In</Title> 
 
         <LoginTextField
         type='text'
@@ -119,6 +125,18 @@ function Login() {
         size='medium'>
         Login
         </SubmitButton>
+
+        <RegistrationLink>
+        Don't have an account?
+        <RouterLink 
+        to='/registration'
+        style={{
+          marginLeft: '3px', 
+          color: '#b839e3'
+        }}>
+        Create one  
+        </RouterLink>   
+        </RegistrationLink>
       </LoginForm>
     </MainContainer>
   )
