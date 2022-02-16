@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material';
 
-import background from '../../assets/bg-login.jpg';
+import bg_login from '../../assets/bg-login.jpg';
 
 export const MainContainer = styled(Box)({
     display: 'flex',
@@ -13,7 +13,7 @@ export const MainContainer = styled(Box)({
     minHeight: '100vh',
     paddingLeft: '20px',
     paddingRight: '20px',
-    backgroundImage: `url(${background})`,
+    backgroundImage: `url(${bg_login})`,
     backgroundSize: 'cover',
     backgroundPosition: 'bottom',
     backgroundAttachment: 'fixed',
