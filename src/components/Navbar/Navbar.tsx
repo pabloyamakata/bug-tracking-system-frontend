@@ -1,8 +1,7 @@
 import { useState } from 'react';
-
 import { Link } from 'react-router-dom';
 
-import { CustomNavbar, CustomSwitch } from './Styles';
+import { CustomNavbar, CustomSwitch } from './NavbarStyles';
 
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -19,12 +18,12 @@ import MenuItem from '@mui/material/MenuItem';
 const pages = ['Dashboard', 'New Bug', 'New Project', 'Bug Reports', 'Project Reports'];
 const settings = ['Logout'];
 
-interface ModeProps {
-    isDarkMode: boolean;
-    setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+interface ThemeModeProps {
+    isModeDark: boolean;
+    setIsModeDark: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Navbar({isDarkMode, setIsDarkMode}: ModeProps) {
+function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -44,7 +43,7 @@ function Navbar({isDarkMode, setIsDarkMode}: ModeProps) {
         setAnchorElUser(null);
     };
     const changeThemeMode = () => {
-        setIsDarkMode(!isDarkMode);
+        setIsModeDark(!isModeDark);
     };
     return(
         <CustomNavbar>

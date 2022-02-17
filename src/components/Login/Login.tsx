@@ -1,5 +1,4 @@
-import { useContext } from 'react';
-import { AppContext } from '../App/App';
+import { useState } from 'react';
 
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -12,7 +11,7 @@ import {
   LoginTextField, 
   SubmitButton,
   RegistrationLink
-} from './Styles';
+} from './LoginStyles';
 
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
@@ -21,7 +20,7 @@ import KeyIcon from '@mui/icons-material/Key';
 import KeyOffIcon from '@mui/icons-material/KeyOff';
 
 function Login() {
-  const { state, state: { isPasswordVisible }, setState } = useContext(AppContext);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -43,7 +42,7 @@ function Login() {
   });
     
   const handlePasswordVisibility = () => {
-    setState({ ...state, isPasswordVisible: !isPasswordVisible });
+    setIsPasswordVisible(!isPasswordVisible);
   };
   return(
     <MainContainer>
