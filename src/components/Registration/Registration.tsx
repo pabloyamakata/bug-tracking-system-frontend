@@ -1,14 +1,14 @@
-import { useContext } from 'react';
-import { AppContext } from '../App/App';
+import { useState } from 'react';
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import axios from 'axios';
 
 import {
     MainWrapper,
     RegistrationForm,
     RegistrationField
-} from './Styles';
+} from './RegistrationStyles';
 
 import InputAdornment from '@mui/material/InputAdornment';
 import PersonIcon from '@mui/icons-material/Person';
@@ -17,8 +17,11 @@ import KeyIcon from '@mui/icons-material/Key';
 import KeyOffIcon from '@mui/icons-material/KeyOff';
 import Button from '@mui/material/Button';
 
+const formData = new FormData();
+const registrationURL = 'http://localhost/bug-tracker-backend/registration.php';
+
 function Registration() {
-    const { state, state: { isPasswordVisible }, setState } = useContext(AppContext);
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
     const formik = useFormik({
         initialValues: {
@@ -35,11 +38,14 @@ function Registration() {
             .max(60, 'Password must contain between 3 and 60 characters')
             .required('Password is required')
         }),
-        onSubmit: () => console.log('Registration form submitted')
+        onSubmit: values => {
+            formData.append('values', JSON.stringify(values));
+            axios.post(registrationURL, formData);
+        }
     });
 
     const handlePasswordVisibility = () => {
-        setState({ ...state, isPasswordVisible: !isPasswordVisible });
+        setIsPasswordVisible(!isPasswordVisible);
     };
     return(
         <MainWrapper>
