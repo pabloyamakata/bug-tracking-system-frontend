@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import axios from 'axios';
 
 import {
     CustomPaper,
@@ -13,6 +14,9 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
+
+const formData = new FormData();
+const bugInsertionURL = 'http://localhost/bug-tracker-backend/buginsertion.php';
 
 function BugForm() {
     const formik = useFormik({
@@ -45,7 +49,10 @@ function BugForm() {
             initialDate: yup.date().required('Initial date is required'),
             finalDate: yup.date()
         }),
-        onSubmit: () => console.log('BugForm submitted!')
+        onSubmit: values => {
+            formData.append('values', JSON.stringify(values));
+            axios.post(bugInsertionURL, formData);
+        }
     });
     return(
         <CustomPaper elevation={0}>

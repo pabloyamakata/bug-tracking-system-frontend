@@ -10,7 +10,8 @@ import {
   Title, 
   LoginTextField, 
   SubmitButton,
-  RegistrationLink
+  RegistrationLink,
+  MessageBox
 } from './LoginStyles';
 
 import InputAdornment from '@mui/material/InputAdornment';
@@ -18,9 +19,14 @@ import IconButton from '@mui/material/IconButton';
 import PersonIcon from '@mui/icons-material/Person';
 import KeyIcon from '@mui/icons-material/Key';
 import KeyOffIcon from '@mui/icons-material/KeyOff';
+import axios from 'axios';
+
+const formData = new FormData();
+const loginURL = 'http://localhost/bug-tracker-backend/login.php';
 
 function Login() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isUserAlreadyKnown, setIsUserAlreadyKnown] = useState(true);
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -38,7 +44,19 @@ function Login() {
       .max(60, 'Password must contain between 3 and 60 characters')
       .required('Password is required')
     }),
-    onSubmit: () => navigate('/dashboard') 
+    onSubmit: values => {
+      formData.append('values', JSON.stringify(values));
+      axios.post(loginURL, formData)
+      .then(res => {
+        switch(res.data.status) {
+          case true:
+            navigate('/dashboard');
+            break;
+          case false:
+            setIsUserAlreadyKnown(false);
+        }
+      });
+    }
   });
     
   const handlePasswordVisibility = () => {
@@ -47,7 +65,9 @@ function Login() {
   return(
     <MainContainer>
       <LoginForm onSubmit={formik.handleSubmit}>
-        <Title variant='h5'>Sign In</Title> 
+        <Title variant='h5'>Sign In</Title>
+
+        {!isUserAlreadyKnown && <MessageBox>User doesn't exist!</MessageBox>}
 
         <LoginTextField
         type='text'

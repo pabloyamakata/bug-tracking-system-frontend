@@ -1,11 +1,13 @@
 import Box from "@mui/material/Box";
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material//Typography';
 import { styled } from '@mui/material';
 
 import bg_registration from '../../assets/bg-registration.jpg';
 
 export const MainWrapper = styled(Box)({
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     minHeight: '100vh',
@@ -52,3 +54,11 @@ export const RegistrationField = styled(TextField)(({ theme }) => ({
         marginTop: '20px'
     }
 }));
+
+export const MessageBox = styled(Typography)({
+    width: '100%',
+    maxWidth: '380px',
+    marginBottom: '10px',
+    textAlign: 'center',
+    color: '#f7f7f7'
+});

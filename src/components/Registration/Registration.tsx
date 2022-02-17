@@ -2,12 +2,14 @@ import { useState } from 'react';
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import {
     MainWrapper,
     RegistrationForm,
-    RegistrationField
+    RegistrationField,
+    MessageBox
 } from './RegistrationStyles';
 
 import InputAdornment from '@mui/material/InputAdornment';
@@ -22,6 +24,8 @@ const registrationURL = 'http://localhost/bug-tracker-backend/registration.php';
 
 function Registration() {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const [isUserAlreadyKnown, setIsUserAlreadyKnown] = useState(false);
+    const navigate = useNavigate();
 
     const formik = useFormik({
         initialValues: {
@@ -40,7 +44,16 @@ function Registration() {
         }),
         onSubmit: values => {
             formData.append('values', JSON.stringify(values));
-            axios.post(registrationURL, formData);
+            axios.post(registrationURL, formData)
+            .then(res => {
+                switch(res.data.status) {
+                    case true:
+                        navigate('/dashboard');
+                        break;
+                    case false:
+                        setIsUserAlreadyKnown(true);
+                }
+            });
         }
     });
 
@@ -49,6 +62,7 @@ function Registration() {
     };
     return(
         <MainWrapper>
+            {isUserAlreadyKnown && <MessageBox>User already exists!</MessageBox>}
             <RegistrationForm 
             onSubmit={formik.handleSubmit}>
                 <RegistrationField
