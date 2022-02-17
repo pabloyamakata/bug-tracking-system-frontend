@@ -95,3 +95,10 @@ export const RegistrationLink = styled(Typography)({
     }
 });
 
+export const MessageBox = styled(Typography)({
+    width: '100%',
+    marginBottom: '10px',
+    textAlign: 'center',
+    color: '#f7f7f7'
+});
+
