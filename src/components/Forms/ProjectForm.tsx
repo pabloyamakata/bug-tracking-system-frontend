@@ -1,12 +1,16 @@
+import { useState, useRef } from 'react';
+
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import axios from 'axios';
 
 import {
     CustomPaper,
     CustomGrid, 
     CustomTextField, 
     ButtonContainer, 
-    CustomButton 
+    CustomButton,
+    SuccessMessage
 } from './FormStyles';
 
 import Box from '@mui/material/Box';
@@ -14,7 +18,13 @@ import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 
+const formData = new FormData();
+const newProjectURL = 'http://localhost/bug-tracker-backend/newproject.php';
+
 function ProjectForm() {
+    const [wasProjectAdded, setWasProjectAdded] = useState(false);
+    const resetRef = useRef<HTMLButtonElement>(null);
+
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -22,7 +32,7 @@ function ProjectForm() {
             projectLeader: '',
             currentStatus: '',
             startDate: '',
-            deadLine: '',
+            deadline: '',
             frontend: '',
             backend: '',
             database: ''
@@ -39,24 +49,35 @@ function ProjectForm() {
             .min(3, 'Name of project leader must contain between 3 and 40 characters')
             .max(40, 'Name of project leader must contain between 3 and 40 characters')
             .required('Name of project leader is required'),
-            currentStatus: yup.string().required("Project current status is required"),
             startDate: yup.date().required("Start date is required"),
-            deadLine: yup.date().required('Estimated deadline is required'),
+            deadline: yup.date().required('Estimated deadline is required'),
+            currentStatus: yup.string()
+            .max(10, 'Current status text must be 10 characters or less')
+            .required("Project current status is required"),
             frontend: yup.string()
             .min(3, 'Frontend technology in use must contain between 3 and 30 characters')
-            .max(30,'Frontend technology in use must contain between 3 and 30 characters')
-            .required('At least one frontend technology must be specified'),
+            .max(30,'Frontend technology in use must contain between 3 and 30 characters'),
             backend: yup.string()
             .min(2, 'Backend technology in use must contain between 2 and 30 characters')
-            .max(30, 'Backend technology in use must contain between 2 and 30 characters')
-            .required('At least one backend technology must be specified'),
+            .max(30, 'Backend technology in use must contain between 2 and 30 characters'),
             database: yup.string()
             .min(3, 'Database name must contain between 3 and 30 characters')
             .max(30, 'Database name must contain between 3 and 30 characters')
-            .required('Database is required')
         }),
-        onSubmit: () => console.log('ProjectForm submitted!')
+        onSubmit: values => {
+            formData.append('values', JSON.stringify(values));
+            axios.post(newProjectURL, formData)
+            .then(res => {
+                res.data.status && handleFormSuccess();
+            });
+        }
     });
+
+    const handleFormSuccess = () => {
+        resetRef.current?.click();
+        setWasProjectAdded(true);
+        setTimeout(() => setWasProjectAdded(false), 10000);
+    };
     return(
         <CustomPaper elevation={0}>
             <Typography 
@@ -155,20 +176,20 @@ function ProjectForm() {
                         <CustomTextField
                         type='date'
                         label='Deadline'
-                        name='deadLine'
+                        name='deadline'
                         InputLabelProps={{ shrink: true }}
                         error={
-                            formik.touched.deadLine &&
-                            formik.errors.deadLine ?
+                            formik.touched.deadline &&
+                            formik.errors.deadline ?
                             true : false
                         }
                         helperText={
-                            formik.touched.deadLine &&
-                            formik.errors.deadLine ?
-                            formik.errors.deadLine :
+                            formik.touched.deadline &&
+                            formik.errors.deadline ?
+                            formik.errors.deadline :
                             null 
                         }
-                        value={formik.values.deadLine} 
+                        value={formik.values.deadline} 
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur} 
                         variant='outlined' 
@@ -198,7 +219,8 @@ function ProjectForm() {
                         defaultValue={''}
                         select>
                             <MenuItem value='Pending'>Pending</MenuItem>
-                            <MenuItem value='Finished'>Completed</MenuItem>
+                            <MenuItem value='Completed'>Completed</MenuItem>
+                            <MenuItem value='Cancelled'>Cancelled</MenuItem>
                         </CustomTextField>
                         <CustomTextField 
                         label='Frontend'
@@ -259,6 +281,14 @@ function ProjectForm() {
                         size='small' />
 
                         <ButtonContainer>
+
+                        {
+                            wasProjectAdded && 
+                            <SuccessMessage>
+                            Project was added successfully!
+                            </SuccessMessage>
+                        }
+
                             <CustomButton
                             type='submit' 
                             variant="contained" 
@@ -266,6 +296,7 @@ function ProjectForm() {
                             Save
                             </CustomButton>
                             <CustomButton
+                            ref={resetRef}
                             variant='contained'
                             onClick={formik.handleReset}>
                             Reset

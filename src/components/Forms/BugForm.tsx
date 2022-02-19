@@ -1,3 +1,5 @@
+import { useState, useRef } from 'react';
+
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
@@ -7,7 +9,8 @@ import {
     CustomGrid, 
     CustomTextField, 
     ButtonContainer, 
-    CustomButton 
+    CustomButton,
+    SuccessMessage
 } from './FormStyles';
 
 import Box from '@mui/material/Box';
@@ -16,9 +19,12 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 
 const formData = new FormData();
-const bugInsertionURL = 'http://localhost/bug-tracker-backend/buginsertion.php';
+const newBugURL = 'http://localhost/bug-tracker-backend/newbug.php';
 
 function BugForm() {
+    const [wasBugReported, setWasBugReported] = useState(false);
+    const resetRef = useRef<HTMLButtonElement>(null);
+
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -51,9 +57,18 @@ function BugForm() {
         }),
         onSubmit: values => {
             formData.append('values', JSON.stringify(values));
-            axios.post(bugInsertionURL, formData);
+            axios.post(newBugURL, formData)
+            .then(res => {
+                res.data.status && handleFormSuccess();
+            });
         }
     });
+
+    const handleFormSuccess = () => {
+        resetRef.current?.click();
+        setWasBugReported(true);
+        setTimeout(() => setWasBugReported(false), 10000);
+    };
     return(
         <CustomPaper elevation={0}>
             <Typography 
@@ -273,6 +288,14 @@ function BugForm() {
                         size='small' />
 
                         <ButtonContainer>
+
+                        {
+                            wasBugReported && 
+                            <SuccessMessage>
+                            Bug was reported successfully!
+                            </SuccessMessage>
+                        }
+
                             <CustomButton 
                             type='submit'
                             variant="contained" 
@@ -280,6 +303,7 @@ function BugForm() {
                             Save
                             </CustomButton>
                             <CustomButton
+                            ref={resetRef}
                             variant='contained'
                             onClick={formik.handleReset}>
                             Reset
