@@ -66,7 +66,12 @@ function ProjectForm() {
         }),
         onSubmit: values => {
             formData.append('values', JSON.stringify(values));
-            axios.post(newProjectURL, formData)
+            axios({
+                method: 'post',
+                url: newProjectURL,
+                data: formData,
+                withCredentials: true
+            })
             .then(res => {
                 res.data.status && handleFormSuccess();
             });

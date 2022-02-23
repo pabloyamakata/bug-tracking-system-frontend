@@ -46,7 +46,12 @@ function Login() {
     }),
     onSubmit: values => {
       formData.append('values', JSON.stringify(values));
-      axios.post(loginURL, formData)
+      axios({
+        method: 'post',
+        url: loginURL,
+        data: formData,
+        withCredentials: true
+      })
       .then(res => {
         switch(res.data.status) {
           case true:
