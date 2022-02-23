@@ -57,7 +57,12 @@ function BugForm() {
         }),
         onSubmit: values => {
             formData.append('values', JSON.stringify(values));
-            axios.post(newBugURL, formData)
+            axios({
+                method: 'post',
+                url: newBugURL,
+                data: formData,
+                withCredentials: true
+            })
             .then(res => {
                 res.data.status && handleFormSuccess();
             });

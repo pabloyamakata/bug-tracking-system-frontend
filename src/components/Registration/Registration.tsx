@@ -44,7 +44,12 @@ function Registration() {
         }),
         onSubmit: values => {
             formData.append('values', JSON.stringify(values));
-            axios.post(registrationURL, formData)
+            axios({
+                method: 'post',
+                url: registrationURL,
+                data: formData,
+                withCredentials: true
+            })
             .then(res => {
                 switch(res.data.status) {
                     case true:
