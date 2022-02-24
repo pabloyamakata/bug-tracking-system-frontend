@@ -16,8 +16,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const bugs_URL = 'http://localhost/bug-tracker-backend/bugs.php';
+const bugDeletionURL = 'http://localhost/bug-tracker-backend/bugdeletion.php';
 
-interface Bugs {
+interface BugInterface {
     id: number;
     name: string;
     description: string;
@@ -33,7 +34,7 @@ interface Bugs {
 let rowIndex = 0;
 
 function Bugs() {
-    const [bugArray, setBugArray] = useState<Bugs[]>([]);
+    const [bugArray, setBugArray] = useState<BugInterface[]>([]);
 
     useEffect(() => {
         axios({
@@ -48,6 +49,21 @@ function Bugs() {
         if(rowIndex >= bugArray.length) return rowIndex = 1;
         else return ++rowIndex;
     };
+
+    const handleBugDeletion = (id: number) => {
+        if(window.confirm('Do you really want to delete this bug?')) {
+            const formData = new FormData();
+            const bug_id = { id: id };
+            formData.append('bug_id', JSON.stringify(bug_id));
+            axios({
+                method: 'post',
+                url: bugDeletionURL,
+                data: formData,
+                withCredentials: true
+            });
+            document.location.reload();
+        }
+    };
     return(
         <CustomPaper elevation={0}>
             <TableContainer component={Paper} square elevation={0}>
@@ -57,7 +73,7 @@ function Bugs() {
                             <TableCell>No.</TableCell>
                             <TableCell>Name</TableCell>
                             <TableCell>Project</TableCell>
-                            <TableCell>Leader</TableCell>
+                            <TableCell>P. Leader</TableCell>
                             <TableCell>Status</TableCell>
                             <TableCell>Priority</TableCell>
                             <TableCell>Severity</TableCell>
@@ -69,7 +85,7 @@ function Bugs() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {bugArray.map((bug: Bugs) => (
+                        {bugArray.map((bug: BugInterface) => (
                             <TableRow
                             key={bug.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -92,7 +108,9 @@ function Bugs() {
                                     </IconButton>
                                 </TableCell>
                                 <TableCell>
-                                    <IconButton sx={{padding: 0}}>
+                                    <IconButton
+                                    onClick={() => {handleBugDeletion(bug.id)}} 
+                                    sx={{padding: 0}}>
                                         <DeleteIcon />
                                     </IconButton>
                                 </TableCell>
