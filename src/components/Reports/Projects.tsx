@@ -1,4 +1,8 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
 import { CustomPaper } from './ReportStyles';
+import DescriptionModal from './DescriptionModal';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,55 +15,64 @@ import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const createData = (
-    number: number,
-    name: string, 
-    projectLeader: string, 
-    currentStatus: string, 
-    startDate: string, 
-    deadLine: string,
-    frontend: string,
-    backend: string,
-    database: string,
-    description: string
-) => ({
-    number,
-    name,
-    projectLeader,
-    currentStatus,
-    startDate,
-    deadLine,
-    frontend,
-    backend,
-    database,
-    description
-});
+const projectDeletionURL = 'http://localhost/bug-tracker-backend/projectdeletion.php';
+const projects_URL = 'http://localhost/bug-tracker-backend/projects.php';
 
-const rows = [
-    createData(
-        1, 
-        'Project 1', 
-        'Barry Allen', 
-        'Pending', 
-        '19/01/2019', 
-        '20/04/2020', 
-        'React', 
-        'PHP', 
-        'MySQL', 
-        'See'
-    )
-];
+interface ProjectInterface {
+    id: number;
+    name: string;
+    description: string;
+    project_leader: string;
+    start_date: Date;
+    deadline: Date;
+    current_status: string;
+    frontend: string;
+    backend: string;
+    ddbb: string;
+}
+
+let rowIndex = 0;
 
 function Projects() {
+    const [projectArray, setProjectArray] = useState<ProjectInterface[]>([]);
+
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: projects_URL,
+            withCredentials: true 
+        })
+        .then(res => setProjectArray(res.data));
+    }, []);
+
+    const getRowIndex = () => {
+        if(rowIndex >= projectArray.length) return rowIndex = 1;
+        else return ++rowIndex;
+    };
+
+    const handleProjectDeletion = (id: number) => {
+        if(window.confirm('Do you really want to delete this project?')) {
+            const formData = new FormData();
+            const project_id = { id: id };
+            formData.append('project_id', JSON.stringify(project_id));
+            axios({
+                method: 'post',
+                url: projectDeletionURL,
+                data: formData,
+                withCredentials: true
+            });
+            document.location.reload();
+        }
+    };
     return(
         <CustomPaper elevation={0}>
-            <TableContainer component={Paper} square>
+            <TableContainer component={Paper} square elevation={0}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell>No.</TableCell>
                             <TableCell>Name</TableCell>
-                            <TableCell>Leader</TableCell>
+                            <TableCell>P. Leader</TableCell>
                             <TableCell>Status</TableCell>
                             <TableCell>Start Date</TableCell>
                             <TableCell>Deadline</TableCell>
@@ -72,27 +85,32 @@ function Projects() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
+                        {projectArray.map((project: ProjectInterface) => (
                             <TableRow
-                            key={row.number}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                <TableCell component="th" scope="row">{row.number}</TableCell>
-                                <TableCell>{row.name}</TableCell>
-                                <TableCell>{row.projectLeader}</TableCell>
-                                <TableCell>{row.currentStatus}</TableCell>
-                                <TableCell>{row.startDate}</TableCell>
-                                <TableCell>{row.deadLine}</TableCell>
-                                <TableCell>{row.frontend}</TableCell>
-                                <TableCell>{row.backend}</TableCell>
-                                <TableCell>{row.database}</TableCell>
-                                <TableCell>{row.description}</TableCell>
+                            key={project.id}
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            hover>
+                                <TableCell component="th" scope="row">{getRowIndex()}</TableCell>
+                                <TableCell>{project.name}</TableCell>
+                                <TableCell>{project.project_leader}</TableCell>
+                                <TableCell>{project.current_status}</TableCell>
+                                <TableCell>{project.start_date}</TableCell>
+                                <TableCell>{project.deadline}</TableCell>
+                                <TableCell>{project.frontend}</TableCell>
+                                <TableCell>{project.backend}</TableCell>
+                                <TableCell>{project.ddbb}</TableCell>
+                                <TableCell>
+                                    <DescriptionModal description={project.description} />
+                                </TableCell>
                                 <TableCell>
                                     <IconButton sx={{padding: 0}}>
                                         <EditIcon />
                                     </IconButton>
                                 </TableCell>
                                 <TableCell>
-                                    <IconButton sx={{padding: 0}}>
+                                    <IconButton 
+                                    onClick={() => {handleProjectDeletion(project.id)}}
+                                    sx={{padding: 0}}>
                                         <DeleteIcon />
                                     </IconButton>
                                 </TableCell>
