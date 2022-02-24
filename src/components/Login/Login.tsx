@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import axios from 'axios';
 
 import {
   MainContainer, 
@@ -19,7 +20,6 @@ import IconButton from '@mui/material/IconButton';
 import PersonIcon from '@mui/icons-material/Person';
 import KeyIcon from '@mui/icons-material/Key';
 import KeyOffIcon from '@mui/icons-material/KeyOff';
-import axios from 'axios';
 
 const formData = new FormData();
 const loginURL = 'http://localhost/bug-tracker-backend/login.php';

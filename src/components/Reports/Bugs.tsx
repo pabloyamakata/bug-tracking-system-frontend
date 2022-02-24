@@ -1,4 +1,8 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
 import { CustomPaper } from './ReportStyles';
+import DescriptionModal from './DescriptionModal';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,49 +15,42 @@ import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const createData = (
-    number: number,
-    name: string, 
-    project: string, 
-    projectLeader: string, 
-    currentStatus: string, 
-    priority: string,
-    severity: string,
-    initialDate: string,
-    finalDate: string,
-    description: string
-) => ({
-    number,
-    name,
-    project,
-    projectLeader,
-    currentStatus,
-    priority,
-    severity,
-    initialDate,
-    finalDate,
-    description
-});
+const bugs_URL = 'http://localhost/bug-tracker-backend/bugs.php';
 
-const rows = [
-    createData(
-        1, 
-        'Bug 1', 
-        'Project 1', 
-        'Barry Allen', 
-        'Pending', 
-        'High', 
-        'Low', 
-        '20/02/2020', 
-        '', 
-        'See'
-    )
-];
+interface Bugs {
+    id: number;
+    name: string;
+    description: string;
+    project: string;
+    project_leader: string;
+    current_status: string;
+    priority_level: string;
+    severity_level: string;
+    initial_date: Date;
+    final_date: Date;
+}
+
+let rowIndex = 0;
 
 function Bugs() {
+    const [bugArray, setBugArray] = useState<Bugs[]>([]);
+
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: bugs_URL,
+            withCredentials: true 
+        })
+        .then(res => setBugArray(res.data));
+    }, []);
+
+    const getRowIndex = () => {
+        if(rowIndex >= bugArray.length) return rowIndex = 1;
+        else return ++rowIndex;
+    };
     return(
         <CustomPaper elevation={0}>
-            <TableContainer component={Paper} square>
+            <TableContainer component={Paper} square elevation={0}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
@@ -72,20 +69,23 @@ function Bugs() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
+                        {bugArray.map((bug: Bugs) => (
                             <TableRow
-                            key={row.number}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                <TableCell component="th" scope="row">{row.number}</TableCell>
-                                <TableCell>{row.name}</TableCell>
-                                <TableCell>{row.project}</TableCell>
-                                <TableCell>{row.projectLeader}</TableCell>
-                                <TableCell>{row.currentStatus}</TableCell>
-                                <TableCell>{row.priority}</TableCell>
-                                <TableCell>{row.severity}</TableCell>
-                                <TableCell>{row.initialDate}</TableCell>
-                                <TableCell>{row.finalDate}</TableCell>
-                                <TableCell>{row.description}</TableCell>
+                            key={bug.id}
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            hover>
+                                <TableCell component="th" scope="row">{getRowIndex()}</TableCell>
+                                <TableCell>{bug.name}</TableCell>
+                                <TableCell>{bug.project}</TableCell>
+                                <TableCell>{bug.project_leader}</TableCell>
+                                <TableCell>{bug.current_status}</TableCell>
+                                <TableCell>{bug.priority_level}</TableCell>
+                                <TableCell>{bug.severity_level}</TableCell>
+                                <TableCell>{bug.initial_date}</TableCell>
+                                <TableCell>{bug.final_date}</TableCell>
+                                <TableCell>
+                                    <DescriptionModal description={bug.description} />
+                                </TableCell>
                                 <TableCell>
                                     <IconButton sx={{padding: 0}}>
                                         <EditIcon />
