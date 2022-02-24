@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import { CustomNavbar, CustomSwitch } from './NavbarStyles';
 
@@ -15,6 +17,8 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
+const logoutURL = 'http://localhost/bug-tracker-backend/logout.php';
+
 const pages = ['Dashboard', 'New Bug', 'New Project', 'Bug Reports', 'Project Reports'];
 const settings = ['Logout'];
 
@@ -24,6 +28,8 @@ interface ThemeModeProps {
 }
 
 function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
+    const navigate = useNavigate();
+
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -45,6 +51,16 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
     const changeThemeMode = () => {
         setIsModeDark(!isModeDark);
     };
+    const handleLogout = () => {
+        axios({
+            method: 'get',
+            url: logoutURL,
+            withCredentials: true
+        })
+        .then(res => {
+            res.data.status && navigate('/login');
+        });
+    }
     return(
         <CustomNavbar>
             <Container maxWidth='xl'>
@@ -148,7 +164,9 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
                         open={Boolean(anchorElUser)}
                         onClose={handleCloseUserMenu}>
                             {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                <MenuItem 
+                                key={setting} 
+                                onClick={() => {handleCloseUserMenu(); handleLogout();}}>
                                     <Typography textAlign='center'>{setting}</Typography>
                                 </MenuItem>
                             ))}
