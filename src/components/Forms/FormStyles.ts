@@ -52,3 +52,7 @@ export const SuccessMessage = styled(Typography)({
     marginBottom: '10px',
     color: '#0fa311'
 });
+
+export const ErrorMessage = styled(Typography)({
+    marginBottom: '10px'
+});

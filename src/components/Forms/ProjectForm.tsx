@@ -10,7 +10,8 @@ import {
     CustomTextField, 
     ButtonContainer, 
     CustomButton,
-    SuccessMessage
+    SuccessMessage,
+    ErrorMessage
 } from './FormStyles';
 
 import Box from '@mui/material/Box';
@@ -23,6 +24,7 @@ const newProjectURL = 'http://localhost/bug-tracker-backend/newproject.php';
 
 function ProjectForm() {
     const [wasProjectAdded, setWasProjectAdded] = useState(false);
+    const [isProjectAlreadyKnown, setIsProjectAlreadyKnown] = useState(false);
     const resetRef = useRef<HTMLButtonElement>(null);
 
     const formik = useFormik({
@@ -73,7 +75,14 @@ function ProjectForm() {
                 withCredentials: true
             })
             .then(res => {
-                res.data.status && handleFormSuccess();
+                switch(res.data.status) {
+                    case true:
+                        handleFormSuccess();
+                        break;
+                    case 'project already exists':
+                        setIsProjectAlreadyKnown(true);
+                        setTimeout(() => setIsProjectAlreadyKnown(false), 10000);
+                }
             });
         }
     });
@@ -292,6 +301,11 @@ function ProjectForm() {
                             <SuccessMessage>
                             Project was added successfully!
                             </SuccessMessage>
+                        }
+
+                        {
+                            isProjectAlreadyKnown &&
+                            <ErrorMessage>Name provided already exists!</ErrorMessage>
                         }
 
                             <CustomButton
