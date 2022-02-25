@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -19,11 +19,29 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 
 const formData = new FormData();
+const projectInfoURL = 'http://localhost/bug-tracker-backend/projectinfo.php';
 const newBugURL = 'http://localhost/bug-tracker-backend/newbug.php';
+
+interface ProjectInfoInterface {
+    name: string;
+    project_leader: string;
+}
 
 function BugForm() {
     const [wasBugReported, setWasBugReported] = useState(false);
+    const [projectInfoArray, setProjectInfoArray] = useState<ProjectInfoInterface[]>([]);
     const resetRef = useRef<HTMLButtonElement>(null);
+
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: projectInfoURL,
+            withCredentials: true
+        })
+        .then(res => {
+            setProjectInfoArray(res.data);
+        });
+    }, []);
 
     const formik = useFormik({
         initialValues: {
@@ -149,9 +167,9 @@ function BugForm() {
                         size='small' 
                         defaultValue={''} 
                         select>
-                            <MenuItem value='Project 1'>Project 1</MenuItem>
-                            <MenuItem value='Project 2'>Project 2</MenuItem>
-                            <MenuItem value='Project 3'>Project 3</MenuItem>
+                            {projectInfoArray.map((projectInfo: ProjectInfoInterface) => (
+                                <MenuItem value={projectInfo.name}>{projectInfo.name}</MenuItem>
+                            ))}
                         </CustomTextField>
                         <CustomTextField 
                         label='Project Leader'
@@ -171,7 +189,11 @@ function BugForm() {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur} 
                         variant='outlined' 
-                        size='small' />
+                        size='small'
+                        defaultValue={''}
+                        select>
+                            <MenuItem value='Thomas Eddison'>Thomas Edisson</MenuItem>
+                        </CustomTextField>
                         <CustomTextField 
                         label='Current Status' 
                         name='currentStatus'
