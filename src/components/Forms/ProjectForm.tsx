@@ -45,7 +45,7 @@ function ProjectForm() {
             .max(30, 'Name must contain between 3 and 30 characters')
             .required('Name is required'),
             description: yup.string()
-            .max(100, 'Description must be 100 characters or less')
+            .max(1000, 'Description must be 1000 characters or less')
             .required('Description is required'),
             projectLeader: yup.string()
             .min(3, 'Name of project leader must contain between 3 and 40 characters')
