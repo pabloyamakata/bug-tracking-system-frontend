@@ -35,6 +35,7 @@ let rowIndex = 0;
 
 function Bugs() {
     const [bugArray, setBugArray] = useState<BugInterface[]>([]);
+    const [bugDeletion, setBugDeletion] = useState(false);
 
     useEffect(() => {
         axios({
@@ -43,25 +44,25 @@ function Bugs() {
             withCredentials: true 
         })
         .then(res => setBugArray(res.data));
-    }, []);
+    }, [bugDeletion]);
 
     const getRowIndex = () => {
         if(rowIndex >= bugArray.length) return rowIndex = 1;
         else return ++rowIndex;
     };
 
-    const handleBugDeletion = (id: number) => {
+    const handleBugDeletion = async (id: number) => {
         if(window.confirm('Do you really want to delete this bug?')) {
             const formData = new FormData();
             const bug_id = { id: id };
             formData.append('bug_id', JSON.stringify(bug_id));
-            axios({
+            await axios({
                 method: 'post',
                 url: bugDeletionURL,
                 data: formData,
                 withCredentials: true
             });
-            document.location.reload();
+            setBugDeletion(!bugDeletion);
         }
     };
     return(
