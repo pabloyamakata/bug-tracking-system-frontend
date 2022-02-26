@@ -35,6 +35,7 @@ let rowIndex = 0;
 
 function Projects() {
     const [projectArray, setProjectArray] = useState<ProjectInterface[]>([]);
+    const [projectDeletion, setProjectDeletion] = useState(false);
 
     useEffect(() => {
         axios({
@@ -43,25 +44,28 @@ function Projects() {
             withCredentials: true 
         })
         .then(res => setProjectArray(res.data));
-    }, []);
+    }, [projectDeletion]);
 
     const getRowIndex = () => {
         if(rowIndex >= projectArray.length) return rowIndex = 1;
         else return ++rowIndex;
     };
 
-    const handleProjectDeletion = (id: number) => {
-        if(window.confirm('Do you really want to delete this project?')) {
+    const handleProjectDeletion = async (id: number) => {
+        if(window.confirm(
+            'Do you really want to delete this project?' + 
+            ' All related bugs will be deleted as well.'
+        )) {
             const formData = new FormData();
             const project_id = { id: id };
             formData.append('project_id', JSON.stringify(project_id));
-            axios({
+            await axios({
                 method: 'post',
                 url: projectDeletionURL,
                 data: formData,
                 withCredentials: true
             });
-            document.location.reload();
+            setProjectDeletion(!projectDeletion);
         }
     };
     return(

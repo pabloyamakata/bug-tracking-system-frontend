@@ -23,6 +23,7 @@ const projectInfoURL = 'http://localhost/bug-tracker-backend/projectinfo.php';
 const newBugURL = 'http://localhost/bug-tracker-backend/newbug.php';
 
 interface ProjectInfoInterface {
+    id: number;
     name: string;
     project_leader: string;
 }
@@ -30,6 +31,8 @@ interface ProjectInfoInterface {
 function BugForm() {
     const [wasBugReported, setWasBugReported] = useState(false);
     const [projectInfoArray, setProjectInfoArray] = useState<ProjectInfoInterface[]>([]);
+    const [projectLeader, setProjectLeader] = useState('');
+    const [projectId, setProjectId] = useState(0);
     const resetRef = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
@@ -75,6 +78,7 @@ function BugForm() {
         }),
         onSubmit: values => {
             formData.append('values', JSON.stringify(values));
+            formData.append('project_id', JSON.stringify({ id: projectId }));
             axios({
                 method: 'post',
                 url: newBugURL,
@@ -91,6 +95,10 @@ function BugForm() {
         resetRef.current?.click();
         setWasBugReported(true);
         setTimeout(() => setWasBugReported(false), 10000);
+    };
+    const handleProjectInfo = (projectInfo: ProjectInfoInterface) => {
+        setProjectLeader(projectInfo.project_leader);
+        setProjectId(projectInfo.id);
     };
     return(
         <CustomPaper elevation={0}>
@@ -168,7 +176,12 @@ function BugForm() {
                         defaultValue={''} 
                         select>
                             {projectInfoArray.map((projectInfo: ProjectInfoInterface) => (
-                                <MenuItem value={projectInfo.name}>{projectInfo.name}</MenuItem>
+                                <MenuItem
+                                key={projectInfo.id} 
+                                onClick={() => handleProjectInfo(projectInfo)} 
+                                value={projectInfo.name}>
+                                    {projectInfo.name}
+                                </MenuItem>
                             ))}
                         </CustomTextField>
                         <CustomTextField 
@@ -192,7 +205,7 @@ function BugForm() {
                         size='small'
                         defaultValue={''}
                         select>
-                            <MenuItem value='Thomas Eddison'>Thomas Edisson</MenuItem>
+                            <MenuItem value={projectLeader}>{projectLeader}</MenuItem>
                         </CustomTextField>
                         <CustomTextField 
                         label='Current Status' 
