@@ -19,18 +19,25 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 
 const formData = new FormData();
-const projectInfoURL = 'http://localhost/bug-tracker-backend/projectinfo.php';
+const projects_URL = 'http://localhost/bug-tracker-backend/projects.php';
 const newBugURL = 'http://localhost/bug-tracker-backend/newbug.php';
 
-interface ProjectInfoInterface {
+interface ProjectInterface {
     id: number;
     name: string;
+    description: string;
     project_leader: string;
+    start_date: Date;
+    deadline: Date;
+    current_status: string;
+    frontend: string;
+    backend: string;
+    ddb: string;
 }
 
 function BugForm() {
     const [wasBugReported, setWasBugReported] = useState(false);
-    const [projectInfoArray, setProjectInfoArray] = useState<ProjectInfoInterface[]>([]);
+    const [projectArray, setProjectArray] = useState<ProjectInterface[]>([]);
     const [projectLeader, setProjectLeader] = useState('');
     const [projectId, setProjectId] = useState(0);
     const resetRef = useRef<HTMLButtonElement>(null);
@@ -38,11 +45,11 @@ function BugForm() {
     useEffect(() => {
         axios({
             method: 'get',
-            url: projectInfoURL,
+            url: projects_URL,
             withCredentials: true
         })
         .then(res => {
-            setProjectInfoArray(res.data);
+            setProjectArray(res.data);
         });
     }, []);
 
@@ -96,7 +103,7 @@ function BugForm() {
         setWasBugReported(true);
         setTimeout(() => setWasBugReported(false), 10000);
     };
-    const handleProjectInfo = (projectInfo: ProjectInfoInterface) => {
+    const handleProjectInfo = (projectInfo: ProjectInterface) => {
         setProjectLeader(projectInfo.project_leader);
         setProjectId(projectInfo.id);
     };
@@ -175,12 +182,12 @@ function BugForm() {
                         size='small' 
                         defaultValue={''} 
                         select>
-                            {projectInfoArray.map((projectInfo: ProjectInfoInterface) => (
+                            {projectArray.map((project: ProjectInterface) => (
                                 <MenuItem
-                                key={projectInfo.id} 
-                                onClick={() => handleProjectInfo(projectInfo)} 
-                                value={projectInfo.name}>
-                                    {projectInfo.name}
+                                key={project.id} 
+                                onClick={() => handleProjectInfo(project)} 
+                                value={project.name}>
+                                    {project.name}
                                 </MenuItem>
                             ))}
                         </CustomTextField>

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import { CustomPaper } from './ReportStyles';
-import DescriptionModal from './DescriptionModal';
+import DescriptionModal from '../DescriptionModal/DescriptionModal';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
