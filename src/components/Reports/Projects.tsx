@@ -35,7 +35,7 @@ let rowIndex = 0;
 
 function Projects() {
     const [projectArray, setProjectArray] = useState<ProjectInterface[]>([]);
-    const [projectDeletion, setProjectDeletion] = useState(false);
+    const [requestAction, triggerRequestAction] = useState(false);
 
     useEffect(() => {
         axios({
@@ -44,7 +44,7 @@ function Projects() {
             withCredentials: true 
         })
         .then(res => setProjectArray(res.data));
-    }, [projectDeletion]);
+    }, [requestAction]);
 
     const getRowIndex = () => {
         if(rowIndex >= projectArray.length) return rowIndex = 1;
@@ -65,7 +65,7 @@ function Projects() {
                 data: formData,
                 withCredentials: true
             });
-            setProjectDeletion(!projectDeletion);
+            triggerRequestAction(!requestAction);
         }
     };
     return(
