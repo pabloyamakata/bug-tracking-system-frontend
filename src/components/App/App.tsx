@@ -25,19 +25,19 @@ function App() {
     return(
         <ThemeProvider theme={isModeDark ? darkTheme : lightTheme}>
             {location.pathname === '/login' || location.pathname ==='/registration' ? null : 
-                <Navbar 
-                isModeDark={isModeDark} 
-                setIsModeDark={setIsModeDark} />}
-                <Routes>
-                    <Route path='login' element={<Login />} />
-                    <Route path='registration' element={<Registration />} />
-                    <Route path='dashboard' element={<Dashboard />} />
-                    <Route path='newbug' element={<BugForm />} />
-                    <Route path='newproject' element={<ProjectForm />} />
-                    <Route path='bugreports' element={<Bugs />} />
-                    <Route path='projectreports' element={<Projects />} />
-                    <Route path='*' element={<Navigate to='login' />} />
-                </Routes>
+            <Navbar 
+            isModeDark={isModeDark} 
+            setIsModeDark={setIsModeDark} />}
+            <Routes>
+                <Route path='login' element={<Login />} />
+                <Route path='registration' element={<Registration />} />
+                <Route path='dashboard' element={<Dashboard />} />
+                <Route path='newbug' element={<BugForm />} />
+                <Route path='newproject' element={<ProjectForm />} />
+                <Route path='bugreports' element={<Bugs />} />
+                <Route path='projectreports' element={<Projects />} />
+                <Route path='*' element={<Navigate to='login' />} />
+            </Routes>
         </ThemeProvider>
     )
 }
