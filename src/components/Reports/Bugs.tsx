@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import { CustomPaper } from './ReportStyles';
@@ -36,6 +37,7 @@ let rowIndex = 0;
 function Bugs() {
     const [bugArray, setBugArray] = useState<BugInterface[]>([]);
     const [bugDeletion, setBugDeletion] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios({
@@ -49,6 +51,10 @@ function Bugs() {
     const getRowIndex = () => {
         if(rowIndex >= bugArray.length) return rowIndex = 1;
         else return ++rowIndex;
+    };
+
+    const handleBugEdition = async (id: number) => {
+        navigate('/newbug');
     };
 
     const handleBugDeletion = async (id: number) => {
@@ -104,13 +110,15 @@ function Bugs() {
                                     <DescriptionModal description={bug.description} />
                                 </TableCell>
                                 <TableCell>
-                                    <IconButton sx={{padding: 0}}>
+                                    <IconButton 
+                                    onClick={() => handleBugEdition(bug.id)}
+                                    sx={{padding: 0}}>
                                         <EditIcon />
                                     </IconButton>
                                 </TableCell>
                                 <TableCell>
                                     <IconButton
-                                    onClick={() => {handleBugDeletion(bug.id)}} 
+                                    onClick={() => handleBugDeletion(bug.id)} 
                                     sx={{padding: 0}}>
                                         <DeleteIcon />
                                     </IconButton>

@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useReducer } from 'react';
+import { AppContext } from '../../context';
+import { reducer } from '../../reducer';
 
 import { ThemeProvider } from '@mui/material';
 import { lightTheme, darkTheme } from '../../themes';
@@ -22,8 +24,10 @@ import Projects from '../Reports/Projects';
 function App() {
     const [isModeDark, setIsModeDark] = useState(false);
     const location = useLocation();
+    const [state, dispatch] = useReducer(reducer, AppContext);
     return(
-        <ThemeProvider theme={isModeDark ? darkTheme : lightTheme}>
+        <AppContext.Provider value={{ state, dispatch }}>
+            <ThemeProvider theme={isModeDark ? darkTheme : lightTheme}>
             {location.pathname === '/login' || location.pathname ==='/registration' ? null : 
                 <Navbar 
                 isModeDark={isModeDark} 
@@ -38,7 +42,8 @@ function App() {
                     <Route path='projectreports' element={<Projects />} />
                     <Route path='*' element={<Navigate to='login' />} />
                 </Routes>
-        </ThemeProvider>
+            </ThemeProvider>
+        </AppContext.Provider>
     )
 }
 
