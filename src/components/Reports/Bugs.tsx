@@ -51,6 +51,10 @@ function Bugs() {
         else return ++rowIndex;
     };
 
+    const handleBugEdition = async (id: number) => {
+        console.log(id);
+    };
+
     const handleBugDeletion = async (id: number) => {
         if(window.confirm('Do you really want to delete this bug?')) {
             const formData = new FormData();
@@ -104,13 +108,15 @@ function Bugs() {
                                     <DescriptionModal description={bug.description} />
                                 </TableCell>
                                 <TableCell>
-                                    <IconButton sx={{padding: 0}}>
+                                    <IconButton
+                                    onClick={() => handleBugEdition(bug.id)}
+                                    sx={{padding: 0}}>
                                         <EditIcon />
                                     </IconButton>
                                 </TableCell>
                                 <TableCell>
                                     <IconButton
-                                    onClick={() => {handleBugDeletion(bug.id)}} 
+                                    onClick={() => handleBugDeletion(bug.id)} 
                                     sx={{padding: 0}}>
                                         <DeleteIcon />
                                     </IconButton>
