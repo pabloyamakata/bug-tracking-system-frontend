@@ -5,7 +5,7 @@ interface ActionInterface {
     payload: number;
 }
 
-export const reducer = (state: StateInterface, action: ActionInterface) => {
+export const reducer = (state: StateInterface, action: ActionInterface): any => {
     switch(action.type) {
         case 'SET_PROJECT_ID':
             return { ...state, projectId: action.payload };
