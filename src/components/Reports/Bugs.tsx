@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import { CustomPaper } from './ReportStyles';
@@ -36,8 +35,7 @@ let rowIndex = 0;
 
 function Bugs() {
     const [bugArray, setBugArray] = useState<BugInterface[]>([]);
-    const [bugDeletion, setBugDeletion] = useState(false);
-    const navigate = useNavigate();
+    const [requestAction, triggerRequestAction] = useState(false);
 
     useEffect(() => {
         axios({
@@ -46,7 +44,7 @@ function Bugs() {
             withCredentials: true 
         })
         .then(res => setBugArray(res.data));
-    }, [bugDeletion]);
+    }, [requestAction]);
 
     const getRowIndex = () => {
         if(rowIndex >= bugArray.length) return rowIndex = 1;
@@ -68,7 +66,7 @@ function Bugs() {
                 data: formData,
                 withCredentials: true
             });
-            setBugDeletion(!bugDeletion);
+            triggerRequestAction(!requestAction);
         }
     };
     return(
