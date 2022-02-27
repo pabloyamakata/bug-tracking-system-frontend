@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import { CustomPaper } from './ReportStyles';
@@ -34,8 +36,10 @@ interface BugInterface {
 let rowIndex = 0;
 
 function Bugs() {
+    const { setBugId } = useContext(AppContext);
     const [bugArray, setBugArray] = useState<BugInterface[]>([]);
     const [requestAction, triggerRequestAction] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios({
@@ -51,10 +55,11 @@ function Bugs() {
         else return ++rowIndex;
     };
 
-    const handleBugEdition = async (id: number) => {
-        console.log(id);
+    const handleBugEdition = (id: number) => {
+        setBugId(id);
+        navigate('/newbug');
     };
-
+    
     const handleBugDeletion = async (id: number) => {
         if(window.confirm('Do you really want to delete this bug?')) {
             const formData = new FormData();
