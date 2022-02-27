@@ -54,7 +54,7 @@ function Bugs() {
     };
 
     const handleBugEdition = async (id: number) => {
-        navigate('/newbug');
+        console.log(id);
     };
 
     const handleBugDeletion = async (id: number) => {
