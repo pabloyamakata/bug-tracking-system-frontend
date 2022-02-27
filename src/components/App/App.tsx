@@ -24,7 +24,7 @@ function App() {
     const location = useLocation();
     return(
         <ThemeProvider theme={isModeDark ? darkTheme : lightTheme}>
-        {location.pathname === '/login' || location.pathname ==='/registration' ? null : 
+            {location.pathname === '/login' || location.pathname ==='/registration' ? null : 
             <Navbar 
             isModeDark={isModeDark} 
             setIsModeDark={setIsModeDark} />}
