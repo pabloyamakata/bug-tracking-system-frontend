@@ -35,7 +35,7 @@ let rowIndex = 0;
 
 function Bugs() {
     const [bugArray, setBugArray] = useState<BugInterface[]>([]);
-    const [bugDeletion, setBugDeletion] = useState(false);
+    const [requestAction, triggerRequestAction] = useState(false);
 
     useEffect(() => {
         axios({
@@ -44,7 +44,7 @@ function Bugs() {
             withCredentials: true 
         })
         .then(res => setBugArray(res.data));
-    }, [bugDeletion]);
+    }, [requestAction]);
 
     const getRowIndex = () => {
         if(rowIndex >= bugArray.length) return rowIndex = 1;
@@ -66,7 +66,7 @@ function Bugs() {
                 data: formData,
                 withCredentials: true
             });
-            setBugDeletion(!bugDeletion);
+            triggerRequestAction(!requestAction);
         }
     };
     return(
