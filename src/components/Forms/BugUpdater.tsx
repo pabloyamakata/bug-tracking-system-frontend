@@ -77,7 +77,7 @@ function BugUpdater() {
             withCredentials: true
         })
         .then(res => {
-            const selectedBug = res.data.find((bug: BugInterface) => bug.id == bugId);
+            const selectedBug = res.data.find((bug: BugInterface) => bug.id === bugId);
             setBugInfo(selectedBug);
         });
     }, [bugId]);
@@ -116,6 +116,7 @@ function BugUpdater() {
         onSubmit: values => {
             formData.append('values', JSON.stringify(values));
             formData.append('project_id', JSON.stringify({ id: projectId }));
+            formData.append('bug_id', JSON.stringify({ id: bugId }));
             axios({
                 method: 'post',
                 url: editBugURL,
@@ -240,15 +241,21 @@ function BugUpdater() {
                         variant='outlined' 
                         size='small'
                         select>
-                            {projectLeader &&
-                            <MenuItem value={projectLeader}>
-                            {projectLeader}
-                            </MenuItem>}
-
-                            {bugInfo &&
-                            <MenuItem value={bugInfo.project_leader}>
-                                {bugInfo.project_leader}
-                            </MenuItem>}
+                            {
+                                bugInfo && !projectLeader ? (
+                                    <MenuItem value={bugInfo.project_leader}>
+                                    {bugInfo.project_leader}
+                                    </MenuItem>
+                                ) : bugInfo && projectLeader ? (
+                                    <MenuItem value={projectLeader}>
+                                    {projectLeader}
+                                    </MenuItem>
+                                ) : bugInfo && bugInfo.project_leader === projectLeader ? (
+                                    <MenuItem value={projectLeader}>
+                                    {projectLeader}
+                                    </MenuItem>
+                                ) : null
+                            }
                         </CustomTextField>
                         <CustomTextField 
                         label='Current Status'
