@@ -16,6 +16,7 @@ import Login from '../Login/Login';
 import Registration from '../Registration/Registration';
 import Dashboard from '../Dashboard/Dashboard';
 import BugForm from '../Forms/BugForm';
+import BugUpdater from '../Forms/BugUpdater';
 import ProjectForm from '../Forms/ProjectForm';
 import Bugs from '../Reports/Bugs';
 import Projects from '../Reports/Projects';
@@ -35,6 +36,7 @@ function App() {
                     <Route path='registration' element={<Registration />} />
                     <Route path='dashboard' element={<Dashboard />} />
                     <Route path='newbug' element={<BugForm />} />
+                    <Route path='editbug' element={<BugUpdater />} />
                     <Route path='newproject' element={<ProjectForm />} />
                     <Route path='bugreports' element={<Bugs />} />
                     <Route path='projectreports' element={<Projects />} />
