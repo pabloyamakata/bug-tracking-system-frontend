@@ -76,7 +76,7 @@ function Projects() {
                         <TableRow>
                             <TableCell>No.</TableCell>
                             <TableCell>Name</TableCell>
-                            <TableCell>P. Leader</TableCell>
+                            <TableCell>Leader</TableCell>
                             <TableCell>Status</TableCell>
                             <TableCell>Start Date</TableCell>
                             <TableCell>Deadline</TableCell>

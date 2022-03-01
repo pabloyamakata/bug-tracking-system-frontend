@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
 
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
@@ -10,9 +11,7 @@ import {
     CustomGrid, 
     CustomTextField, 
     ButtonContainer, 
-    CustomButton,
-    SuccessMessage,
-    HiddenMenuItem
+    CustomButton
 } from './FormStyles';
 
 import Box from '@mui/material/Box';
@@ -47,8 +46,8 @@ interface BugInterface {
     current_status: string;
     priority_level: string;
     severity_level: string;
-    initial_date: Date;
-    final_date: Date;
+    initial_date: string;
+    final_date: string;
 }
 
 const resetValues: BugInterface = {
@@ -60,17 +59,17 @@ const resetValues: BugInterface = {
     current_status: '',
     priority_level: '',
     severity_level: '',
-    initial_date: new Date(),
-    final_date: new Date()
+    initial_date: new Date().toISOString().slice(0, 10),
+    final_date: new Date().toISOString().slice(0, 10)
 }
 
 function BugUpdater() {
-    const { state: { bugId } } = useContext(AppContext);
-    const [wasBugEdited, setWasBugEdited] = useState(false);
+    const { state: { bugId }, setBugId } = useContext(AppContext);
     const [projectArray, setProjectArray] = useState<ProjectInterface[]>([]);
     const [projectLeader, setProjectLeader] = useState<string | false>(false);
     const [projectId, setProjectId] = useState(0);
-    const [bugInfo, setBugInfo] = useState<BugInterface | false>(false);
+    const [bugInfo, setBugInfo] = useState<BugInterface>(resetValues);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios({
@@ -90,23 +89,26 @@ function BugUpdater() {
             withCredentials: true
         })
         .then(res => {
-            const selectedBug = res.data.find((bug: BugInterface) => bug.id === bugId);
-            setBugInfo(selectedBug);
+            if(bugId === 0) navigate('/bugreports');
+            else {
+                const selectedBug = res.data.find((bug: BugInterface) => bug.id === bugId);
+                setBugInfo(selectedBug);
+            }
         });
     }, [bugId]);
     
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
-            name: bugInfo && bugInfo.name,
-            description: bugInfo && bugInfo.description,
-            project: bugInfo && bugInfo.project,
-            projectLeader: bugInfo && bugInfo.project_leader,
-            currentStatus: bugInfo && bugInfo.current_status,
-            priorityLevel: bugInfo && bugInfo.priority_level,
-            severityLevel: bugInfo && bugInfo.severity_level,
-            initialDate: bugInfo && bugInfo.initial_date,
-            finalDate: bugInfo && bugInfo.final_date
+            name: bugInfo.name,
+            description: bugInfo.description,
+            project: bugInfo.project,
+            projectLeader: bugInfo.project_leader,
+            currentStatus: bugInfo.current_status,
+            priorityLevel: bugInfo.priority_level,
+            severityLevel: bugInfo.severity_level,
+            initialDate: bugInfo.initial_date,
+            finalDate: bugInfo.final_date
         },
         validationSchema: yup.object({
             name: yup.string()
@@ -144,9 +146,10 @@ function BugUpdater() {
 
     const handleFormSuccess = () => {
         setBugInfo(resetValues);
-        setWasBugEdited(true);
-        setTimeout(() => setWasBugEdited(false), 10000);
+        setBugId(0);
+        navigate('/bugreports');
     };
+
     const handleProjectInfo = (projectInfo: ProjectInterface) => {
         setProjectLeader(projectInfo.project_leader);
         setProjectId(projectInfo.id);
@@ -255,24 +258,20 @@ function BugUpdater() {
                         size='small'
                         select>
                             {
-                                bugInfo && !projectLeader ? (
+                                !projectLeader ? (
                                     <MenuItem value={bugInfo.project_leader}>
-                                    {bugInfo.project_leader}
+                                        {bugInfo.project_leader}
                                     </MenuItem>
-                                ) : bugInfo && projectLeader ? (
+                                ) : projectLeader ? (
                                     <MenuItem value={projectLeader}>
-                                    {projectLeader}
+                                        {projectLeader}
                                     </MenuItem>
-                                ) : bugInfo && bugInfo.project_leader === projectLeader ? (
+                                ) : bugInfo.project_leader === projectLeader ? (
                                     <MenuItem value={projectLeader}>
-                                    {projectLeader}
+                                        {projectLeader}
                                     </MenuItem>
                                 ) : null
                             }
-
-                            <HiddenMenuItem value='hidden'>
-                                Hidden
-                            </HiddenMenuItem>
                         </CustomTextField>
                         <CustomTextField 
                         label='Current Status'
@@ -392,24 +391,11 @@ function BugUpdater() {
                         size='small' />
 
                         <ButtonContainer>
-
-                        {
-                            wasBugEdited && 
-                            <SuccessMessage>
-                            Bug was edited successfully!
-                            </SuccessMessage>
-                        }
-
                             <CustomButton 
                             type='submit'
                             variant="contained" 
                             color='primary'>
                             Save
-                            </CustomButton>
-                            <CustomButton
-                            variant='contained'
-                            onClick={() => setBugInfo(resetValues)}>
-                            Reset
                             </CustomButton>
                         </ButtonContainer>
                     </CustomGrid>

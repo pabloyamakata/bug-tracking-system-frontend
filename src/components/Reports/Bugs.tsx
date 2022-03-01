@@ -83,7 +83,7 @@ function Bugs() {
                             <TableCell>No.</TableCell>
                             <TableCell>Name</TableCell>
                             <TableCell>Project</TableCell>
-                            <TableCell>P. Leader</TableCell>
+                            <TableCell>Leader</TableCell>
                             <TableCell>Status</TableCell>
                             <TableCell>Priority</TableCell>
                             <TableCell>Severity</TableCell>
