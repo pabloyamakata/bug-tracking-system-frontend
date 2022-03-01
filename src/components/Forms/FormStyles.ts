@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/material';
 
 export const CustomPaper = styled(Paper)({
@@ -55,4 +56,8 @@ export const SuccessMessage = styled(Typography)({
 
 export const ErrorMessage = styled(Typography)({
     marginBottom: '10px'
+});
+
+export const HiddenMenuItem = styled(MenuItem)({
+    display: 'none'
 });

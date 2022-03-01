@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
 
 import { useFormik } from 'formik';
@@ -11,7 +11,8 @@ import {
     CustomTextField, 
     ButtonContainer, 
     CustomButton,
-    SuccessMessage
+    SuccessMessage,
+    HiddenMenuItem
 } from './FormStyles';
 
 import Box from '@mui/material/Box';
@@ -50,6 +51,19 @@ interface BugInterface {
     final_date: Date;
 }
 
+const resetValues: BugInterface = {
+    id: 0,
+    name: '',
+    description: '',
+    project: '',
+    project_leader: '',
+    current_status: '',
+    priority_level: '',
+    severity_level: '',
+    initial_date: new Date(),
+    final_date: new Date()
+}
+
 function BugUpdater() {
     const { state: { bugId } } = useContext(AppContext);
     const [wasBugEdited, setWasBugEdited] = useState(false);
@@ -57,7 +71,6 @@ function BugUpdater() {
     const [projectLeader, setProjectLeader] = useState<string | false>(false);
     const [projectId, setProjectId] = useState(0);
     const [bugInfo, setBugInfo] = useState<BugInterface | false>(false);
-    const resetRef = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
         axios({
@@ -130,7 +143,7 @@ function BugUpdater() {
     });
 
     const handleFormSuccess = () => {
-        resetRef.current?.click();
+        setBugInfo(resetValues);
         setWasBugEdited(true);
         setTimeout(() => setWasBugEdited(false), 10000);
     };
@@ -256,6 +269,10 @@ function BugUpdater() {
                                     </MenuItem>
                                 ) : null
                             }
+
+                            <HiddenMenuItem value='hidden'>
+                                Hidden
+                            </HiddenMenuItem>
                         </CustomTextField>
                         <CustomTextField 
                         label='Current Status'
@@ -390,9 +407,8 @@ function BugUpdater() {
                             Save
                             </CustomButton>
                             <CustomButton
-                            ref={resetRef}
                             variant='contained'
-                            onClick={formik.handleReset}>
+                            onClick={() => setBugInfo(resetValues)}>
                             Reset
                             </CustomButton>
                         </ButtonContainer>
