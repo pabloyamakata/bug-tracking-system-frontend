@@ -95,6 +95,7 @@ function BugUpdater() {
                 setBugInfo(selectedBug);
             }
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [bugId]);
     
     const formik = useFormik({
@@ -262,13 +263,13 @@ function BugUpdater() {
                                     <MenuItem value={bugInfo.project_leader}>
                                         {bugInfo.project_leader}
                                     </MenuItem>
-                                ) : projectLeader ? (
+                                ) : bugInfo.project_leader !== projectLeader ? (
                                     <MenuItem value={projectLeader}>
                                         {projectLeader}
                                     </MenuItem>
                                 ) : bugInfo.project_leader === projectLeader ? (
-                                    <MenuItem value={projectLeader}>
-                                        {projectLeader}
+                                    <MenuItem value={bugInfo.project_leader}>
+                                        {bugInfo.project_leader}
                                     </MenuItem>
                                 ) : null
                             }
