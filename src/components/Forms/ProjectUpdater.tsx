@@ -69,6 +69,7 @@ function ProjectUpdater() {
                 setProjectInfo(selectedProject);
             }
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [projectId]);
 
     const formik = useFormik({
