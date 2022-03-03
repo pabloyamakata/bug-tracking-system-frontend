@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import { CustomPaper } from './ReportStyles';
@@ -34,8 +36,10 @@ interface ProjectInterface {
 let rowIndex = 0;
 
 function Projects() {
+    const { setProjectId } = useContext(AppContext);
     const [projectArray, setProjectArray] = useState<ProjectInterface[]>([]);
     const [requestAction, triggerRequestAction] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios({
@@ -49,6 +53,11 @@ function Projects() {
     const getRowIndex = () => {
         if(rowIndex >= projectArray.length) return rowIndex = 1;
         else return ++rowIndex;
+    };
+
+    const handleProjectEdition = (id: number) => {
+        setProjectId(id);
+        navigate('/editproject');
     };
 
     const handleProjectDeletion = async (id: number) => {
@@ -107,13 +116,15 @@ function Projects() {
                                     <DescriptionModal description={project.description} />
                                 </TableCell>
                                 <TableCell>
-                                    <IconButton sx={{padding: 0}}>
+                                    <IconButton
+                                    onClick={() => handleProjectEdition(project.id)}
+                                    sx={{padding: 0}}>
                                         <EditIcon />
                                     </IconButton>
                                 </TableCell>
                                 <TableCell>
                                     <IconButton 
-                                    onClick={() => {handleProjectDeletion(project.id)}}
+                                    onClick={() => handleProjectDeletion(project.id)}
                                     sx={{padding: 0}}>
                                         <DeleteIcon />
                                     </IconButton>

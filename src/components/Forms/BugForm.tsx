@@ -32,7 +32,7 @@ interface ProjectInterface {
     current_status: string;
     frontend: string;
     backend: string;
-    ddb: string;
+    ddbb: string;
 }
 
 function BugForm() {
@@ -57,6 +57,7 @@ function BugForm() {
     useEffect(() => {
         formik.setFieldValue('project', projectName);
         formik.setFieldValue('projectLeader', projectLeader);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [projectName, projectLeader]);
 
     const formik = useFormik({

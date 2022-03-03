@@ -18,6 +18,7 @@ import Dashboard from '../Dashboard/Dashboard';
 import BugForm from '../Forms/BugForm';
 import BugUpdater from '../Forms/BugUpdater';
 import ProjectForm from '../Forms/ProjectForm';
+import ProjectUpdater from '../Forms/ProjectUpdater';
 import Bugs from '../Reports/Bugs';
 import Projects from '../Reports/Projects';
 
@@ -27,7 +28,8 @@ function App() {
     return(
         <ContextProvider>
             <ThemeProvider theme={isModeDark ? darkTheme : lightTheme}>
-                {location.pathname === '/login' || location.pathname ==='/registration' ? null : 
+                {location.pathname === '/login' || 
+                location.pathname ==='/registration' ? null : 
                 <Navbar 
                 isModeDark={isModeDark} 
                 setIsModeDark={setIsModeDark} />}
@@ -38,6 +40,7 @@ function App() {
                     <Route path='newbug' element={<BugForm />} />
                     <Route path='editbug' element={<BugUpdater />} />
                     <Route path='newproject' element={<ProjectForm />} />
+                    <Route path='editproject' element={<ProjectUpdater />} />
                     <Route path='bugreports' element={<Bugs />} />
                     <Route path='projectreports' element={<Projects />} />
                     <Route path='*' element={<Navigate to='login' />} />
