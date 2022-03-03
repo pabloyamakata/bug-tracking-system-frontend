@@ -38,6 +38,7 @@ interface ProjectInterface {
 function BugForm() {
     const [wasBugReported, setWasBugReported] = useState(false);
     const [projectArray, setProjectArray] = useState<ProjectInterface[]>([]);
+    const [projectName, setProjectName] = useState('');
     const [projectLeader, setProjectLeader] = useState('');
     const [projectId, setProjectId] = useState(0);
     const resetRef = useRef<HTMLButtonElement>(null);
@@ -53,7 +54,13 @@ function BugForm() {
         });
     }, []);
 
+    useEffect(() => {
+        formik.setFieldValue('project', projectName);
+        formik.setFieldValue('projectLeader', projectLeader);
+    }, [projectName, projectLeader]);
+
     const formik = useFormik({
+        enableReinitialize: true,
         initialValues: {
             name: '',
             description: '',
@@ -104,6 +111,7 @@ function BugForm() {
         setTimeout(() => setWasBugReported(false), 10000);
     };
     const handleProjectInfo = (projectInfo: ProjectInterface) => {
+        setProjectName(projectInfo.name);
         setProjectLeader(projectInfo.project_leader);
         setProjectId(projectInfo.id);
     };
@@ -210,10 +218,9 @@ function BugForm() {
                         onBlur={formik.handleBlur} 
                         variant='outlined' 
                         size='small'
-                        defaultValue={''}
-                        select>
-                            <MenuItem value={projectLeader}>{projectLeader}</MenuItem>
-                        </CustomTextField>
+                        inputProps={
+                            { readOnly: true }
+                        } />
                         <CustomTextField 
                         label='Current Status' 
                         name='currentStatus'

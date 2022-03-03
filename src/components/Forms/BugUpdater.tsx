@@ -66,7 +66,8 @@ const resetValues: BugInterface = {
 function BugUpdater() {
     const { state: { bugId }, setBugId } = useContext(AppContext);
     const [projectArray, setProjectArray] = useState<ProjectInterface[]>([]);
-    const [projectLeader, setProjectLeader] = useState<string | false>(false);
+    const [projectName, setProjectName] = useState('');
+    const [projectLeader, setProjectLeader] = useState('');
     const [projectId, setProjectId] = useState(0);
     const [bugInfo, setBugInfo] = useState<BugInterface>(resetValues);
     const navigate = useNavigate();
@@ -97,6 +98,11 @@ function BugUpdater() {
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [bugId]);
+
+    useEffect(() => {
+        formik.setFieldValue('project', projectName);
+        formik.setFieldValue('projectLeader', projectLeader);
+    }, [projectName, projectLeader]);
     
     const formik = useFormik({
         enableReinitialize: true,
@@ -152,6 +158,7 @@ function BugUpdater() {
     };
 
     const handleProjectInfo = (projectInfo: ProjectInterface) => {
+        setProjectName(projectInfo.name);
         setProjectLeader(projectInfo.project_leader);
         setProjectId(projectInfo.id);
     };
@@ -209,7 +216,7 @@ function BugUpdater() {
                         size='small' 
                         rows={3} 
                         multiline />
-                        <CustomTextField 
+                        <CustomTextField
                         label='Project'
                         name='project'
                         error={
@@ -238,7 +245,8 @@ function BugUpdater() {
                                 </MenuItem>
                             ))}
                         </CustomTextField>
-                        <CustomTextField 
+                        <CustomTextField
+                        type='text'
                         label='Project Leader'
                         name='projectLeader'
                         error={
@@ -257,23 +265,9 @@ function BugUpdater() {
                         onBlur={formik.handleBlur} 
                         variant='outlined' 
                         size='small'
-                        select>
-                            {
-                                !projectLeader ? (
-                                    <MenuItem value={bugInfo.project_leader}>
-                                        {bugInfo.project_leader}
-                                    </MenuItem>
-                                ) : bugInfo.project_leader !== projectLeader ? (
-                                    <MenuItem value={projectLeader}>
-                                        {projectLeader}
-                                    </MenuItem>
-                                ) : bugInfo.project_leader === projectLeader ? (
-                                    <MenuItem value={bugInfo.project_leader}>
-                                        {bugInfo.project_leader}
-                                    </MenuItem>
-                                ) : null
-                            }
-                        </CustomTextField>
+                        inputProps={
+                            { readOnly: true }
+                        } />
                         <CustomTextField 
                         label='Current Status'
                         name='currentStatus'
