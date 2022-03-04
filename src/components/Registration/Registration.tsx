@@ -1,5 +1,4 @@
-import { useState, useContext } from 'react';
-import { AppContext } from '../../context/AppContext';
+import { useState } from 'react';
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -24,7 +23,6 @@ const formData = new FormData();
 const registrationURL = 'http://localhost/bug-tracker-backend/registration.php';
 
 function Registration() {
-    const { setUsername } = useContext(AppContext);
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [isUserAlreadyKnown, setIsUserAlreadyKnown] = useState(false);
     const navigate = useNavigate();
@@ -55,11 +53,11 @@ function Registration() {
             .then(res => {
                 switch(res.data.status) {
                     case true:
-                        setUsername(res.data.username);
                         navigate('/dashboard');
                         break;
                     case false:
                         setIsUserAlreadyKnown(true);
+                        setTimeout(() => setIsUserAlreadyKnown(false), 10000);
                 }
             });
         }

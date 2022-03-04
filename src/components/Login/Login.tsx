@@ -1,5 +1,4 @@
-import { useState, useContext } from 'react';
-import { AppContext } from '../../context/AppContext';
+import { useState } from 'react';
 
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -26,7 +25,6 @@ const formData = new FormData();
 const loginURL = 'http://localhost/bug-tracker-backend/login.php';
 
 function Login() {
-  const { setUsername } = useContext(AppContext);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isUserAlreadyKnown, setIsUserAlreadyKnown] = useState(true);
   const navigate = useNavigate();
@@ -57,11 +55,11 @@ function Login() {
       .then(res => {
         switch(res.data.status) {
           case true:
-            setUsername(res.data.username);
             navigate('/dashboard');
             break;
           case false:
             setIsUserAlreadyKnown(false);
+            setTimeout(() => setIsUserAlreadyKnown(true), 10000);
         }
       });
     }

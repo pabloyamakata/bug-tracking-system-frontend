@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -17,6 +17,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
 const logoutURL = 'http://localhost/bug-tracker-backend/logout.php';
+const userNameURL = 'http://localhost/bug-tracker-backend/username.php';
 
 const pages = ['Dashboard', 'New Bug', 'New Project', 'Bug Reports', 'Project Reports'];
 const settings = ['Logout'];
@@ -27,7 +28,13 @@ interface ThemeModeProps {
 }
 
 function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
+    const [userData, setUserData] = useState({ username: '' });
     const navigate = useNavigate();
+
+    useEffect(() => {
+        axios.get(userNameURL, { withCredentials: true })
+        .then(res => setUserData(res.data));
+    }, []);
 
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -46,6 +53,10 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+    };
+    const getInitial = () => {
+        const initial = userData.username.charAt(0).toUpperCase();
+        return initial;
     };
     const changeThemeMode = () => {
         setIsModeDark(!isModeDark);
@@ -144,7 +155,9 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title='Open settings'>
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt='Remy Sharp' src='/static/images/avatar/2.jpg' />
+                                <Avatar>
+                                    {getInitial()}
+                                </Avatar>
                             </IconButton>
                         </Tooltip>
                         <Menu
