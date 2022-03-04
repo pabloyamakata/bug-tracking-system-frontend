@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
 import axios from 'axios';
 
 import { CustomPaper } from './DashboardStyles';
@@ -6,7 +7,6 @@ import Typography from '@mui/material/Typography';
 
 const bugs_URL = 'http://localhost/bug-tracker-backend/bugs.php';
 const projects_URL = 'http://localhost/bug-tracker-backend/projects.php';
-const usernameURL = 'http://localhost/bug-tracker-backend/username.php';
 
 interface BugInterface {
     id: number;
@@ -35,20 +35,18 @@ interface ProjectInterface {
 }
 
 function Dashboard() {
+    const { state: { username } } = useContext(AppContext);
     const [bugArray, setBugArray] = useState<BugInterface[]>([]);
     const [projectArray, setProjectArray] = useState<ProjectInterface[]>([]);
-    const [userData, setUserData] = useState({ username: 'username' });
 
     useEffect(() => {
         const promiseForBugs = axios.get(bugs_URL, { withCredentials: true });
         const promiseForProjects = axios.get(projects_URL, { withCredentials: true });
-        const promiseForUsername = axios.get(usernameURL, { withCredentials: true });
 
-        Promise.all([promiseForBugs, promiseForProjects, promiseForUsername])
+        Promise.all([promiseForBugs, promiseForProjects])
         .then(res => {
             setBugArray(res[0].data);
             setProjectArray(res[1].data);
-            setUserData(res[2].data);
         });
     }, []);
 
@@ -57,7 +55,7 @@ function Dashboard() {
             <Typography
             variant='h5' 
             sx={{marginLeft: '20px', paddingTop: '25px'}}>
-                Welcome {userData.username}!
+                Welcome {username}!
             </Typography>
         </CustomPaper>
     )
