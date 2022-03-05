@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import DoughnutChart from '../Charts/DoughnutChart';
+
 import { CustomPaper } from './DashboardStyles';
 import Typography from '@mui/material/Typography';
 
@@ -59,6 +61,7 @@ function Dashboard() {
             sx={{marginLeft: '20px', paddingTop: '25px'}}>
                 Welcome {userData.username}!
             </Typography>
+            <DoughnutChart />
         </CustomPaper>
     )
 }
