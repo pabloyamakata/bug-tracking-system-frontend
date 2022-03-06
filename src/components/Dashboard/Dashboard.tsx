@@ -6,9 +6,9 @@ import DoughnutChart from '../Charts/DoughnutChart';
 import { CustomPaper } from './DashboardStyles';
 import Typography from '@mui/material/Typography';
 
-const bugs_URL = 'http://localhost/bug-tracker-backend/bugs.php';
-const projects_URL = 'http://localhost/bug-tracker-backend/projects.php';
-const userNameURL = 'http://localhost/bug-tracker-backend/username.php';
+const bugs_URL = 'http://bug-tracking-system-backend.42web.io/bugs.php';
+const projects_URL = 'http://bug-tracking-system-backend.42web.io/projects.php';
+const userNameURL = 'http://bug-tracking-system-backend.42web.io/username.php';
 
 interface BugInterface {
     id: number;

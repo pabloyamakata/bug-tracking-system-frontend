@@ -17,8 +17,8 @@ import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const projectDeletionURL = 'http://localhost/bug-tracker-backend/projectdeletion.php';
-const projects_URL = 'http://localhost/bug-tracker-backend/projects.php';
+const projectDeletionURL = 'http://bug-tracking-system-backend.42web.io/projectdeletion.php';
+const projects_URL = 'http://bug-tracking-system-backend.42web.io/projects.php';
 
 interface ProjectInterface {
     id: number;
