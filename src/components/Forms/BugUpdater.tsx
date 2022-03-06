@@ -11,7 +11,8 @@ import {
     CustomGrid, 
     CustomTextField, 
     ButtonContainer, 
-    CustomButton
+    CustomButton,
+    ErrorMessage
 } from './FormStyles';
 
 import Box from '@mui/material/Box';
@@ -65,6 +66,7 @@ const resetValues: BugInterface = {
 
 function BugUpdater() {
     const { state: { bugId }, setBugId } = useContext(AppContext);
+    const [wasBugEdited, setWasBugEdited] = useState(true);
     const [projectArray, setProjectArray] = useState<ProjectInterface[]>([]);
     const [projectName, setProjectName] = useState('');
     const [projectLeader, setProjectLeader] = useState('');
@@ -147,7 +149,14 @@ function BugUpdater() {
                 withCredentials: true
             })
             .then(res => {
-                res.data.status && handleFormSuccess();
+                switch(res.data.status) {
+                    case true:
+                        handleFormSuccess();
+                        break;
+                    case false:
+                        setWasBugEdited(false);
+                        setTimeout(() => setWasBugEdited(true), 10000);
+                }
             });
         }
     });
@@ -387,6 +396,14 @@ function BugUpdater() {
                         size='small' />
 
                         <ButtonContainer>
+
+                            {
+                                !wasBugEdited &&
+                                <ErrorMessage>
+                                    At least one field must be edited!
+                                </ErrorMessage>
+                            }
+
                             <CustomButton 
                             type='submit'
                             variant="contained" 
