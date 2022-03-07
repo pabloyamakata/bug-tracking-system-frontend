@@ -22,7 +22,7 @@ import KeyIcon from '@mui/icons-material/Key';
 import KeyOffIcon from '@mui/icons-material/KeyOff';
 
 const formData = new FormData();
-const loginURL = 'http://bug-tracking-system-backend.42web.io/login.php';
+const loginURL = 'https://bug-tracking-system-backend.42web.io/login.php';
 
 function Login() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);

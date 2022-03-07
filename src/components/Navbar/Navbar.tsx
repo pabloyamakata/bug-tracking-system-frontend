@@ -16,8 +16,8 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-const logoutURL = 'http://bug-tracking-system-backend.42web.io/logout.php';
-const userNameURL = 'http://bug-tracking-system-backend.42web.io/username.php';
+const logoutURL = 'https://bug-tracking-system-backend.42web.io/logout.php';
+const userNameURL = 'https://bug-tracking-system-backend.42web.io/username.php';
 
 const pages = ['Dashboard', 'New Bug', 'New Project', 'Bug Reports', 'Project Reports'];
 const settings = ['Logout'];
