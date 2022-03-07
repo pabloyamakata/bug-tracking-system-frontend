@@ -20,7 +20,7 @@ import KeyOffIcon from '@mui/icons-material/KeyOff';
 import Button from '@mui/material/Button';
 
 const formData = new FormData();
-const registrationURL = 'http://bug-tracking-system-backend.42web.io/registration.php';
+const registrationURL = 'https://bug-tracking-system-backend.42web.io/registration.php';
 
 function Registration() {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
