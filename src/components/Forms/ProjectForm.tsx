@@ -20,7 +20,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 
 const formData = new FormData();
-const newProjectURL = 'https://bug-tracking-system-backend.42web.io/newproject.php';
+const newProjectURL = 'http://bug-tracking-system-backend.42web.io/newproject.php';
 
 function ProjectForm() {
     const [wasProjectAdded, setWasProjectAdded] = useState(false);
