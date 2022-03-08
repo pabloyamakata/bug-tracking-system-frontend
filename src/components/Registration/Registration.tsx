@@ -47,8 +47,7 @@ function Registration() {
             axios({
                 method: 'post',
                 url: registrationURL,
-                data: formData,
-                withCredentials: true
+                data: formData
             })
             .then(res => {
                 switch(res.data.status) {

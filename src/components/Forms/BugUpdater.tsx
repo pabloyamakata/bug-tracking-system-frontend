@@ -77,8 +77,7 @@ function BugUpdater() {
     useEffect(() => {
         axios({
             method: 'get',
-            url: projects_URL,
-            withCredentials: true
+            url: projects_URL
         })
         .then(res => {
             setProjectArray(res.data);
@@ -88,8 +87,7 @@ function BugUpdater() {
     useEffect(() => {
         axios({
             method: 'get',
-            url: bugs_URL,
-            withCredentials: true
+            url: bugs_URL
         })
         .then(res => {
             if(bugId === 0) navigate('/bugreports');
@@ -145,8 +143,7 @@ function BugUpdater() {
             axios({
                 method: 'post',
                 url: editBugURL,
-                data: formData,
-                withCredentials: true
+                data: formData
             })
             .then(res => {
                 switch(res.data.status) {

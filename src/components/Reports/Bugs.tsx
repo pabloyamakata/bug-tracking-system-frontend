@@ -44,8 +44,7 @@ function Bugs() {
     useEffect(() => {
         axios({
             method: 'get',
-            url: bugs_URL,
-            withCredentials: true 
+            url: bugs_URL 
         })
         .then(res => setBugArray(res.data));
     }, [requestAction]);
@@ -68,8 +67,7 @@ function Bugs() {
             await axios({
                 method: 'post',
                 url: bugDeletionURL,
-                data: formData,
-                withCredentials: true
+                data: formData
             });
             triggerRequestAction(!requestAction);
         }
