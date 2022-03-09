@@ -50,11 +50,7 @@ function Login() {
         method: 'post',
         url: loginURL,
         data: formData,
-        withCredentials: true,
-        headers: {
-          'Access-Control-Allow-Origin': 'https://pabloyamakata.github.io', 
-          'Content-Type': 'application/json'
-        }
+        withCredentials: true
       })
       .then(res => {
         switch(res.data.status) {
