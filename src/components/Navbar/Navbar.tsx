@@ -27,12 +27,8 @@ interface ThemeModeProps {
     setIsModeDark: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-interface UserDataInterface {
-    username: string;
-}
-
 function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
-    const [userData, setUserData] = useState<UserDataInterface | false>(false);
+    const [userData, setUserData] = useState({ username: '' });
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -59,8 +55,8 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
         setAnchorElUser(null);
     };
     const getInitial = () => {
-        if(userData) {const initial = userData.username.charAt(0).toUpperCase(); return initial;}
-        else {const initial = 'X'; return initial;}
+        const initial = userData.username.charAt(0).toUpperCase();
+        return initial;
     };
     const changeThemeMode = () => {
         setIsModeDark(!isModeDark);
