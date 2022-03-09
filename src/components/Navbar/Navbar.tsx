@@ -33,7 +33,7 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
 
     useEffect(() => {
         axios.get(userNameURL, { withCredentials: true })
-        .then(res => console.log(res.data));
+        .then(res => setUserData(res.data));
     }, []);
 
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
