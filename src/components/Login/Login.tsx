@@ -49,7 +49,8 @@ function Login() {
       axios({
         method: 'post',
         url: loginURL,
-        data: formData
+        data: formData,
+        withCredentials: true
       })
       .then(res => {
         switch(res.data.status) {

@@ -44,7 +44,8 @@ function Projects() {
     useEffect(() => {
         axios({
             method: 'get',
-            url: projects_URL 
+            url: projects_URL,
+            withCredentials: true 
         })
         .then(res => setProjectArray(res.data));
     }, [requestAction]);
@@ -70,7 +71,8 @@ function Projects() {
             await axios({
                 method: 'post',
                 url: projectDeletionURL,
-                data: formData
+                data: formData,
+                withCredentials: true
             });
             triggerRequestAction(!requestAction);
         }

@@ -59,7 +59,8 @@ function ProjectUpdater() {
     useEffect(() => {
         axios({
             method: 'get',
-            url: projects_URL
+            url: projects_URL,
+            withCredentials: true
         })
         .then(res => {
             if(projectId === 0) navigate('/projectreports');
@@ -117,7 +118,8 @@ function ProjectUpdater() {
             axios({
                 method: 'post',
                 url: editProjectURL,
-                data: formData
+                data: formData,
+                withCredentials: true
             })
             .then(res => {
                 switch(res.data.status) {

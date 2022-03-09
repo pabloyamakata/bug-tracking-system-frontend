@@ -46,7 +46,8 @@ function BugForm() {
     useEffect(() => {
         axios({
             method: 'get',
-            url: projects_URL
+            url: projects_URL,
+            withCredentials: true
         })
         .then(res => {
             setProjectArray(res.data);
@@ -96,7 +97,8 @@ function BugForm() {
             axios({
                 method: 'post',
                 url: newBugURL,
-                data: formData
+                data: formData,
+                withCredentials: true
             })
             .then(res => {
                 res.data.status && handleFormSuccess();

@@ -71,7 +71,8 @@ function ProjectForm() {
             axios({
                 method: 'post',
                 url: newProjectURL,
-                data: formData
+                data: formData,
+                withCredentials: true
             })
             .then(res => {
                 switch(res.data.status) {

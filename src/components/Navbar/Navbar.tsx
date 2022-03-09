@@ -32,7 +32,7 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(userNameURL)
+        axios.get(userNameURL, { withCredentials: true })
         .then(res => setUserData(res.data));
     }, []);
 
@@ -64,7 +64,8 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
     const handleLogout = () => {
         axios({
             method: 'get',
-            url: logoutURL
+            url: logoutURL,
+            withCredentials: true
         })
         .then(res => {
             res.data.status && navigate('/login');

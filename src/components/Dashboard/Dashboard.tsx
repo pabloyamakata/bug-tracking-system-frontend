@@ -42,9 +42,9 @@ function Dashboard() {
     const [userData, setUserData] = useState({ username: '' });
 
     useEffect(() => {
-        const promiseForBugs = axios.get(bugs_URL);
-        const promiseForProjects = axios.get(projects_URL);
-        const promiseForUsername = axios.get(userNameURL);
+        const promiseForBugs = axios.get(bugs_URL, { withCredentials: true });
+        const promiseForProjects = axios.get(projects_URL, { withCredentials: true });
+        const promiseForUsername = axios.get(userNameURL, { withCredentials: true });
 
         Promise.all([promiseForBugs, promiseForProjects, promiseForUsername])
         .then(res => {
