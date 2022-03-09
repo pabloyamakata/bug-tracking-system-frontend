@@ -17,8 +17,8 @@ import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const bugs_URL = 'https://bug-tracking-system-backend.42web.io/bugs.php';
-const bugDeletionURL = 'https://bug-tracking-system-backend.42web.io/bugdeletion.php';
+const bugs_URL = 'https://bug-tracking-system-backend.000webhostapp.com/bugs.php';
+const bugDeletionURL = 'https://bug-tracking-system-backend.000webhostapp.com/bugdeletion.php';
 
 interface BugInterface {
     id: number;

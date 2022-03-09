@@ -21,8 +21,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 
 const formData = new FormData();
-const projects_URL = 'https://bug-tracking-system-backend.42web.io/projects.php';
-const editProjectURL = 'https://bug-tracking-system-backend.42web.io/editproject.php';
+const projects_URL = 'https://bug-tracking-system-backend.000webhostapp.com/projects.php';
+const editProjectURL = 'https://bug-tracking-system-backend.000webhostapp.com/editproject.php';
 
 interface ProjectInterface {
     id: number;
