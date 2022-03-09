@@ -61,7 +61,7 @@ function Login() {
             setIsUserAlreadyKnown(false);
             setTimeout(() => setIsUserAlreadyKnown(true), 10000);
         }
-      });
+      }).catch(err => console.log(err));
     }
   });
     
