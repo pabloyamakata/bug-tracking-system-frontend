@@ -48,9 +48,9 @@ function Dashboard() {
 
         Promise.all([promiseForBugs, promiseForProjects, promiseForUsername])
         .then(res => {
-            setBugArray(res[0].data);
-            setProjectArray(res[1].data);
-            setUserData(res[2].data);
+            setBugArray(prev => prev.concat(res[0].data));
+            setProjectArray(prev => prev.concat(res[1].data));
+            setUserData(prev => prev.username = res[2].data.username);
         });
     }, []);
 
