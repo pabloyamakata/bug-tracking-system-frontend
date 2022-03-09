@@ -36,10 +36,14 @@ interface ProjectInterface {
     ddbb: string;
 }
 
+interface UserDataInterface {
+    username: string;
+}
+
 function Dashboard() {
     const [bugArray, setBugArray] = useState<BugInterface[]>([]);
     const [projectArray, setProjectArray] = useState<ProjectInterface[]>([]);
-    const [userData, setUserData] = useState({ username: '' });
+    const [userData, setUserData] = useState<UserDataInterface | false>(false);
 
     useEffect(() => {
         const promiseForBugs = axios.get(bugs_URL, { withCredentials: true });
@@ -48,9 +52,9 @@ function Dashboard() {
 
         Promise.all([promiseForBugs, promiseForProjects, promiseForUsername])
         .then(res => {
-            console.log(res[0].data);
-            console.log(res[1].data);
-            console.log(res[2].data);
+            setBugArray(res[0].data);
+            setProjectArray(res[1].data);
+            setUserData(res[2].data);
         });
     }, []);
 
@@ -59,7 +63,7 @@ function Dashboard() {
             <Typography
             variant='h5' 
             sx={{marginLeft: '20px', paddingTop: '25px'}}>
-                Welcome {userData.username}!
+                {userData ? `Welcome ${userData.username}!` : 'Welcome username!'}
             </Typography>
             <DoughnutChart />
         </CustomPaper>
