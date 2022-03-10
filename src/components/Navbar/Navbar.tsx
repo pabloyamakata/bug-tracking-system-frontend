@@ -55,7 +55,7 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
         setAnchorElUser(null);
     };
     const getInitial = () => {
-        const initial = userData.username.charAt(0).toUpperCase();
+        const initial = userData.username.toString().charAt(0).toUpperCase();
         return initial;
     };
     const changeThemeMode = () => {
