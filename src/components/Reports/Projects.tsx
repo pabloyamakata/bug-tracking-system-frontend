@@ -49,6 +49,7 @@ function Projects() {
         })
         .then(res => {
             console.log(res.data);
+            setProjectArray(res.data);
         });
     }, [requestAction]);
 

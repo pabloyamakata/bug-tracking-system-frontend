@@ -49,6 +49,7 @@ function Bugs() {
         })
         .then(res => {
             console.log(res.data);
+            setBugArray(res.data);
         });
     }, [requestAction]);
 
