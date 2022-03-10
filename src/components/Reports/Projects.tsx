@@ -48,7 +48,7 @@ function Projects() {
             withCredentials: true 
         })
         .then(res => {
-            console.log(res.data);
+            console.log(typeof res.data);
             setProjectArray(res.data);
         });
     }, [requestAction]);

@@ -48,7 +48,7 @@ function Bugs() {
             withCredentials: true 
         })
         .then(res => {
-            console.log(res.data);
+            console.log(typeof res.data);
             setBugArray(res.data);
         });
     }, [requestAction]);
