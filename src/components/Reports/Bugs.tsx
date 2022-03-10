@@ -37,7 +37,7 @@ let rowIndex = 0;
 
 function Bugs() {
     const { setBugId } = useContext(AppContext);
-    const [bugArray, setBugArray] = useState<BugInterface[]>([]);
+    const [bugArray, setBugArray] = useState<BugInterface[]>([] as BugInterface[]);
     const [requestAction, triggerRequestAction] = useState(false);
     const navigate = useNavigate();
 

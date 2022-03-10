@@ -37,7 +37,7 @@ let rowIndex = 0;
 
 function Projects() {
     const { setProjectId } = useContext(AppContext);
-    const [projectArray, setProjectArray] = useState<ProjectInterface[]>([]);
+    const [projectArray, setProjectArray] = useState<ProjectInterface[]>([] as ProjectInterface[]);
     const [requestAction, triggerRequestAction] = useState(false);
     const navigate = useNavigate();
 
