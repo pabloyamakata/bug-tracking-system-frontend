@@ -51,7 +51,7 @@ function Dashboard() {
             setBugArray(res[0].data);
             setProjectArray(res[1].data);
             setUserData(res[2].data);
-        }).catch(err => console.log(err));
+        });
     }, []);
 
     return(
