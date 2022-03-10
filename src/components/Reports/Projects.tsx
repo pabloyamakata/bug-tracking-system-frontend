@@ -37,7 +37,7 @@ let rowIndex = 0;
 
 function Projects() {
     const { setProjectId } = useContext(AppContext);
-    const [projectArray, setProjectArray] = useState<ProjectInterface[]>([] as ProjectInterface[]);
+    const [projectArray, setProjectArray] = useState<ProjectInterface[]>([]);
     const [requestAction, triggerRequestAction] = useState(false);
     const navigate = useNavigate();
 
@@ -47,7 +47,9 @@ function Projects() {
             url: projects_URL,
             withCredentials: true 
         })
-        .then(res => setProjectArray(res.data));
+        .then(res => {
+            console.log(res.data);
+        });
     }, [requestAction]);
 
     const getRowIndex = () => {
