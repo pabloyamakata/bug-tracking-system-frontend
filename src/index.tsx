@@ -11,5 +11,5 @@ ReactDOM.render(
 );
 
 // When deploying react SPA on Github that also uses react-router,
-// it's important to import HashRouter instead of BrowserRouter. 
+// it's very important to import HashRouter instead of BrowserRouter. 
 // Otherwise, there's gonna be a 404 error when page refreshes.
