@@ -39,7 +39,7 @@ interface ProjectInterface {
 function Dashboard() {
     const [bugArray, setBugArray] = useState<BugInterface[]>([]);
     const [projectArray, setProjectArray] = useState<ProjectInterface[]>([]);
-    const [userData, setUserData] = useState({ username: '' });
+    const [userData, setUserData] = useState({ username: 'user' });
 
     useEffect(() => {
         const promiseForBugs = axios.get(bugs_URL, { withCredentials: true });
