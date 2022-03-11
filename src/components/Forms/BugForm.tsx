@@ -191,7 +191,7 @@ function BugForm() {
                         size='small' 
                         defaultValue={''} 
                         select>
-                            {projectArray.map((project: ProjectInterface) => (
+                            {Array.isArray(projectArray) && projectArray.map((project: ProjectInterface) => (
                                 <MenuItem
                                 key={project.id} 
                                 onClick={() => handleProjectInfo(project)} 
