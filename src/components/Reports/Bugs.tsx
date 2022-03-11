@@ -95,7 +95,7 @@ function Bugs() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {bugArray.map((bug: BugInterface) => (
+                        {Array.isArray(bugArray) && bugArray.map((bug: BugInterface) => (
                             <TableRow
                             key={bug.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

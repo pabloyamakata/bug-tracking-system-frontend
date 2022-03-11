@@ -98,7 +98,7 @@ function Projects() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {projectArray.map((project: ProjectInterface) => (
+                        {Array.isArray(projectArray) && projectArray.map((project: ProjectInterface) => (
                             <TableRow
                             key={project.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
