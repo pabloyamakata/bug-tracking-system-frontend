@@ -60,18 +60,20 @@ function Bugs() {
         navigate('/editbug');
     };
     
-    const handleBugDeletion = async (id: number) => {
+    const handleBugDeletion = (id: number) => {
         if(window.confirm('Do you really want to delete this bug?')) {
             const formData = new FormData();
             const bug_id = { id: id };
             formData.append('bug_id', JSON.stringify(bug_id));
-            await axios({
+            axios({
                 method: 'post',
                 url: bugDeletionURL,
                 data: formData,
                 withCredentials: true
+            })
+            .then(res => {
+                res.data.status && triggerRequestAction(!requestAction);
             });
-            triggerRequestAction(!requestAction);
         }
     };
     return(

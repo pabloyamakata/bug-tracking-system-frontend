@@ -60,7 +60,7 @@ function Projects() {
         navigate('/editproject');
     };
 
-    const handleProjectDeletion = async (id: number) => {
+    const handleProjectDeletion = (id: number) => {
         if(window.confirm(
             'Do you really want to delete this project?' + 
             ' All related bugs will be deleted as well.'
@@ -68,13 +68,15 @@ function Projects() {
             const formData = new FormData();
             const project_id = { id: id };
             formData.append('project_id', JSON.stringify(project_id));
-            await axios({
+            axios({
                 method: 'post',
                 url: projectDeletionURL,
                 data: formData,
                 withCredentials: true
+            })
+            .then(res => {
+                res.data.status && triggerRequestAction(!requestAction);
             });
-            triggerRequestAction(!requestAction);
         }
     };
     return(

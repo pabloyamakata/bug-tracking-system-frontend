@@ -108,6 +108,7 @@ function BugForm() {
 
     const handleFormSuccess = () => {
         resetRef.current?.click();
+        setProjectId(0);
         setWasBugReported(true);
         setTimeout(() => setWasBugReported(false), 10000);
     };
