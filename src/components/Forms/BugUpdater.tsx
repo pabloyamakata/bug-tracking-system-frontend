@@ -136,7 +136,7 @@ function BugUpdater() {
             priorityLevel: yup.string().required('Priority level required'),
             severityLevel: yup.string().required('Severity level required'),
             initialDate: yup.date().required('Initial date is required'),
-            finalDate: yup.date()
+            finalDate: yup.date().nullable(true)
         }),
         onSubmit: values => {
             formData.append('values', JSON.stringify(values));
