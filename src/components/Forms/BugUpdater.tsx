@@ -47,8 +47,8 @@ interface BugInterface {
     current_status: string;
     priority_level: string;
     severity_level: string;
-    initial_date: string;
-    final_date: string;
+    initial_date: Date | string;
+    final_date: Date | string;
 }
 
 const resetValues: BugInterface = {

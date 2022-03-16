@@ -53,6 +53,7 @@ const resetValues: ProjectInterface = {
 function ProjectUpdater() {
     const { state: { projectId }, setProjectId } = useContext(AppContext);
     const [isProjectAlreadyKnown, setIsProjectAlreadyKnown] = useState(false);
+    const [wasProjectEdited, setWasProjectEdited] = useState(true);
     const [projectInfo, setProjectInfo] = useState<ProjectInterface>(resetValues);
     const navigate = useNavigate();
 
@@ -125,6 +126,10 @@ function ProjectUpdater() {
                 switch(res.data.status) {
                     case true:
                         handleFormSuccess();
+                        break;
+                    case false:
+                        setWasProjectEdited(false);
+                        setTimeout(() => setWasProjectEdited(true), 10000);
                         break;
                     case 'project already exists':
                         setIsProjectAlreadyKnown(true);
@@ -346,6 +351,11 @@ function ProjectUpdater() {
                         {
                             isProjectAlreadyKnown &&
                             <ErrorMessage>Name provided already exists!</ErrorMessage>
+                        }
+
+                        {
+                            !wasProjectEdited &&
+                            <ErrorMessage>At least one field must be edited!</ErrorMessage>
                         }
 
                             <CustomButton
