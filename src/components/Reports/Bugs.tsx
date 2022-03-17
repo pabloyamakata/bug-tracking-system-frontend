@@ -33,7 +33,7 @@ interface BugInterface {
     final_date: Date;
 }
 
-let rowIndex = 0;
+let rowIndex: number;
 
 function Bugs() {
     const { setBugId } = useContext(AppContext);
@@ -47,12 +47,14 @@ function Bugs() {
             url: bugs_URL,
             withCredentials: true 
         })
-        .then(res => setBugArray(res.data));
+        .then(res => {
+            rowIndex = 0;
+            setBugArray(res.data);
+        });
     }, [requestAction]);
 
     const getRowIndex = () => {
-        if(rowIndex >= bugArray.length) return rowIndex = 1;
-        else return ++rowIndex;
+        return ++rowIndex;
     };
 
     const handleBugEdition = (id: number) => {

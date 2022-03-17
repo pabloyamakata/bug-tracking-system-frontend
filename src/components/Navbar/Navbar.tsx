@@ -28,7 +28,7 @@ interface ThemeModeProps {
 }
 
 function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
-    const [userData, setUserData] = useState({ username: 'user' });
+    const [userData, setUserData] = useState({ username: '' });
     const navigate = useNavigate();
 
     useEffect(() => {

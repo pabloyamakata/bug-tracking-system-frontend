@@ -33,7 +33,7 @@ interface ProjectInterface {
     ddbb: string;
 }
 
-let rowIndex = 0;
+let rowIndex: number;
 
 function Projects() {
     const { setProjectId } = useContext(AppContext);
@@ -47,12 +47,14 @@ function Projects() {
             url: projects_URL,
             withCredentials: true 
         })
-        .then(res => setProjectArray(res.data));
+        .then(res => {
+            rowIndex = 0;
+            setProjectArray(res.data);
+        });
     }, [requestAction]);
 
     const getRowIndex = () => {
-        if(rowIndex >= projectArray.length) return rowIndex = 1;
-        else return ++rowIndex;
+        return ++rowIndex;
     };
 
     const handleProjectEdition = (id: number) => {
