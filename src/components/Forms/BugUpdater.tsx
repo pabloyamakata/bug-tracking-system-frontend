@@ -48,7 +48,7 @@ interface BugInterface {
     priority_level: string;
     severity_level: string;
     initial_date: string;
-    final_date: Date | string;
+    final_date: Date | null;
 }
 
 const resetValues: BugInterface = {
@@ -61,7 +61,7 @@ const resetValues: BugInterface = {
     priority_level: '',
     severity_level: '',
     initial_date: new Date().toISOString().slice(0, 10),
-    final_date: new Date('0000-00-00')
+    final_date: null
 }
 
 function BugUpdater() {
