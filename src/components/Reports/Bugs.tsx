@@ -58,6 +58,13 @@ function Bugs() {
         return ++rowIndex;
     };
 
+    const formatDate = (date: Date) => {
+        const dateIsArray = date.toString().split('-');
+        dateIsArray.reverse();
+        const formattedDate = dateIsArray.join('-');
+        return formattedDate;
+    };
+
     const handleBugEdition = (id: number) => {
         setBugId(id);
         navigate('/editbug');
@@ -112,8 +119,8 @@ function Bugs() {
                                 <TableCell>{bug.current_status}</TableCell>
                                 <TableCell>{bug.priority_level}</TableCell>
                                 <TableCell>{bug.severity_level}</TableCell>
-                                <TableCell>{bug.initial_date}</TableCell>
-                                <TableCell>{bug.final_date}</TableCell>
+                                <TableCell>{formatDate(bug.initial_date)}</TableCell>
+                                <TableCell>{formatDate(bug.final_date)}</TableCell>
                                 <TableCell>
                                     <DescriptionModal description={bug.description} />
                                 </TableCell>

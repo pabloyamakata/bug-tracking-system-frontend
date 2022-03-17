@@ -58,6 +58,13 @@ function Projects() {
         return ++rowIndex;
     };
 
+    const formatDate = (date: Date) => {
+        const dateIsArray = date.toString().split('-');
+        dateIsArray.reverse();
+        const formattedDate = dateIsArray.join('-');
+        return formattedDate;
+    };
+
     const handleProjectEdition = (id: number) => {
         setProjectId(id);
         navigate('/editproject');
@@ -112,8 +119,8 @@ function Projects() {
                                 <TableCell>{project.name}</TableCell>
                                 <TableCell>{project.project_leader}</TableCell>
                                 <TableCell>{project.current_status}</TableCell>
-                                <TableCell>{project.start_date}</TableCell>
-                                <TableCell>{project.deadline}</TableCell>
+                                <TableCell>{formatDate(project.start_date)}</TableCell>
+                                <TableCell>{formatDate(project.deadline)}</TableCell>
                                 <TableCell>{project.frontend}</TableCell>
                                 <TableCell>{project.backend}</TableCell>
                                 <TableCell>{project.ddbb}</TableCell>
