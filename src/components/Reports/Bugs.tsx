@@ -54,7 +54,7 @@ function Bugs() {
     }, [requestAction]);
 
     const getRowIndex = () => {
-        if(rowIndex > bugArray.length) rowIndex = 0;
+        if(rowIndex >= bugArray.length) rowIndex = 0;
         return ++rowIndex;
     };
 
