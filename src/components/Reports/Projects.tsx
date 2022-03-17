@@ -54,6 +54,7 @@ function Projects() {
     }, [requestAction]);
 
     const getRowIndex = () => {
+        if(rowIndex > projectArray.length) rowIndex = 0;
         return ++rowIndex;
     };
 
