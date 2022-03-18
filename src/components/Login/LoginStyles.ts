@@ -35,17 +35,17 @@ export const LoginForm = styled('form')({
 export const Title = styled(Typography)(({ theme }) => ({
     marginBottom: '30px',
     fontSize: '24px',
-    color: theme.palette.secondary.contrastText
+    color: theme.palette.grey[50]
 }));
 
 export const LoginTextField = styled(TextField)(({ theme }) => ({
     width: '90%',
     maxWidth: '300px',
     '.MuiOutlinedInput-input': {
-        color: theme.palette.secondary.contrastText
+        color: theme.palette.grey[50]
     },
     '.MuiInputLabel-root': {
-        color: theme.palette.secondary.contrastText
+        color: theme.palette.grey[50]
     },
     '&:nth-of-type(2)': {
         marginTop: '15px'
@@ -67,7 +67,7 @@ export const SubmitButton = styled(Button)(({ theme }) => ({
     width: '100px',
     marginTop: '20px',
     marginRight: '50px',
-    color: theme.palette.primary.contrastText,
+    color: theme.palette.grey[900],
     backgroundColor: theme.palette.primary.main,
     textTransform: 'capitalize',
     transition: '.1s ease',
@@ -82,9 +82,9 @@ export const SubmitButton = styled(Button)(({ theme }) => ({
     }
 }));
 
-export const RegistrationLink = styled(Typography)({
+export const RegistrationLink = styled(Typography)(({ theme }) => ({
     marginTop: '20px',
-    color: '#ffffff',
+    color: theme.palette.grey[50],
     '@media (max-width: 270px)': {
         fontSize: '13px',
         paddingLeft: '10px',
@@ -93,12 +93,13 @@ export const RegistrationLink = styled(Typography)({
     '@media (min-width: 271px) and (max-width: 300px)': {
         fontSize: '14px'    
     }
-});
+}));
 
-export const MessageBox = styled(Typography)({
+export const MessageBox = styled(Typography)(({ theme }) => ({
     width: '100%',
+    fontSize: '18px',
     marginBottom: '10px',
     textAlign: 'center',
-    color: '#f7f7f7'
-});
+    color: theme.palette.error.light
+}));
 

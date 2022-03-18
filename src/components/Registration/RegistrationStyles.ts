@@ -35,10 +35,10 @@ export const RegistrationForm = styled('form')({
 
 export const RegistrationField = styled(TextField)(({ theme }) => ({
     '.MuiOutlinedInput-input': {
-        color: theme.palette.secondary.contrastText
+        color: theme.palette.grey[50]
     },
     '.MuiInputLabel-root': {
-        color: theme.palette.secondary.contrastText
+        color: theme.palette.grey[50]
     },
     '.MuiOutlinedInput-root': {
         '& fieldset': {
@@ -58,7 +58,8 @@ export const RegistrationField = styled(TextField)(({ theme }) => ({
 export const MessageBox = styled(Typography)({
     width: '100%',
     maxWidth: '380px',
+    fontSize: '18px',
     marginBottom: '10px',
     textAlign: 'center',
-    color: '#f7f7f7'
+    color: '#ff0f0f'
 });

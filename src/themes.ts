@@ -1,19 +1,34 @@
 import { createTheme } from '@mui/material';
+import { blue, yellow, amber } from '@mui/material/colors';
 
 export const lightTheme = createTheme({
     palette: {
         mode: 'light',
         primary: {
-            main: 'rgba(255, 190, 0, 1)',
-            light: 'rgba(255, 205, 59, 1)',
-            dark: 'rgba(209, 156, 0, 1)',
-            contrastText: 'rgba(10, 10, 10, 1)'
+            main: yellow['A700'],
+            light: yellow['A400'],
+            dark: amber['A700']
+        },
+        secondary: {
+            main: blue[800],
+            light: blue[600],
+            dark: blue[900]
         }
     }
 });
 
 export const darkTheme = createTheme({
     palette: {
-        mode: 'dark'
+        mode: 'dark',
+        primary: {
+            main: blue[600],
+            light: 'black',
+            dark: 'black'
+        },
+        secondary: {
+            main: blue[800],
+            light: 'black',
+            dark: 'black'
+        }
     }
 });

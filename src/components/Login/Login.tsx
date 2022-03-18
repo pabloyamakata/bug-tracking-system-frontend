@@ -154,7 +154,7 @@ function Login() {
         to='/registration'
         style={{
           marginLeft: '3px', 
-          color: '#b839e3'
+          color: '#ba68c8'
         }}>
         Create one  
         </RouterLink>   

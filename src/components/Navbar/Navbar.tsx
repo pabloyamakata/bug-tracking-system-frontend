@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
-import { CustomNavbar, CustomSwitch } from './NavbarStyles';
+import { CustomNavbar, CustomSwitch, CustomAvatar } from './NavbarStyles';
 
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -155,9 +155,9 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title='Open settings'>
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar>
+                                <CustomAvatar>
                                     {getInitial()}
-                                </Avatar>
+                                </CustomAvatar>
                             </IconButton>
                         </Tooltip>
                         <Menu
@@ -178,7 +178,11 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
                             {settings.map((setting) => (
                                 <MenuItem 
                                 key={setting} 
-                                onClick={() => {handleCloseUserMenu(); handleLogout();}}>
+                                onClick={() => {
+                                    handleCloseUserMenu();
+                                    setIsModeDark(false);
+                                    handleLogout();
+                                }}>
                                     <Typography textAlign='center'>{setting}</Typography>
                                 </MenuItem>
                             ))}
