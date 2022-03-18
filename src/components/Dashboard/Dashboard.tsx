@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 import DoughnutChart from '../Charts/DoughnutChart';
@@ -40,6 +41,7 @@ function Dashboard() {
     const [bugArray, setBugArray] = useState<BugInterface[]>([]);
     const [projectArray, setProjectArray] = useState<ProjectInterface[]>([]);
     const [userData, setUserData] = useState({ username: '' });
+    const location = useLocation();
 
     useEffect(() => {
         const promiseForBugs = axios.get(bugs_URL, { withCredentials: true });
@@ -59,7 +61,12 @@ function Dashboard() {
             <Typography
             variant='h5' 
             sx={{marginLeft: '20px', paddingTop: '25px'}}>
-                Welcome {userData.username}!
+                {
+                    location.search === '?new=1' ? 
+                    `Welcome ${userData.username}!` :
+                    location.search === '?new=0' ? 
+                    `Welcome back ${userData.username}!` : null
+                }
             </Typography>
             <DoughnutChart />
         </CustomPaper>

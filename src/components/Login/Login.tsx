@@ -55,7 +55,7 @@ function Login() {
       .then(res => {
         switch(res.data.status) {
           case true:
-            navigate('/dashboard');
+            navigate('/dashboard?new=0');
             break;
           case false:
             setIsUserAlreadyKnown(false);

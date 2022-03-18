@@ -53,7 +53,7 @@ function Registration() {
             .then(res => {
                 switch(res.data.status) {
                     case true:
-                        navigate('/dashboard');
+                        navigate('/dashboard?new=1');
                         break;
                     case false:
                         setIsUserAlreadyKnown(true);
