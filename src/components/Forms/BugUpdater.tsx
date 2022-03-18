@@ -187,6 +187,7 @@ function BugUpdater() {
                     <CustomGrid item xs={12} sm={6}>
                         <CustomTextField 
                         type='text'
+                        color='secondary'
                         label='Name'
                         name='name'
                         error={
@@ -205,7 +206,8 @@ function BugUpdater() {
                         onBlur={formik.handleBlur}
                         variant='outlined' 
                         size='small' />
-                        <CustomTextField 
+                        <CustomTextField
+                        color='secondary'
                         label='Description'
                         name='description'
                         error={
@@ -227,6 +229,7 @@ function BugUpdater() {
                         rows={3} 
                         multiline />
                         <CustomTextField
+                        color='secondary'
                         label='Project'
                         name='project'
                         error={
@@ -257,6 +260,7 @@ function BugUpdater() {
                         </CustomTextField>
                         <CustomTextField
                         type='text'
+                        color='secondary'
                         label='Project Leader'
                         name='projectLeader'
                         error={
@@ -278,7 +282,8 @@ function BugUpdater() {
                         inputProps={
                             { readOnly: true }
                         } />
-                        <CustomTextField 
+                        <CustomTextField
+                        color='secondary'
                         label='Current Status'
                         name='currentStatus'
                         error={
@@ -304,7 +309,8 @@ function BugUpdater() {
                     </CustomGrid>
 
                     <CustomGrid item xs={12} sm={6}>
-                        <CustomTextField 
+                        <CustomTextField
+                        color='secondary' 
                         label='Priority Level'
                         name='priorityLevel'
                         error={
@@ -328,7 +334,8 @@ function BugUpdater() {
                             <MenuItem value='Moderate'>Moderate</MenuItem>
                             <MenuItem value='Low'>Low</MenuItem>
                         </CustomTextField>
-                        <CustomTextField 
+                        <CustomTextField
+                        color='secondary'
                         label='Severity Level' 
                         name='severityLevel'
                         error={
@@ -354,6 +361,7 @@ function BugUpdater() {
                         </CustomTextField>
                         <CustomTextField 
                         type='date'
+                        color='secondary'
                         label='Initial Date' 
                         name='initialDate'
                         InputLabelProps={{ shrink: true }}
@@ -375,6 +383,7 @@ function BugUpdater() {
                         size='small' />
                         <CustomTextField 
                         type='date'
+                        color='secondary'
                         label='Final Date'
                         name='finalDate'
                         InputLabelProps={{ shrink: true }}

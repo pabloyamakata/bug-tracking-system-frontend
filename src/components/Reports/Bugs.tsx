@@ -92,18 +92,18 @@ function Bugs() {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>No.</TableCell>
-                            <TableCell>Name</TableCell>
-                            <TableCell>Project</TableCell>
-                            <TableCell>Leader</TableCell>
-                            <TableCell>Status</TableCell>
-                            <TableCell>Priority</TableCell>
-                            <TableCell>Severity</TableCell>
-                            <TableCell>Start</TableCell>
-                            <TableCell>End</TableCell>
-                            <TableCell>Description</TableCell>
-                            <TableCell>Edit</TableCell>
-                            <TableCell>Delete</TableCell>
+                            <TableCell align='center'>No.</TableCell>
+                            <TableCell align='center'>Bug Name</TableCell>
+                            <TableCell align='center'>Project</TableCell>
+                            <TableCell align='center'>Project Leader</TableCell>
+                            <TableCell align='center'>Status</TableCell>
+                            <TableCell align='center'>Priority</TableCell>
+                            <TableCell align='center'>Severity</TableCell>
+                            <TableCell align='center'>Initial Date</TableCell>
+                            <TableCell align='center'>Final Date</TableCell>
+                            <TableCell align='center'>Description</TableCell>
+                            <TableCell align='center'>Edit</TableCell>
+                            <TableCell align='center'>Delete</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -112,26 +112,26 @@ function Bugs() {
                             key={bug.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             hover>
-                                <TableCell component="th" scope="row">{getRowIndex()}</TableCell>
-                                <TableCell>{bug.name}</TableCell>
-                                <TableCell>{bug.project}</TableCell>
-                                <TableCell>{bug.project_leader}</TableCell>
-                                <TableCell>{bug.current_status}</TableCell>
-                                <TableCell>{bug.priority_level}</TableCell>
-                                <TableCell>{bug.severity_level}</TableCell>
-                                <TableCell>{formatDate(bug.initial_date)}</TableCell>
-                                <TableCell>{formatDate(bug.final_date)}</TableCell>
-                                <TableCell>
+                                <TableCell component="th" scope="row" align='center'>{getRowIndex()}</TableCell>
+                                <TableCell align='center'>{bug.name}</TableCell>
+                                <TableCell align='center'>{bug.project}</TableCell>
+                                <TableCell align='center'>{bug.project_leader}</TableCell>
+                                <TableCell align='center'>{bug.current_status}</TableCell>
+                                <TableCell align='center'>{bug.priority_level}</TableCell>
+                                <TableCell align='center'>{bug.severity_level}</TableCell>
+                                <TableCell align='center'>{formatDate(bug.initial_date)}</TableCell>
+                                <TableCell align='center'>{formatDate(bug.final_date)}</TableCell>
+                                <TableCell align='center'>
                                     <DescriptionModal description={bug.description} />
                                 </TableCell>
-                                <TableCell>
+                                <TableCell align='center'>
                                     <IconButton
                                     onClick={() => handleBugEdition(bug.id)}
                                     sx={{padding: 0}}>
                                         <EditIcon />
                                     </IconButton>
                                 </TableCell>
-                                <TableCell>
+                                <TableCell align='center'>
                                     <IconButton
                                     onClick={() => handleBugDeletion(bug.id)} 
                                     sx={{padding: 0}}>

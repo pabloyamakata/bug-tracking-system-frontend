@@ -134,6 +134,7 @@ function BugForm() {
                     <CustomGrid item xs={12} sm={6}>
                         <CustomTextField 
                         type='text'
+                        color='secondary'
                         label='Name'
                         name='name'
                         error={
@@ -152,7 +153,8 @@ function BugForm() {
                         onBlur={formik.handleBlur}
                         variant='outlined' 
                         size='small' />
-                        <CustomTextField 
+                        <CustomTextField
+                        color='secondary'
                         label='Description'
                         name='description'
                         error={
@@ -173,7 +175,8 @@ function BugForm() {
                         size='small' 
                         rows={3} 
                         multiline />
-                        <CustomTextField 
+                        <CustomTextField
+                        color='secondary'
                         label='Project'
                         name='project'
                         error={
@@ -203,7 +206,8 @@ function BugForm() {
                                 </MenuItem>
                             ))}
                         </CustomTextField>
-                        <CustomTextField 
+                        <CustomTextField
+                        color='secondary'
                         label='Project Leader'
                         name='projectLeader'
                         error={
@@ -225,7 +229,8 @@ function BugForm() {
                         inputProps={
                             { readOnly: true }
                         } />
-                        <CustomTextField 
+                        <CustomTextField
+                        color='secondary'
                         label='Current Status' 
                         name='currentStatus'
                         error={
@@ -252,7 +257,8 @@ function BugForm() {
                     </CustomGrid>
 
                     <CustomGrid item xs={12} sm={6}>
-                        <CustomTextField 
+                        <CustomTextField
+                        color='secondary'
                         label='Priority Level'
                         name='priorityLevel'
                         error={
@@ -277,7 +283,8 @@ function BugForm() {
                             <MenuItem value='Moderate'>Moderate</MenuItem>
                             <MenuItem value='Low'>Low</MenuItem>
                         </CustomTextField>
-                        <CustomTextField 
+                        <CustomTextField
+                        color='secondary'
                         label='Severity Level' 
                         name='severityLevel'
                         error={
@@ -304,6 +311,7 @@ function BugForm() {
                         </CustomTextField>
                         <CustomTextField 
                         type='date'
+                        color='secondary'
                         label='Initial Date' 
                         name='initialDate'
                         InputLabelProps={{ shrink: true }}
@@ -325,6 +333,7 @@ function BugForm() {
                         size='small' />
                         <CustomTextField 
                         type='date'
+                        color='secondary'
                         label='Final Date'
                         name='finalDate'
                         InputLabelProps={{ shrink: true }}
@@ -356,8 +365,7 @@ function BugForm() {
 
                             <CustomButton 
                             type='submit'
-                            variant="contained" 
-                            color='primary'>
+                            variant="contained">
                             Save
                             </CustomButton>
                             <CustomButton

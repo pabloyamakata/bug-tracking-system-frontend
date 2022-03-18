@@ -12,7 +12,6 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
@@ -70,7 +69,7 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
         .then(res => {
             res.data.status && navigate('/login');
         });
-    }
+    };
     return(
         <CustomNavbar>
             <Container maxWidth='xl'>
@@ -180,7 +179,6 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
                                 key={setting} 
                                 onClick={() => {
                                     handleCloseUserMenu();
-                                    setIsModeDark(false);
                                     handleLogout();
                                 }}>
                                     <Typography textAlign='center'>{setting}</Typography>

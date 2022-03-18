@@ -107,6 +107,7 @@ function ProjectForm() {
                     <CustomGrid item xs={12} sm={6}>
                         <CustomTextField 
                         type='text'
+                        color='secondary'
                         label='Name'
                         name='name'
                         error={
@@ -125,7 +126,8 @@ function ProjectForm() {
                         onBlur={formik.handleBlur} 
                         variant='outlined' 
                         size='small' />
-                        <CustomTextField 
+                        <CustomTextField
+                        color='secondary'
                         label='Description'
                         name='description'
                         error={
@@ -148,6 +150,7 @@ function ProjectForm() {
                         multiline />
                         <CustomTextField 
                         type='text'
+                        color='secondary'
                         label='Project Leader'
                         name='projectLeader'
                         error={
@@ -167,7 +170,8 @@ function ProjectForm() {
                         variant='outlined' 
                         size='small' />
                         <CustomTextField
-                        type='date' 
+                        type='date'
+                        color='secondary' 
                         label='Start Date'
                         name='startDate'
                         InputLabelProps={{ shrink: true }}
@@ -189,6 +193,7 @@ function ProjectForm() {
                         size='small' />
                         <CustomTextField
                         type='date'
+                        color='secondary'
                         label='Deadline'
                         name='deadline'
                         InputLabelProps={{ shrink: true }}
@@ -211,7 +216,8 @@ function ProjectForm() {
                     </CustomGrid>
         
                     <CustomGrid item xs={12} sm={6}>
-                        <CustomTextField 
+                        <CustomTextField
+                        color='secondary'
                         label='Current Status'
                         name='currentStatus'
                         error={
@@ -236,7 +242,8 @@ function ProjectForm() {
                             <MenuItem value='Completed'>Completed</MenuItem>
                             <MenuItem value='Cancelled'>Cancelled</MenuItem>
                         </CustomTextField>
-                        <CustomTextField 
+                        <CustomTextField
+                        color='secondary'
                         label='Frontend'
                         name='frontend'
                         error={
@@ -255,7 +262,8 @@ function ProjectForm() {
                         onBlur={formik.handleBlur} 
                         variant='outlined' 
                         size='small' />
-                        <CustomTextField 
+                        <CustomTextField
+                        color='secondary'
                         label='Backend'
                         name='backend'
                         error={
@@ -274,7 +282,8 @@ function ProjectForm() {
                         onBlur={formik.handleBlur} 
                         variant='outlined' 
                         size='small' />
-                        <CustomTextField 
+                        <CustomTextField
+                        color='secondary' 
                         label='Database'
                         name='database'
                         error={

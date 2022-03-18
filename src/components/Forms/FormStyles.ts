@@ -41,18 +41,25 @@ export const ButtonContainer = styled(Box)({
 export const CustomButton = styled(Button)(({ theme }) => ({
     width: '64px',
     textTransform: 'capitalize',
+    color: theme.palette.grey[900],
+    backgroundColor: theme.palette.primary.main,
     '&:nth-of-type(2)': {
         marginLeft: '20px',
-        color: theme.palette.secondary.contrastText,
-        backgroundColor: theme.palette.primary.contrastText
+        color: theme.palette.grey[50],
+        backgroundColor: theme.palette.secondary.main,
+        transition: '.3s ease'
+    },
+    '&:nth-of-type(2):hover': {
+        backgroundColor: theme.palette.secondary.dark
     }
 }));
 
-export const SuccessMessage = styled(Typography)({
+export const SuccessMessage = styled(Typography)(({ theme }) => ({
     marginBottom: '10px',
-    color: '#0fa311'
-});
+    color: theme.palette.success.main
+}));
 
-export const ErrorMessage = styled(Typography)({
-    marginBottom: '10px'
-});
+export const ErrorMessage = styled(Typography)(({ theme }) => ({
+    marginBottom: '10px',
+    color: theme.palette.error.main
+}));

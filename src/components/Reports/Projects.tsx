@@ -95,18 +95,18 @@ function Projects() {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>No.</TableCell>
-                            <TableCell>Name</TableCell>
-                            <TableCell>Leader</TableCell>
-                            <TableCell>Status</TableCell>
-                            <TableCell>Start Date</TableCell>
-                            <TableCell>Deadline</TableCell>
-                            <TableCell>Frontend</TableCell>
-                            <TableCell>Backend</TableCell>
-                            <TableCell>Database</TableCell>
-                            <TableCell>Description</TableCell>
-                            <TableCell>Edit</TableCell>
-                            <TableCell>Delete</TableCell>
+                            <TableCell align='center'>No.</TableCell>
+                            <TableCell align='center'>Project Name</TableCell>
+                            <TableCell align='center'>Project Leader</TableCell>
+                            <TableCell align='center'>Status</TableCell>
+                            <TableCell align='center'>Start Date</TableCell>
+                            <TableCell align='center'>Deadline</TableCell>
+                            <TableCell align='center'>Frontend</TableCell>
+                            <TableCell align='center'>Backend</TableCell>
+                            <TableCell align='center'>Database</TableCell>
+                            <TableCell align='center'>Description</TableCell>
+                            <TableCell align='center'>Edit</TableCell>
+                            <TableCell align='center'>Delete</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -115,26 +115,26 @@ function Projects() {
                             key={project.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             hover>
-                                <TableCell component="th" scope="row">{getRowIndex()}</TableCell>
-                                <TableCell>{project.name}</TableCell>
-                                <TableCell>{project.project_leader}</TableCell>
-                                <TableCell>{project.current_status}</TableCell>
-                                <TableCell>{formatDate(project.start_date)}</TableCell>
-                                <TableCell>{formatDate(project.deadline)}</TableCell>
-                                <TableCell>{project.frontend}</TableCell>
-                                <TableCell>{project.backend}</TableCell>
-                                <TableCell>{project.ddbb}</TableCell>
-                                <TableCell>
+                                <TableCell component="th" scope="row" align='center'>{getRowIndex()}</TableCell>
+                                <TableCell align='center'>{project.name}</TableCell>
+                                <TableCell align='center'>{project.project_leader}</TableCell>
+                                <TableCell align='center'>{project.current_status}</TableCell>
+                                <TableCell align='center'>{formatDate(project.start_date)}</TableCell>
+                                <TableCell align='center'>{formatDate(project.deadline)}</TableCell>
+                                <TableCell align='center'>{project.frontend}</TableCell>
+                                <TableCell align='center'>{project.backend}</TableCell>
+                                <TableCell align='center'>{project.ddbb}</TableCell>
+                                <TableCell align='center'>
                                     <DescriptionModal description={project.description} />
                                 </TableCell>
-                                <TableCell>
+                                <TableCell align='center'>
                                     <IconButton
                                     onClick={() => handleProjectEdition(project.id)}
                                     sx={{padding: 0}}>
                                         <EditIcon />
                                     </IconButton>
                                 </TableCell>
-                                <TableCell>
+                                <TableCell align='center'>
                                     <IconButton 
                                     onClick={() => handleProjectDeletion(project.id)}
                                     sx={{padding: 0}}>
