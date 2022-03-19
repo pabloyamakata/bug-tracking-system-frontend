@@ -13,7 +13,11 @@ export const lightTheme = createTheme({
         secondary: {
             main: deepPurple[700],
             light: deepPurple[500],
-            dark: deepPurple[900]
+            dark: deepPurple[900],
+            contrastText: grey[100]
+        },
+        action: {
+            hover: grey[200]
         }
     }
 });

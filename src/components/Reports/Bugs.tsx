@@ -3,9 +3,10 @@ import { AppContext } from '../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import { CustomPaper } from './ReportStyles';
+import { CustomPaper, CustomTableRow, AddBoxContainer } from './ReportStyles';
 import DescriptionModal from '../DescriptionModal/DescriptionModal';
 
+import Typography from '@mui/material/Typography';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -16,6 +17,7 @@ import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 
 const bugs_URL = 'https://bug-tracking-system-backend.000webhostapp.com/bugs.php';
 const bugDeletionURL = 'https://bug-tracking-system-backend.000webhostapp.com/bugdeletion.php';
@@ -108,7 +110,7 @@ function Bugs() {
                     </TableHead>
                     <TableBody>
                         {Array.isArray(bugArray) && bugArray.map((bug: BugInterface) => (
-                            <TableRow
+                            <CustomTableRow
                             key={bug.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             hover>
@@ -138,11 +140,22 @@ function Bugs() {
                                         <DeleteIcon />
                                     </IconButton>
                                 </TableCell>
-                            </TableRow>
+                            </CustomTableRow>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
+
+            {!bugArray.length &&
+            <AddBoxContainer>
+                <IconButton onClick={() => navigate('/newbug')}>
+                    <AddBoxOutlinedIcon sx={{ fontSize: 120 }} />
+                </IconButton>
+                <Typography sx={{ pt: 1, fontSize: 20 }}>
+                    This section is empty. Click to report a bug...
+                </Typography>
+            </AddBoxContainer>}
+        
         </CustomPaper>
     )
 }

@@ -3,9 +3,10 @@ import { AppContext } from '../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import { CustomPaper } from './ReportStyles';
+import { CustomPaper, CustomTableRow, AddBoxContainer } from './ReportStyles';
 import DescriptionModal from '../DescriptionModal/DescriptionModal';
 
+import Typography from '@mui/material/Typography';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -16,6 +17,7 @@ import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 
 const projectDeletionURL = 'https://bug-tracking-system-backend.000webhostapp.com/projectdeletion.php';
 const projects_URL = 'https://bug-tracking-system-backend.000webhostapp.com/projects.php';
@@ -111,7 +113,7 @@ function Projects() {
                     </TableHead>
                     <TableBody>
                         {Array.isArray(projectArray) && projectArray.map((project: ProjectInterface) => (
-                            <TableRow
+                            <CustomTableRow
                             key={project.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             hover>
@@ -141,11 +143,22 @@ function Projects() {
                                         <DeleteIcon />
                                     </IconButton>
                                 </TableCell>
-                            </TableRow>
+                            </CustomTableRow>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
+
+            {!projectArray.length &&
+            <AddBoxContainer>
+                <IconButton onClick={() => navigate('/newproject')}>
+                    <AddBoxOutlinedIcon sx={{ fontSize: 120 }} />
+                </IconButton>
+                <Typography sx={{ pt: 1, fontSize: 20 }}>
+                    This section is empty. Click to add a project...
+                </Typography>
+            </AddBoxContainer>}
+        
         </CustomPaper>
     )
 }
