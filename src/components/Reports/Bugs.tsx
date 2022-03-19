@@ -3,10 +3,16 @@ import { AppContext } from '../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import { CustomPaper, CustomTableRow, MessageContainer } from './ReportStyles';
+import {
+    CustomPaper,
+    CustomTableRow,
+    MessageContainer,
+    LoaderContainer,
+    LoadingIcon 
+} from './ReportStyles';
+
 import DescriptionModal from '../DescriptionModal/DescriptionModal';
 
-import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import Typography from '@mui/material/Typography';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -94,6 +100,13 @@ function Bugs() {
     };
     return(
         <CustomPaper elevation={0}>
+
+            {isLoading ?
+            <LoaderContainer>
+                <LoadingIcon />
+                <Typography sx={{ ml: 3, fontSize: 25 }}>Loading...</Typography>
+            </LoaderContainer> :
+
             <TableContainer component={Paper} square elevation={0}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -148,7 +161,7 @@ function Bugs() {
                         ))}
                     </TableBody>
                 </Table>
-            </TableContainer>
+            </TableContainer>}
 
             {!bugArray.length && !isLoading ?
             <MessageContainer>
@@ -159,12 +172,6 @@ function Bugs() {
                     This section is empty. Click to report a bug...
                 </Typography>
             </MessageContainer> : null}
-
-            {isLoading &&
-            <MessageContainer>
-                <HourglassEmptyIcon sx={{ fontSize: 80 }} />
-                <Typography sx={{ pt: 1, fontSize: 20 }}>Loading...</Typography>
-            </MessageContainer>}
         
         </CustomPaper>
     )
