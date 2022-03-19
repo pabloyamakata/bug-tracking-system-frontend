@@ -21,7 +21,7 @@ export const CustomTableRow = styled(TableRow)(({ theme }) => ({
     }
 }));
 
-export const AddBoxContainer = styled(Box)({
+export const MessageContainer = styled(Box)({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',

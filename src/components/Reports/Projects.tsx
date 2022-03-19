@@ -3,9 +3,10 @@ import { AppContext } from '../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import { CustomPaper, CustomTableRow, AddBoxContainer } from './ReportStyles';
+import { CustomPaper, CustomTableRow, MessageContainer } from './ReportStyles';
 import DescriptionModal from '../DescriptionModal/DescriptionModal';
 
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import Typography from '@mui/material/Typography';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -38,12 +39,13 @@ interface ProjectInterface {
 let rowIndex: number;
 
 function Projects() {
-    const { setProjectId } = useContext(AppContext);
+    const { state: { isLoading }, setProjectId, setIsLoading } = useContext(AppContext);
     const [projectArray, setProjectArray] = useState<ProjectInterface[]>([] as ProjectInterface[]);
     const [requestAction, triggerRequestAction] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
+        setIsLoading(true);
         axios({
             method: 'get',
             url: projects_URL,
@@ -52,7 +54,9 @@ function Projects() {
         .then(res => {
             rowIndex = 0;
             setProjectArray(res.data);
+            setIsLoading(false);
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [requestAction]);
 
     const getRowIndex = () => {
@@ -149,15 +153,21 @@ function Projects() {
                 </Table>
             </TableContainer>
 
-            {!projectArray.length &&
-            <AddBoxContainer>
+            {!projectArray.length && !isLoading ?
+            <MessageContainer>
                 <IconButton onClick={() => navigate('/newproject')}>
                     <AddBoxOutlinedIcon sx={{ fontSize: 120 }} />
                 </IconButton>
                 <Typography sx={{ pt: 1, fontSize: 20 }}>
                     This section is empty. Click to add a project...
                 </Typography>
-            </AddBoxContainer>}
+            </MessageContainer> : null}
+
+            {isLoading &&
+            <MessageContainer>
+                <HourglassEmptyIcon sx={{ fontSize: 80 }} />
+                <Typography sx={{ pt: 1, fontSize: 20 }}>Loading...</Typography>
+            </MessageContainer>}
         
         </CustomPaper>
     )

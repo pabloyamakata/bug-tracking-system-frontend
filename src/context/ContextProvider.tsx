@@ -5,7 +5,8 @@ import { StateInterface, ContextProviderProps } from "./interfaces";
 
 const INITIAL_STATE: StateInterface = {
     bugId: 0,
-    projectId: 0
+    projectId: 0,
+    isLoading: false
 }
 
 export const ContextProvider = ({ children }: ContextProviderProps) => {
@@ -17,11 +18,15 @@ export const ContextProvider = ({ children }: ContextProviderProps) => {
     const setProjectId = (id: number) => {
         dispatch({ type: 'SET_PROJECT_ID', payload: id });
     };
+    const setIsLoading = (boolean: boolean) => {
+        dispatch({ type: 'SET_IS_LOADING', payload: boolean });
+    };
     return(
         <AppContext.Provider value={{
             state,
             setBugId,
-            setProjectId
+            setProjectId,
+            setIsLoading
         }}>
             { children }
         </AppContext.Provider>
