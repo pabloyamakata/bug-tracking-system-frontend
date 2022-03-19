@@ -179,6 +179,7 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
                                 key={setting} 
                                 onClick={() => {
                                     handleCloseUserMenu();
+                                    setIsModeDark(false);
                                     handleLogout();
                                 }}>
                                     <Typography textAlign='center'>{setting}</Typography>
