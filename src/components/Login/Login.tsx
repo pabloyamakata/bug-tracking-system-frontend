@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -29,6 +29,11 @@ function Login() {
   const [isUserAlreadyKnown, setIsUserAlreadyKnown] = useState(true);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if(localStorage.getItem('userAuth')) navigate('/dashboard');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -55,6 +60,7 @@ function Login() {
       .then(res => {
         switch(res.data.status) {
           case true:
+            localStorage.setItem('userAuth', 'true');
             navigate('/dashboard?new=0');
             break;
           case false:

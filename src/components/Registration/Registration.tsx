@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -27,6 +27,11 @@ function Registration() {
     const [isUserAlreadyKnown, setIsUserAlreadyKnown] = useState(false);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        if(localStorage.getItem('userAuth')) navigate('/dashboard');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     const formik = useFormik({
         initialValues: {
             username: '',
@@ -53,6 +58,7 @@ function Registration() {
             .then(res => {
                 switch(res.data.status) {
                     case true:
+                        localStorage.setItem('userAuth', 'true');
                         navigate('/dashboard?new=1');
                         break;
                     case false:
