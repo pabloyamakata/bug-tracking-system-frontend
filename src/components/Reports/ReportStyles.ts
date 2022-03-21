@@ -32,6 +32,7 @@ export const MessageContainer = styled(Box)({
 
 export const LoaderContainer = styled(Box)({
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     minHeight: '85vh'

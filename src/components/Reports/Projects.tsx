@@ -107,7 +107,7 @@ function Projects() {
             {isLoading ?
             <LoaderContainer>
                 <LoadingIcon />
-                <Typography sx={{ ml: 3, fontSize: 25 }}>Loading...</Typography>
+                <Typography sx={{ pt: 3, fontSize: 25 }}>Fetching data, please wait...</Typography>
             </LoaderContainer> :
 
             <TableContainer component={Paper} square elevation={0}>

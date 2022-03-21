@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react';
+import { useState, useContext, useRef } from 'react';
+import { AppContext } from '../../context/AppContext';
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -18,11 +19,15 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
+import SendIcon from '@mui/icons-material/Send';
+import CircularProgress from '@mui/material/CircularProgress';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 const formData = new FormData();
 const newProjectURL = 'https://bug-tracking-system-backend.000webhostapp.com/newproject.php';
 
 function ProjectForm() {
+    const { state: { isLoading }, setIsLoading } = useContext(AppContext);
     const [wasProjectAdded, setWasProjectAdded] = useState(false);
     const [isProjectAlreadyKnown, setIsProjectAlreadyKnown] = useState(false);
     const resetRef = useRef<HTMLButtonElement>(null);
@@ -67,6 +72,7 @@ function ProjectForm() {
             .max(30, 'Database name must contain between 3 and 30 characters')
         }),
         onSubmit: values => {
+            setIsLoading(true);
             formData.append('values', JSON.stringify(values));
             axios({
                 method: 'post',
@@ -88,6 +94,7 @@ function ProjectForm() {
     });
 
     const handleFormSuccess = () => {
+        setIsLoading(false);
         resetRef.current?.click();
         setWasProjectAdded(true);
         setTimeout(() => setWasProjectAdded(false), 10000);
@@ -320,12 +327,17 @@ function ProjectForm() {
                             <CustomButton
                             type='submit' 
                             variant="contained" 
-                            color='primary'>
+                            endIcon={
+                                isLoading ?
+                                <CircularProgress size={17} color='secondary' /> :
+                                <SendIcon />
+                            }>
                             Save
                             </CustomButton>
                             <CustomButton
                             ref={resetRef}
                             variant='contained'
+                            endIcon={<RestartAltIcon style={{ fontSize: '25px' }} />}
                             onClick={formik.handleReset}>
                             Reset
                             </CustomButton>

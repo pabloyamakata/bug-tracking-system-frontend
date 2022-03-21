@@ -19,6 +19,8 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
+import SendIcon from '@mui/icons-material/Send';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const formData = new FormData();
 const projects_URL = 'https://bug-tracking-system-backend.000webhostapp.com/projects.php';
@@ -65,7 +67,7 @@ const resetValues: BugInterface = {
 }
 
 function BugUpdater() {
-    const { state: { bugId }, setBugId } = useContext(AppContext);
+    const { state: { bugId, isLoading }, setBugId, setIsLoading } = useContext(AppContext);
     const [wasBugEdited, setWasBugEdited] = useState(true);
     const [projectArray, setProjectArray] = useState<ProjectInterface[]>([]);
     const [projectName, setProjectName] = useState('');
@@ -139,6 +141,7 @@ function BugUpdater() {
             finalDate: yup.date().nullable(true)
         }),
         onSubmit: values => {
+            setIsLoading(true);
             formData.append('values', JSON.stringify(values));
             formData.append('project_id', JSON.stringify({ id: projectId }));
             formData.append('bug_id', JSON.stringify({ id: bugId }));
@@ -154,6 +157,7 @@ function BugUpdater() {
                         handleFormSuccess();
                         break;
                     case false:
+                        setIsLoading(false);
                         setWasBugEdited(false);
                         setTimeout(() => setWasBugEdited(true), 10000);
                 }
@@ -162,6 +166,7 @@ function BugUpdater() {
     });
 
     const handleFormSuccess = () => {
+        setIsLoading(false);
         setBugInfo(resetValues);
         setBugId(0);
         navigate('/bugreports');
@@ -416,7 +421,11 @@ function BugUpdater() {
                             <CustomButton 
                             type='submit'
                             variant="contained" 
-                            color='primary'>
+                            endIcon={
+                                isLoading ?
+                                <CircularProgress size={17} color='secondary' /> :
+                                <SendIcon />
+                            }>
                             Save
                             </CustomButton>
                         </ButtonContainer>

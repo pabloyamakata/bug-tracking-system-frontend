@@ -39,7 +39,7 @@ export const ButtonContainer = styled(Box)({
 });
 
 export const CustomButton = styled(Button)(({ theme }) => ({
-    width: '64px',
+    width: '90px',
     textTransform: 'capitalize',
     color: theme.palette.grey[900],
     backgroundColor: theme.palette.primary.main,

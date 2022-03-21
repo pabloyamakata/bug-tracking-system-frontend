@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
-import { useNavigate } from 'react-router-dom';
 
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
@@ -19,6 +19,8 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
+import SendIcon from '@mui/icons-material/Send';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const formData = new FormData();
 const projects_URL = 'https://bug-tracking-system-backend.000webhostapp.com/projects.php';
@@ -51,7 +53,7 @@ const resetValues: ProjectInterface = {
 }
 
 function ProjectUpdater() {
-    const { state: { projectId }, setProjectId } = useContext(AppContext);
+    const { state: { projectId, isLoading }, setProjectId, setIsLoading } = useContext(AppContext);
     const [isProjectAlreadyKnown, setIsProjectAlreadyKnown] = useState(false);
     const [wasProjectEdited, setWasProjectEdited] = useState(true);
     const [projectInfo, setProjectInfo] = useState<ProjectInterface>(resetValues);
@@ -114,6 +116,7 @@ function ProjectUpdater() {
             .max(30, 'Database name must contain between 3 and 30 characters')
         }),
         onSubmit: values => {
+            setIsLoading(true);
             formData.append('values', JSON.stringify(values));
             formData.append('project_id', JSON.stringify({ id: projectId }));
             axios({
@@ -128,10 +131,12 @@ function ProjectUpdater() {
                         handleFormSuccess();
                         break;
                     case false:
+                        setIsLoading(false);
                         setWasProjectEdited(false);
                         setTimeout(() => setWasProjectEdited(true), 10000);
                         break;
                     case 'project already exists':
+                        setIsLoading(false);
                         setIsProjectAlreadyKnown(true);
                         setTimeout(() => setIsProjectAlreadyKnown(false), 10000);
                 }
@@ -140,6 +145,7 @@ function ProjectUpdater() {
     });
 
     const handleFormSuccess = () => {
+        setIsLoading(false);
         setProjectInfo(resetValues);
         setProjectId(0);
         navigate('/projectreports');
@@ -370,7 +376,11 @@ function ProjectUpdater() {
                             <CustomButton
                             type='submit' 
                             variant="contained" 
-                            color='primary'>
+                            endIcon={
+                                isLoading ?
+                                <CircularProgress size={17} color='secondary' /> :
+                                <SendIcon />
+                            }>
                             Save
                             </CustomButton>
                         </ButtonContainer>
