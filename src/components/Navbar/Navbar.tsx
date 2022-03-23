@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
-import { CustomNavbar, CustomSwitch, CustomAvatar } from './NavbarStyles';
+import { CustomNavbar, CustomAvatar, CustomSwitch } from './NavbarStyles';
 
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -161,8 +161,7 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
                         ))}
                     </Box>
 
-                    <CustomSwitch
-                    onClick={changeThemeMode} />
+                    <CustomSwitch onClick={changeThemeMode} />
                         
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title='Open settings'>

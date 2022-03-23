@@ -41,7 +41,6 @@ export const ButtonContainer = styled(Box)({
 export const CustomButton = styled(Button)(({ theme }) => ({
     width: '90px',
     textTransform: 'capitalize',
-    color: theme.palette.grey[900],
     backgroundColor: theme.palette.primary.main,
     '&:nth-of-type(2)': {
         marginLeft: '20px',
