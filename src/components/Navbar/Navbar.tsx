@@ -22,8 +22,8 @@ const pages = ['Dashboard', 'New Bug', 'New Project', 'Bug Reports', 'Project Re
 const settings = ['Logout'];
 
 interface ThemeModeProps {
-    isModeDark: boolean;
-    setIsModeDark: React.Dispatch<React.SetStateAction<boolean>>;
+    isModeDark: number;
+    setIsModeDark: React.Dispatch<React.SetStateAction<number>>;
 }
 
 function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
@@ -58,7 +58,7 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
         return initial;
     };
     const changeThemeMode = () => {
-        setIsModeDark(!isModeDark);
+        isModeDark ? setIsModeDark(0) : setIsModeDark(1);
     };
     const handleLogout = () => {
         axios({
@@ -179,7 +179,7 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
                                 key={setting} 
                                 onClick={() => {
                                     handleCloseUserMenu();
-                                    setIsModeDark(false);
+                                    setIsModeDark(0);
                                     localStorage.clear();
                                     handleLogout();
                                 }}>

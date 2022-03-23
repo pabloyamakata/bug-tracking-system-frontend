@@ -23,7 +23,7 @@ import Bugs from '../Reports/Bugs';
 import Projects from '../Reports/Projects';
 
 function App() {
-    const [isModeDark, setIsModeDark] = useState(false);
+    const [isModeDark, setIsModeDark] = useState(0);
     const location = useLocation();
     return(
         <ContextProvider>
