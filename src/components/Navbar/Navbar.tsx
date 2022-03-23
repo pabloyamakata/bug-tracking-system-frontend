@@ -40,6 +40,7 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
             setUserData(res[0].data);
             setIsModeDark(res[1].data.mode_value);
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
