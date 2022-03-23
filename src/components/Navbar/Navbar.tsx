@@ -17,6 +17,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 const logoutURL = 'https://bug-tracking-system-backend.000webhostapp.com/logout.php';
 const userNameURL = 'https://bug-tracking-system-backend.000webhostapp.com/username.php';
+const themeModeURL = 'https://bug-tracking-system-backend.000webhostapp.com/thememode.php';
 
 const pages = ['Dashboard', 'New Bug', 'New Project', 'Bug Reports', 'Project Reports'];
 const settings = ['Logout'];
@@ -31,8 +32,14 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(userNameURL, { withCredentials: true })
-        .then(res => setUserData(res.data));
+        const promiseForUserName = axios.get(userNameURL, { withCredentials: true });
+        const promiseForThemeMode = axios.get(themeModeURL, { withCredentials: true });
+
+        Promise.all([promiseForUserName, promiseForThemeMode])
+        .then(res => {
+            setUserData(res[0].data);
+            setIsModeDark(res[1].data.mode_value);
+        });
     }, []);
 
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -58,7 +65,12 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
         return initial;
     };
     const changeThemeMode = () => {
-        isModeDark ? setIsModeDark(0) : setIsModeDark(1);
+        const formData = new FormData();
+        formData.append('thememode', JSON.stringify({ thememode: isModeDark ? 0 : 1 }));
+        axios.post(themeModeURL, formData, { withCredentials: true })
+        .then(res => {
+            res.data.status && isModeDark ? setIsModeDark(0) : setIsModeDark(1);
+        });
     };
     const handleLogout = () => {
         axios({
