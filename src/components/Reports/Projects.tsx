@@ -6,9 +6,7 @@ import axios from 'axios';
 import {
     CustomPaper,
     CustomTableRow,
-    MessageContainer,
-    LoaderContainer,
-    LoadingIcon 
+    MessageContainer
 } from './ReportStyles';
 
 import DescriptionModal from '../DescriptionModal/DescriptionModal';
@@ -22,6 +20,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
+import Skeleton from '@mui/material/Skeleton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
@@ -103,13 +102,6 @@ function Projects() {
     };
     return(
         <CustomPaper elevation={0}>
-
-            {isLoading ?
-            <LoaderContainer>
-                <LoadingIcon />
-                <Typography sx={{ pt: 3, fontSize: 25 }}>Fetching data, please wait...</Typography>
-            </LoaderContainer> :
-
             <TableContainer component={Paper} square elevation={0}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -129,7 +121,24 @@ function Projects() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {Array.isArray(projectArray) && projectArray.map((project: ProjectInterface) => (
+                        {isLoading ? [1, 2, 3, 4, 5, 6].map(item => (
+                            <CustomTableRow key={item}>
+                                <TableCell component="th" scope="row" align='center'>
+                                    <Typography><Skeleton /></Typography>
+                                </TableCell>
+                                <TableCell align='center'><Typography><Skeleton /></Typography></TableCell>
+                                <TableCell align='center'><Typography><Skeleton /></Typography></TableCell>
+                                <TableCell align='center'><Typography><Skeleton /></Typography></TableCell>
+                                <TableCell align='center'><Typography><Skeleton /></Typography></TableCell>
+                                <TableCell align='center'><Typography><Skeleton /></Typography></TableCell>
+                                <TableCell align='center'><Typography><Skeleton /></Typography></TableCell>
+                                <TableCell align='center'><Typography><Skeleton /></Typography></TableCell>
+                                <TableCell align='center'><Typography><Skeleton /></Typography></TableCell>
+                                <TableCell align='center'><Typography><Skeleton /></Typography></TableCell>
+                                <TableCell align='center'><Typography><Skeleton /></Typography></TableCell>
+                                <TableCell align='center'><Typography><Skeleton /></Typography></TableCell>
+                            </CustomTableRow>
+                        )) : Array.isArray(projectArray) && projectArray.map((project: ProjectInterface) => (
                             <CustomTableRow
                             key={project.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -164,7 +173,7 @@ function Projects() {
                         ))}
                     </TableBody>
                 </Table>
-            </TableContainer>}
+            </TableContainer>
 
             {!projectArray.length && !isLoading ?
             <MessageContainer>
