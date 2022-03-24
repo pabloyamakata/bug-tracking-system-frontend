@@ -26,11 +26,12 @@ export const CustomGrid = styled(Grid)({
     paddingRight: '20px'
 });
 
-export const CustomTextField = styled(TextField)({
+export const CustomTextField = styled(TextField)(({ theme }) => ({
     width: '100%',
     maxWidth: '500px',
-    marginTop: '40px'
-});
+    marginTop: '40px',
+    colorScheme: theme.palette.mode === 'dark' ? 'dark' : 'light'
+}));
 
 export const ButtonContainer = styled(Box)({
     width: '100%',

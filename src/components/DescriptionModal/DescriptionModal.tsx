@@ -11,10 +11,14 @@ const styles = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: '97%',
+    maxWidth: 400,
+    maxHeight: '400px',
     bgcolor: 'background.paper',
     boxShadow: 24,
-    p: 4
+    p: 4,
+    overflowY: 'auto',
+    border: '1px solid #e0e0e0'
 }
 
 const ModalButton = styled(Button)(({ theme }) => ({
@@ -48,7 +52,11 @@ function DescriptionModal({ description }: ModalProps) {
                     </Typography>
                     <Typography
                     id="modal-modal-description"
-                    sx={{ mt: 2, color: 'primary.contrastText' }}>
+                    sx={{
+                        mt: 2,
+                        color: 'primary.contrastText',
+                        wordWrap: 'break-word' 
+                    }}>
                         {description}
                     </Typography>
                 </Box>
