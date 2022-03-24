@@ -7,7 +7,7 @@ export const CustomNavbar = styled(AppBar)(({ theme }) => ({
     position: 'absolute',
     top: 0,
     left: 0,
-    backgroundColor: theme.palette.secondary.dark
+    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.secondary.dark : '#0d47a1'
 }));
 
 export const CustomAvatar = styled(Avatar)(({ theme }) => ({

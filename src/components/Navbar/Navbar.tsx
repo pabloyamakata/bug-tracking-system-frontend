@@ -84,7 +84,7 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
         });
     };
     return(
-        <CustomNavbar>
+        <CustomNavbar elevation={0}>
             <Container maxWidth='xl'>
                 <Toolbar disableGutters>
                     <Typography

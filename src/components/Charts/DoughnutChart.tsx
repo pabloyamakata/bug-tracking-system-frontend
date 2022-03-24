@@ -5,7 +5,14 @@ import Box from '@mui/material/Box';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function DoughnutChart() {
+interface ChartProps {
+    bugData: {
+        totalBugs: number;
+        pendingBugs: number;
+    }
+}
+
+function DoughnutChart({ bugData: { totalBugs, pendingBugs } }: ChartProps) {
     return(
         <Box sx={{ width: '300px', height: '300px' }}>
             <Doughnut
@@ -13,7 +20,7 @@ function DoughnutChart() {
                 labels: ['Pending', 'Solved'],
                 datasets: [{
                     label: '',
-                    data: [50, 70],
+                    data: [pendingBugs, totalBugs - pendingBugs],
                     backgroundColor: ['red', 'green'],
                     borderWidth: 1,
                     hoverOffset: 4

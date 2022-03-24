@@ -56,6 +56,13 @@ function Dashboard() {
         });
     }, []);
 
+    const calculatePendingBugs = () => {
+        const pendingBugsArray = bugArray.filter(bug => bug.current_status === 'Pending');
+        const totalBugs = bugArray.length;
+        const pendingBugs = pendingBugsArray.length;
+        return { totalBugs, pendingBugs };
+    };
+
     return(
         <CustomPaper elevation={0}>
             <Typography
@@ -68,7 +75,7 @@ function Dashboard() {
                     `Welcome back ${userData.username}!` : null
                 }
             </Typography>
-            <DoughnutChart />
+            <DoughnutChart bugData={calculatePendingBugs()} />
         </CustomPaper>
     )
 }
