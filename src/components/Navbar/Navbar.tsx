@@ -161,7 +161,9 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
                         ))}
                     </Box>
 
-                    <CustomSwitch onClick={changeThemeMode} />
+                    <CustomSwitch
+                    checked={isModeDark ? false : true}
+                    onClick={changeThemeMode} />
                         
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title='Open settings'>
