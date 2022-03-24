@@ -14,17 +14,37 @@ interface ChartProps {
 
 function DoughnutChart({ bugData: { totalBugs, pendingBugs } }: ChartProps) {
     return(
-        <Box sx={{ width: '300px', height: '300px' }}>
+        <Box sx={{
+            width: '400px', 
+            height: '400px',
+            ml: 7 
+        }}>
             <Doughnut
             data={{
                 labels: ['Pending', 'Solved'],
                 datasets: [{
-                    label: '',
+                    label: 'Pending - Solved Bugs',
                     data: [pendingBugs, totalBugs - pendingBugs],
-                    backgroundColor: ['red', 'green'],
+                    backgroundColor: ['#0d47a1', '#2196f3'],
                     borderWidth: 1,
                     hoverOffset: 4
                 }]
+            }}
+            options={{
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Pending - Solved Bugs',
+                        align: 'start'
+                    },
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            boxWidth: 70,
+                            boxHeight: 20
+                        }
+                    }
+                }
             }} />
         </Box>
     )
