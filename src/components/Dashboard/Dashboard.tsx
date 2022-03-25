@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
-import DoughnutChart from '../Charts/DoughnutChart';
+import DoughnutChart from '../Charts/DoughnutChart/DoughnutChart';
 
 import { CustomPaper } from './DashboardStyles';
 import Typography from '@mui/material/Typography';

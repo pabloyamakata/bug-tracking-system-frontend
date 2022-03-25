@@ -1,7 +1,7 @@
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
-import Box from '@mui/material/Box';
+import { ChartBox, ChartTitle } from './DoughnutChartStyles';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -14,11 +14,8 @@ interface DoughnutChartProps {
 
 function DoughnutChart({ bugData: { totalBugs, pendingBugs } }: DoughnutChartProps) {
     return(
-        <Box sx={{
-            width: '400px', 
-            height: '400px',
-            ml: 7 
-        }}>
+        <ChartBox>
+            <ChartTitle>Pending - Solved Bugs</ChartTitle>
             <Doughnut
             data={{
                 labels: ['Pending', 'Solved'],
@@ -27,27 +24,32 @@ function DoughnutChart({ bugData: { totalBugs, pendingBugs } }: DoughnutChartPro
                     data: [pendingBugs, totalBugs - pendingBugs],
                     backgroundColor: ['#0d47a1', '#2196f3'],
                     borderWidth: 1,
-                    hoverOffset: 4
+                    hoverOffset: 14,
+                    offset: 10
                 }]
             }}
             options={{
+                animation: {
+                    animateScale: true
+                },
                 plugins: {
-                    title: {
-                        display: true,
-                        color: 'red',
-                        align: 'start',
-                        text: 'Bugs'
-                    },
                     legend: {
-                        position: 'right',
+                        title: {
+                            display: true,
+                            padding: 2
+                        },
+                        position: 'bottom',
                         labels: {
-                            boxWidth: 70,
-                            boxHeight: 20
+                            boxWidth: 60,
+                            boxHeight: 7,
+                            padding: 17,
+                            usePointStyle: true,
+                            pointStyle: 'circle'
                         }
                     }
                 }
             }} />
-        </Box>
+        </ChartBox>
     )
 }
 
