@@ -194,7 +194,7 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
                                 onClick={() => {
                                     handleCloseUserMenu();
                                     setIsModeDark(0);
-                                    localStorage.clear();
+                                    sessionStorage.clear();
                                     handleLogout();
                                 }}>
                                     <Typography textAlign='center'>{setting}</Typography>

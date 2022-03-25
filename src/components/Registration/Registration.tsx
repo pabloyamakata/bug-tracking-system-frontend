@@ -28,7 +28,7 @@ function Registration() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(localStorage.getItem('userAuth')) navigate('/dashboard');
+        if(sessionStorage.getItem('userAuth')) navigate('/dashboard');
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -58,7 +58,7 @@ function Registration() {
             .then(res => {
                 switch(res.data.status) {
                     case true:
-                        localStorage.setItem('userAuth', 'true');
+                        sessionStorage.setItem('userAuth', 'true');
                         navigate('/dashboard?new=1');
                         break;
                     case false:

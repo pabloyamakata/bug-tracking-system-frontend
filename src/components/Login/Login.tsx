@@ -30,7 +30,7 @@ function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(localStorage.getItem('userAuth')) navigate('/dashboard');
+    if(sessionStorage.getItem('userAuth')) navigate('/dashboard');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -60,7 +60,7 @@ function Login() {
       .then(res => {
         switch(res.data.status) {
           case true:
-            localStorage.setItem('userAuth', 'true');
+            sessionStorage.setItem('userAuth', 'true');
             navigate('/dashboard?new=0');
             break;
           case false:
