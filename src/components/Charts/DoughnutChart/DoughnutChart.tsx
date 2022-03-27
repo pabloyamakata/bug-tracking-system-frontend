@@ -1,9 +1,9 @@
 import { Doughnut } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from 'chart.js';
 
-import { ChartBox, ChartTitle } from './DoughnutChartStyles';
+import { DoughnutBox } from './DoughnutChartStyles';
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 interface DoughnutChartProps {
     bugData: {
@@ -14,13 +14,11 @@ interface DoughnutChartProps {
 
 function DoughnutChart({ bugData: { totalBugs, pendingBugs } }: DoughnutChartProps) {
     return(
-        <ChartBox>
-            <ChartTitle>Pending - Solved Bugs</ChartTitle>
+        <DoughnutBox>
             <Doughnut
             data={{
                 labels: ['Pending', 'Solved'],
                 datasets: [{
-                    label: 'Pending - Solved Bugs',
                     data: [pendingBugs, totalBugs - pendingBugs],
                     backgroundColor: ['#0d47a1', '#2196f3'],
                     borderWidth: 1,
@@ -29,27 +27,33 @@ function DoughnutChart({ bugData: { totalBugs, pendingBugs } }: DoughnutChartPro
                 }]
             }}
             options={{
+                rotation: 120,
                 animation: {
                     animateScale: true
                 },
                 plugins: {
-                    legend: {
-                        title: {
-                            display: true,
-                            padding: 2
+                    title: {
+                        display: true,
+                        text: 'Status',
+                        font: {
+                            size: 20
                         },
+                        padding: {
+                            top: 15,
+                            bottom: 15
+                        }
+                    },
+                    legend: {
                         position: 'bottom',
                         labels: {
-                            boxWidth: 60,
-                            boxHeight: 7,
-                            padding: 17,
+                            padding: 30,
                             usePointStyle: true,
                             pointStyle: 'circle'
                         }
                     }
                 }
             }} />
-        </ChartBox>
+        </DoughnutBox>
     )
 }
 
