@@ -6,35 +6,34 @@ import { DoughnutBox } from './DoughnutChartStyles';
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 interface DoughnutChartProps {
-    bugData: {
-        totalBugs: number;
-        pendingBugs: number;
-    }
+    totalBugs: number;
+    pendingBugs: number;
+    closedBugs: number;
 }
 
-function DoughnutChart({ bugData: { totalBugs, pendingBugs } }: DoughnutChartProps) {
+function DoughnutChart({ totalBugs, pendingBugs, closedBugs }: DoughnutChartProps) {
     return(
         <DoughnutBox>
             <Doughnut
             data={{
-                labels: ['Pending', 'Solved'],
+                labels: ['Pending', 'Solved', 'Closed'],
                 datasets: [{
-                    data: [pendingBugs, totalBugs - pendingBugs],
-                    backgroundColor: ['#0d47a1', '#2196f3'],
+                    data: [pendingBugs, totalBugs - pendingBugs - closedBugs, closedBugs],
+                    backgroundColor: ['#ef5350', '#9ccc65', '#2196f3'],
                     borderWidth: 1,
-                    hoverOffset: 14,
-                    offset: 10
+                    hoverOffset: 10,
+                    offset: 6
                 }]
             }}
             options={{
-                rotation: 120,
+                rotation: 180,
                 animation: {
                     animateScale: true
                 },
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Status',
+                        text: 'Bugs by Status',
                         font: {
                             size: 20
                         },

@@ -56,9 +56,13 @@ function Dashboard() {
     }, []);
 
     const calculatePendingBugs = () => {
-        const totalBugs = bugArray.length;
         const pendingBugs = bugArray.filter(bug => bug.current_status === 'Pending').length;
-        return { totalBugs, pendingBugs };
+        return pendingBugs;
+    };
+
+    const calculateClosedBugs = () => {
+        const closedBugs = bugArray.filter(bug => bug.current_status === 'Closed').length;
+        return closedBugs;
     };
 
     return(
@@ -70,7 +74,10 @@ function Dashboard() {
             : null}
             
             <ChartContainer>
-                <DoughnutChart bugData={calculatePendingBugs()} />
+                <DoughnutChart
+                totalBugs={bugArray.length}
+                pendingBugs={calculatePendingBugs()}
+                closedBugs={calculateClosedBugs()} />
             </ChartContainer>
         </CustomPaper>
     )

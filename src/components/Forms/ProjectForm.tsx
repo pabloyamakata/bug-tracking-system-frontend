@@ -247,7 +247,7 @@ function ProjectForm() {
                         select>
                             <MenuItem value='Pending'>Pending</MenuItem>
                             <MenuItem value='Completed'>Completed</MenuItem>
-                            <MenuItem value='Cancelled'>Cancelled</MenuItem>
+                            <MenuItem value='Closed'>Closed</MenuItem>
                         </CustomTextField>
                         <CustomTextField
                         color='secondary'

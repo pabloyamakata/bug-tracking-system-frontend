@@ -310,6 +310,7 @@ function BugUpdater() {
                         select>
                             <MenuItem value='Pending'>Pending</MenuItem>
                             <MenuItem value='Solved'>Solved</MenuItem>
+                            <MenuItem value='Closed'>Closed</MenuItem>
                         </CustomTextField>
                     </CustomGrid>
 
