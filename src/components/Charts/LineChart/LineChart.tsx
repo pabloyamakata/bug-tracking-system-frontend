@@ -24,39 +24,57 @@ ChartJS.register(
 );
 
 interface LineChartProps {
+    bugsResolvedPerMonth: {
+        thisMonth: number;
+        oneMonthAgo: number;
+        twoMonthsAgo: number;
+        threeMonthsAgo: number;
+        fourMonthsAgo: number;
+        fiveMonthsAgo: number;
+        sixMonthsAgo: number;
+    },
     nameOfMonths: {
         currentMonth: string;
-        secondMonth: string;
-        thirdMonth: string;
-        fourthMonth: string;
-        fifthMonth: string;
-        sixthMonth: string;
-        seventhMonth: string;
+        oneMonthAgo: string;
+        twoMonthsAgo: string;
+        threeMonthsAgo: string;
+        fourMonthsAgo: string;
+        fiveMonthsAgo: string;
+        sixMonthsAgo: string;
     }
 }
 
-function LineChart({ nameOfMonths }:LineChartProps) {
+function LineChart({ nameOfMonths, bugsResolvedPerMonth }:LineChartProps) {
     return(
         <LineBox>
             <Line
             data={{
                 labels: [
-                    nameOfMonths.currentMonth,
-                    nameOfMonths.secondMonth,
-                    nameOfMonths.thirdMonth,
-                    nameOfMonths.fourthMonth,
-                    nameOfMonths.fifthMonth,
-                    nameOfMonths.sixthMonth,
-                    nameOfMonths.seventhMonth
+                    nameOfMonths.sixMonthsAgo,
+                    nameOfMonths.fiveMonthsAgo,
+                    nameOfMonths.fourMonthsAgo,
+                    nameOfMonths.threeMonthsAgo,
+                    nameOfMonths.twoMonthsAgo,
+                    nameOfMonths.oneMonthAgo,
+                    nameOfMonths.currentMonth
                 ],
                 datasets: [{
                     label: 'Amount',
-                    data: ['10', '50', '30', '15', '60', '20', '30'],
+                    data: [
+                        bugsResolvedPerMonth.sixMonthsAgo,
+                        bugsResolvedPerMonth.fiveMonthsAgo,
+                        bugsResolvedPerMonth.fourMonthsAgo,
+                        bugsResolvedPerMonth.threeMonthsAgo,
+                        bugsResolvedPerMonth.twoMonthsAgo,
+                        bugsResolvedPerMonth.oneMonthAgo,
+                        bugsResolvedPerMonth.thisMonth
+                    ],
                     borderColor: 'rgb(75, 192, 192)',
                     backgroundColor: 'rgba(75, 192, 192, .5)',
                     pointStyle: 'circle',
                     pointRadius: 5,
-                    pointHoverRadius: 10
+                    pointHoverRadius: 10,
+                    tension: 0.2
                 }]
             }}
             options={{

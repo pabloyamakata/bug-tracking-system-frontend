@@ -22,7 +22,7 @@ interface BugInterface {
     priority_level: string;
     severity_level: string;
     initial_date: Date;
-    final_date: Date;
+    final_date: string;
 }
 
 interface ProjectInterface {
@@ -57,6 +57,13 @@ function Dashboard() {
         });
     }, []);
 
+    const formatDate = (date: string) => {
+        const dateIsArray = date.split('-');
+        dateIsArray.reverse();
+        const formattedDate = dateIsArray.join('-');
+        return formattedDate;
+    };
+
     const calculatePendingBugs = () => {
         const pendingBugs = bugArray.filter(bug => bug.current_status === 'Pending').length;
         return pendingBugs;
@@ -65,6 +72,31 @@ function Dashboard() {
     const calculateClosedBugs = () => {
         const closedBugs = bugArray.filter(bug => bug.current_status === 'Closed').length;
         return closedBugs;
+    };
+
+    const calculateBugsResolvedPerMonth = () => {
+        const date = dayjs();
+        const currentDate = date.format('DD/MM/YYYY').replace(/\//g, '-');
+        const dateOneMonthAgo = date.subtract(1, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
+        const dateTwoMonthsAgo = date.subtract(2, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
+        const dateThreeMonthsAgo = date.subtract(3, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
+        const dateFourMonthsAgo = date.subtract(4, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
+        const dateFiveMonthsAgo = date.subtract(5, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
+        const dateSixMonthsAgo = date.subtract(6, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
+        
+        const totalBugsResolved = bugArray.filter(bug => bug.current_status === 'Solved');
+
+        const bugsResolvedPerMonth = {
+            thisMonth: totalBugsResolved.filter(bug => formatDate(bug.final_date).includes(currentDate.slice(3))).length,
+            oneMonthAgo: totalBugsResolved.filter(bug => formatDate(bug.final_date).includes(dateOneMonthAgo.slice(3))).length,
+            twoMonthsAgo: totalBugsResolved.filter(bug => formatDate(bug.final_date).includes(dateTwoMonthsAgo.slice(3))).length,
+            threeMonthsAgo: totalBugsResolved.filter(bug => formatDate(bug.final_date).includes(dateThreeMonthsAgo.slice(3))).length,
+            fourMonthsAgo: totalBugsResolved.filter(bug => formatDate(bug.final_date).includes(dateFourMonthsAgo.slice(3))).length,
+            fiveMonthsAgo: totalBugsResolved.filter(bug => formatDate(bug.final_date).includes(dateFiveMonthsAgo.slice(3))).length,
+            sixMonthsAgo: totalBugsResolved.filter(bug => formatDate(bug.final_date).includes(dateSixMonthsAgo.slice(3))).length
+        };
+        
+        return bugsResolvedPerMonth;
     };
 
     const getNameOfMonths = () => {
@@ -76,12 +108,12 @@ function Dashboard() {
 
         const nameOfMonths = {
             currentMonth: months[date.month()],
-            secondMonth: months[date.add(1, 'month').month()],
-            thirdMonth: months[date.add(2, 'month').month()],
-            fourthMonth: months[date.add(3, 'month').month()],
-            fifthMonth: months[date.add(4, 'month').month()],
-            sixthMonth: months[date.add(5, 'month').month()],
-            seventhMonth: months[date.add(6, 'month').month()]
+            oneMonthAgo: months[date.subtract(1, 'month').month()],
+            twoMonthsAgo: months[date.subtract(2, 'month').month()],
+            threeMonthsAgo: months[date.subtract(3, 'month').month()],
+            fourMonthsAgo: months[date.subtract(4, 'month').month()],
+            fiveMonthsAgo: months[date.subtract(5, 'month').month()],
+            sixMonthsAgo: months[date.subtract(6, 'month').month()]
         };
 
         return nameOfMonths;
@@ -102,7 +134,9 @@ function Dashboard() {
                 pendingBugs={calculatePendingBugs()}
                 closedBugs={calculateClosedBugs()} />
 
-                <LineChart nameOfMonths={getNameOfMonths()} />
+                <LineChart
+                bugsResolvedPerMonth={calculateBugsResolvedPerMonth()}
+                nameOfMonths={getNameOfMonths()} />
 
             </ChartContainer>
         </CustomPaper>
