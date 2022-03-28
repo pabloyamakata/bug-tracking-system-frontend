@@ -24,5 +24,5 @@ export const DashboardGreeting = styled(Typography)({
 export const ChartContainer = styled(Box)({
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'center'
+    justifyContent: 'space-around'
 });

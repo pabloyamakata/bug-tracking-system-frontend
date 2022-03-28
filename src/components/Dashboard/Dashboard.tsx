@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import dayjs from 'dayjs';
 import axios from 'axios';
 
 import DoughnutChart from '../Charts/DoughnutChart/DoughnutChart';
+import LineChart from '../Charts/LineChart/LineChart';
 
 import { CustomPaper, DashboardGreeting, ChartContainer } from './DashboardStyles';
 
@@ -65,6 +67,26 @@ function Dashboard() {
         return closedBugs;
     };
 
+    const getNameOfMonths = () => {
+        const date = dayjs();
+        const months = [
+            'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+
+        const nameOfMonths = {
+            currentMonth: months[date.month()],
+            secondMonth: months[date.add(1, 'month').month()],
+            thirdMonth: months[date.add(2, 'month').month()],
+            fourthMonth: months[date.add(3, 'month').month()],
+            fifthMonth: months[date.add(4, 'month').month()],
+            sixthMonth: months[date.add(5, 'month').month()],
+            seventhMonth: months[date.add(6, 'month').month()]
+        };
+
+        return nameOfMonths;
+    };
+
     return(
         <CustomPaper elevation={0}>
             {location.search === '?new=1' ? 
@@ -74,10 +96,14 @@ function Dashboard() {
             : null}
             
             <ChartContainer>
+                
                 <DoughnutChart
                 totalBugs={bugArray.length}
                 pendingBugs={calculatePendingBugs()}
                 closedBugs={calculateClosedBugs()} />
+
+                <LineChart nameOfMonths={getNameOfMonths()} />
+
             </ChartContainer>
         </CustomPaper>
     )
