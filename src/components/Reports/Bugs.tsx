@@ -135,7 +135,7 @@ function Bugs() {
                                 <TableCell align='center'><Typography><Skeleton /></Typography></TableCell>
                                 <TableCell align='center'><Typography><Skeleton /></Typography></TableCell>
                             </CustomTableRow>
-                        )) : Array.isArray(bugArray) && bugArray.map((bug: BugInterface) => (
+                        )) : Array.isArray(bugArray) && bugArray.slice(0).reverse().map((bug: BugInterface) => (
                             <CustomTableRow
                             key={bug.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

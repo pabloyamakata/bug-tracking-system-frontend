@@ -336,8 +336,9 @@ function BugUpdater() {
                         variant='outlined' 
                         size='small' 
                         select>
+                            <MenuItem value='Critical'>Critical</MenuItem>
                             <MenuItem value='High'>High</MenuItem>
-                            <MenuItem value='Moderate'>Moderate</MenuItem>
+                            <MenuItem value='Medium'>Medium</MenuItem>
                             <MenuItem value='Low'>Low</MenuItem>
                         </CustomTextField>
                         <CustomTextField
@@ -361,8 +362,9 @@ function BugUpdater() {
                         variant='outlined' 
                         size='small' 
                         select>
+                            <MenuItem value='Critical'>Critical</MenuItem>
                             <MenuItem value='High'>High</MenuItem>
-                            <MenuItem value='Moderate'>Moderate</MenuItem>
+                            <MenuItem value='Medium'>Medium</MenuItem>
                             <MenuItem value='Low'>Low</MenuItem>
                         </CustomTextField>
                         <CustomTextField 
