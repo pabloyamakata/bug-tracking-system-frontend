@@ -44,7 +44,7 @@ interface LineChartProps {
     }
 }
 
-function LineChart({ nameOfMonths, bugsResolvedPerMonth }:LineChartProps) {
+function LineChart({ nameOfMonths, bugsResolvedPerMonth }: LineChartProps) {
     return(
         <LineBox>
             <Line

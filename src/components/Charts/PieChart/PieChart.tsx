@@ -1,30 +1,37 @@
-import { Doughnut } from "react-chartjs-2";
+import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from 'chart.js';
 
-import { DoughnutBox } from './DoughnutChartStyles';
+import { PieBox } from './PieChartStyles';
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
-interface DoughnutChartProps {
-    bugsByStatus: {
-        pendingBugs: number;
-        solvedBugs: number;
-        closedBugs: number;
+interface PieChartProps {
+    bugsByPriority: {
+        criticalPriorityBugs: number;
+        highPriorityBugs: number;
+        mediumPriorityBugs: number;
+        lowPriorityBugs: number;
     }
 }
 
-function DoughnutChart({ bugsByStatus: { pendingBugs, solvedBugs, closedBugs } }: DoughnutChartProps) {
+function PieChart({ bugsByPriority }: PieChartProps) {
     return(
-        <DoughnutBox>
-            <Doughnut
+        <PieBox>
+            <Pie
             data={{
-                labels: ['Pending', 'Solved', 'Closed'],
+                labels: ['Low', 'Medium', 'High', 'Critical'],
                 datasets: [{
-                    data: [pendingBugs, solvedBugs, closedBugs],
+                    data: [
+                        bugsByPriority.lowPriorityBugs,
+                        bugsByPriority.mediumPriorityBugs,
+                        bugsByPriority.highPriorityBugs,
+                        bugsByPriority.criticalPriorityBugs
+                    ],
                     backgroundColor: [
-                        'rgba(255, 23, 68, .8)',
                         'rgba(118, 255, 3, .8)',
-                        'rgba(41, 121, 255, .8)'
+                        'rgba(41, 121, 255, .8)',
+                        'rgba(255, 145, 0, .8)',
+                        'rgba(255, 23, 68, .8)'
                     ],
                     borderWidth: 1,
                     hoverOffset: 10,
@@ -40,7 +47,7 @@ function DoughnutChart({ bugsByStatus: { pendingBugs, solvedBugs, closedBugs } }
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Bugs by Status',
+                        text: 'Bugs by Priority',
                         font: {
                             size: 20
                         },
@@ -52,15 +59,15 @@ function DoughnutChart({ bugsByStatus: { pendingBugs, solvedBugs, closedBugs } }
                     legend: {
                         position: 'bottom',
                         labels: {
-                            padding: 30,
+                            padding: 20,
                             usePointStyle: true,
                             pointStyle: 'circle'
                         }
                     }
                 }
             }} />
-        </DoughnutBox>
+        </PieBox>
     )
 }
 
-export default DoughnutChart;
+export default PieChart;

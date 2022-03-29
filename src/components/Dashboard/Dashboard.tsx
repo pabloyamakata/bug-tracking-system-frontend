@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import DoughnutChart from '../Charts/DoughnutChart/DoughnutChart';
 import LineChart from '../Charts/LineChart/LineChart';
+import PieChart from '../Charts/PieChart/PieChart';
 
 import { CustomPaper, DashboardGreeting, ChartContainer } from './DashboardStyles';
 
@@ -64,14 +65,14 @@ function Dashboard() {
         return formattedDate;
     };
 
-    const calculatePendingBugs = () => {
-        const pendingBugs = bugArray.filter(bug => bug.current_status === 'Pending').length;
-        return pendingBugs;
-    };
+    const calculateBugsByStatus = () => {
+        const bugsByStatus = {
+            pendingBugs: bugArray.filter(bug => bug.current_status === 'Pending').length,
+            solvedBugs: bugArray.filter(bug => bug.current_status === 'Solved').length,
+            closedBugs: bugArray.filter(bug => bug.current_status === 'Closed').length
+        };
 
-    const calculateClosedBugs = () => {
-        const closedBugs = bugArray.filter(bug => bug.current_status === 'Closed').length;
-        return closedBugs;
+        return bugsByStatus;
     };
 
     const calculateBugsResolvedPerMonth = () => {
@@ -119,6 +120,17 @@ function Dashboard() {
         return nameOfMonths;
     };
 
+    const calculateBugsByPriority = () => {
+        const bugsByPriority = {
+            criticalPriorityBugs: bugArray.filter(bug => bug.priority_level === 'Critical').length,
+            highPriorityBugs: bugArray.filter(bug => bug.priority_level === 'High').length,
+            mediumPriorityBugs: bugArray.filter(bug => bug.priority_level === 'Medium').length,
+            lowPriorityBugs: bugArray.filter(bug => bug.priority_level === 'Low').length
+        };
+
+        return bugsByPriority;
+    };
+
     return(
         <CustomPaper elevation={0}>
             {location.search === '?new=1' ? 
@@ -129,10 +141,9 @@ function Dashboard() {
             
             <ChartContainer>
                 
-                <DoughnutChart
-                totalBugs={bugArray.length}
-                pendingBugs={calculatePendingBugs()}
-                closedBugs={calculateClosedBugs()} />
+                <DoughnutChart bugsByStatus={calculateBugsByStatus()} />
+
+                <PieChart bugsByPriority={calculateBugsByPriority()} />
 
                 <LineChart
                 bugsResolvedPerMonth={calculateBugsResolvedPerMonth()}
