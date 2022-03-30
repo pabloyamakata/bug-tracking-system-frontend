@@ -1,30 +1,37 @@
-import { Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
 import {
     Chart as ChartJS,
     CategoryScale,
     LinearScale,
-    PointElement,
-    LineElement,
+    BarElement,
     Title,
     Tooltip,
     Legend,
 } from 'chart.js';
 
-import { LineBox } from './LineChartStyles';
+import { BarBox } from './BarChartStyles';
 
 ChartJS.register(
     CategoryScale,
     LinearScale,
-    PointElement,
-    LineElement,
+    BarElement,
     Title,
     Tooltip,
     Legend
 );
 
-interface LineChartProps {
+interface BarChartProps {
     bugsResolvedPerMonth: {
+        thisMonth: number;
+        oneMonthAgo: number;
+        twoMonthsAgo: number;
+        threeMonthsAgo: number;
+        fourMonthsAgo: number;
+        fiveMonthsAgo: number;
+        sixMonthsAgo: number;
+    },
+    bugsCreatedPerMonth: {
         thisMonth: number;
         oneMonthAgo: number;
         twoMonthsAgo: number;
@@ -44,10 +51,10 @@ interface LineChartProps {
     }
 }
 
-function LineChart({ nameOfMonths, bugsResolvedPerMonth }: LineChartProps) {
+function BarChart({ nameOfMonths, bugsResolvedPerMonth, bugsCreatedPerMonth }: BarChartProps) {
     return(
-        <LineBox>
-            <Line
+        <BarBox>
+            <Bar
             data={{
                 labels: [
                     nameOfMonths.sixMonthsAgo,
@@ -59,7 +66,7 @@ function LineChart({ nameOfMonths, bugsResolvedPerMonth }: LineChartProps) {
                     nameOfMonths.currentMonth
                 ],
                 datasets: [{
-                    label: 'Amount',
+                    label: 'Solved',
                     data: [
                         bugsResolvedPerMonth.sixMonthsAgo,
                         bugsResolvedPerMonth.fiveMonthsAgo,
@@ -69,23 +76,34 @@ function LineChart({ nameOfMonths, bugsResolvedPerMonth }: LineChartProps) {
                         bugsResolvedPerMonth.oneMonthAgo,
                         bugsResolvedPerMonth.thisMonth
                     ],
-                    borderColor: 'rgb(75, 192, 192)',
-                    backgroundColor: 'rgba(75, 192, 192, .5)',
-                    pointStyle: 'circle',
-                    pointRadius: 5,
-                    pointHoverRadius: 10,
-                    tension: 0.2
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)', 
+                    borderColor: 'rgb(255, 99, 132)',
+                    borderWidth: 1
+                }, {
+                    label: 'Created',
+                    data: [
+                        bugsCreatedPerMonth.sixMonthsAgo,
+                        bugsCreatedPerMonth.fiveMonthsAgo,
+                        bugsCreatedPerMonth.fourMonthsAgo,
+                        bugsCreatedPerMonth.threeMonthsAgo,
+                        bugsCreatedPerMonth.twoMonthsAgo,
+                        bugsCreatedPerMonth.oneMonthAgo,
+                        bugsCreatedPerMonth.thisMonth
+                    ],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)', 
+                    borderColor: 'rgb(54, 162, 235)',
+                    borderWidth: 1
                 }]
             }}
             options={{
                 responsive: true,
                 plugins: {
                     legend: {
-                        display: false
+                        position: 'bottom'
                     },
                     title: {
                         display: true,
-                        text: 'Bugs Resolved per Month',
+                        text: 'Created vs Solved Bugs',
                         font: {
                             size: 20
                         },
@@ -96,8 +114,8 @@ function LineChart({ nameOfMonths, bugsResolvedPerMonth }: LineChartProps) {
                     }
                 }
             }} />
-        </LineBox>
+        </BarBox>
     )
 }
 
-export default LineChart;
+export default BarChart;

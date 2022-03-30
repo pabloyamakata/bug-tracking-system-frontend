@@ -4,8 +4,8 @@ import dayjs from 'dayjs';
 import axios from 'axios';
 
 import DoughnutChart from '../Charts/DoughnutChart/DoughnutChart';
-import LineChart from '../Charts/LineChart/LineChart';
 import PieChart from '../Charts/PieChart/PieChart';
+import BarChart from '../Charts/BarChart/BarChart';
 
 import { CustomPaper, DashboardGreeting, ChartContainer } from './DashboardStyles';
 
@@ -22,7 +22,7 @@ interface BugInterface {
     current_status: string;
     priority_level: string;
     severity_level: string;
-    initial_date: Date;
+    initial_date: string;
     final_date: string;
 }
 
@@ -100,6 +100,29 @@ function Dashboard() {
         return bugsResolvedPerMonth;
     };
 
+    const calculateBugsCreatedPerMonth = () => {
+        const date = dayjs();
+        const currentDate = date.format('DD/MM/YYYY').replace(/\//g, '-');
+        const dateOneMonthAgo = date.subtract(1, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
+        const dateTwoMonthsAgo = date.subtract(2, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
+        const dateThreeMonthsAgo = date.subtract(3, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
+        const dateFourMonthsAgo = date.subtract(4, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
+        const dateFiveMonthsAgo = date.subtract(5, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
+        const dateSixMonthsAgo = date.subtract(6, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
+
+        const bugsCreatedPerMonth = {
+            thisMonth: bugArray.filter(bug => formatDate(bug.initial_date).includes(currentDate.slice(3))).length,
+            oneMonthAgo: bugArray.filter(bug => formatDate(bug.initial_date).includes(dateOneMonthAgo.slice(3))).length,
+            twoMonthsAgo: bugArray.filter(bug => formatDate(bug.initial_date).includes(dateTwoMonthsAgo.slice(3))).length,
+            threeMonthsAgo: bugArray.filter(bug => formatDate(bug.initial_date).includes(dateThreeMonthsAgo.slice(3))).length,
+            fourMonthsAgo: bugArray.filter(bug => formatDate(bug.initial_date).includes(dateFourMonthsAgo.slice(3))).length,
+            fiveMonthsAgo: bugArray.filter(bug => formatDate(bug.initial_date).includes(dateFiveMonthsAgo.slice(3))).length,
+            sixMonthsAgo: bugArray.filter(bug => formatDate(bug.initial_date).includes(dateSixMonthsAgo.slice(3))).length
+        };
+        
+        return bugsCreatedPerMonth;
+    };
+
     const getNameOfMonths = () => {
         const date = dayjs();
         const months = [
@@ -145,8 +168,9 @@ function Dashboard() {
 
                 <PieChart bugsByPriority={calculateBugsByPriority()} />
 
-                <LineChart
+                <BarChart
                 bugsResolvedPerMonth={calculateBugsResolvedPerMonth()}
+                bugsCreatedPerMonth={calculateBugsCreatedPerMonth()}
                 nameOfMonths={getNameOfMonths()} />
 
             </ChartContainer>
