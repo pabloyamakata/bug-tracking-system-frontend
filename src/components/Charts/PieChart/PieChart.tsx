@@ -1,7 +1,7 @@
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from 'chart.js';
 
-import { PieBox } from './PieChartStyles';
+import { PieBox, ChartMessage } from './PieChartStyles';
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
@@ -17,6 +17,11 @@ interface PieChartProps {
 function PieChart({ bugsByPriority }: PieChartProps) {
     return(
         <PieBox>
+            {
+                Object.values(bugsByPriority).every(value => !value) ?
+                <ChartMessage>No Data Available Yet!</ChartMessage> : null
+            }
+
             <Pie
             data={{
                 labels: ['Low', 'Medium', 'High', 'Critical'],

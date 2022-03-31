@@ -10,7 +10,7 @@ import {
     Legend,
 } from 'chart.js';
 
-import { BarBox } from './BarChartStyles';
+import { BarBox, ChartMessage } from './BarChartStyles';
 
 ChartJS.register(
     CategoryScale,
@@ -54,6 +54,12 @@ interface BarChartProps {
 function BarChart({ nameOfMonths, bugsResolvedPerMonth, bugsCreatedPerMonth }: BarChartProps) {
     return(
         <BarBox>
+            {
+                Object.values(bugsResolvedPerMonth).every(value => !value) &&
+                Object.values(bugsCreatedPerMonth).every(value => !value) ?
+                <ChartMessage>No Data Available Yet!</ChartMessage> : null
+            }
+
             <Bar
             data={{
                 labels: [
@@ -65,35 +71,38 @@ function BarChart({ nameOfMonths, bugsResolvedPerMonth, bugsCreatedPerMonth }: B
                     nameOfMonths.oneMonthAgo,
                     nameOfMonths.currentMonth
                 ],
-                datasets: [{
-                    label: 'Solved',
-                    data: [
-                        bugsResolvedPerMonth.sixMonthsAgo,
-                        bugsResolvedPerMonth.fiveMonthsAgo,
-                        bugsResolvedPerMonth.fourMonthsAgo,
-                        bugsResolvedPerMonth.threeMonthsAgo,
-                        bugsResolvedPerMonth.twoMonthsAgo,
-                        bugsResolvedPerMonth.oneMonthAgo,
-                        bugsResolvedPerMonth.thisMonth
-                    ],
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)', 
-                    borderColor: 'rgb(255, 99, 132)',
-                    borderWidth: 1
-                }, {
-                    label: 'Created',
-                    data: [
-                        bugsCreatedPerMonth.sixMonthsAgo,
-                        bugsCreatedPerMonth.fiveMonthsAgo,
-                        bugsCreatedPerMonth.fourMonthsAgo,
-                        bugsCreatedPerMonth.threeMonthsAgo,
-                        bugsCreatedPerMonth.twoMonthsAgo,
-                        bugsCreatedPerMonth.oneMonthAgo,
-                        bugsCreatedPerMonth.thisMonth
-                    ],
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)', 
-                    borderColor: 'rgb(54, 162, 235)',
-                    borderWidth: 1
-                }]
+                datasets: [
+                    {
+                        label: 'Created',
+                        data: [
+                            bugsCreatedPerMonth.sixMonthsAgo,
+                            bugsCreatedPerMonth.fiveMonthsAgo,
+                            bugsCreatedPerMonth.fourMonthsAgo,
+                            bugsCreatedPerMonth.threeMonthsAgo,
+                            bugsCreatedPerMonth.twoMonthsAgo,
+                            bugsCreatedPerMonth.oneMonthAgo,
+                            bugsCreatedPerMonth.thisMonth
+                        ],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        borderWidth: 1
+                    }, 
+                    {
+                        label: 'Solved',
+                        data: [
+                            bugsResolvedPerMonth.sixMonthsAgo,
+                            bugsResolvedPerMonth.fiveMonthsAgo,
+                            bugsResolvedPerMonth.fourMonthsAgo,
+                            bugsResolvedPerMonth.threeMonthsAgo,
+                            bugsResolvedPerMonth.twoMonthsAgo,
+                            bugsResolvedPerMonth.oneMonthAgo,
+                            bugsResolvedPerMonth.thisMonth
+                        ],
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)', 
+                        borderColor: 'rgb(54, 162, 235)',
+                        borderWidth: 1
+                    }
+                ]
             }}
             options={{
                 responsive: true,

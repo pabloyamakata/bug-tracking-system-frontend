@@ -145,10 +145,10 @@ function Dashboard() {
 
     const calculateBugsByPriority = () => {
         const bugsByPriority = {
-            criticalPriorityBugs: bugArray.filter(bug => bug.priority_level === 'Critical').length,
-            highPriorityBugs: bugArray.filter(bug => bug.priority_level === 'High').length,
-            mediumPriorityBugs: bugArray.filter(bug => bug.priority_level === 'Medium').length,
-            lowPriorityBugs: bugArray.filter(bug => bug.priority_level === 'Low').length
+            criticalPriorityBugs: bugArray.filter(bug => bug.priority_level === 'Critical' && bug.current_status === 'Pending').length,
+            highPriorityBugs: bugArray.filter(bug => bug.priority_level === 'High' && bug.current_status === 'Pending').length,
+            mediumPriorityBugs: bugArray.filter(bug => bug.priority_level === 'Medium' && bug.current_status === 'Pending').length,
+            lowPriorityBugs: bugArray.filter(bug => bug.priority_level === 'Low' && bug.current_status === 'Pending').length
         };
 
         return bugsByPriority;

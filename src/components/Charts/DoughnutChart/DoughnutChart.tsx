@@ -1,7 +1,7 @@
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from 'chart.js';
 
-import { DoughnutBox } from './DoughnutChartStyles';
+import { DoughnutBox, ChartMessage } from './DoughnutChartStyles';
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
@@ -16,6 +16,11 @@ interface DoughnutChartProps {
 function DoughnutChart({ bugsByStatus: { pendingBugs, solvedBugs, closedBugs } }: DoughnutChartProps) {
     return(
         <DoughnutBox>
+            {
+                !pendingBugs && !solvedBugs && !closedBugs ?
+                <ChartMessage>No Data Available Yet!</ChartMessage> : null
+            }
+
             <Doughnut
             data={{
                 labels: ['Pending', 'Solved', 'Closed'],
