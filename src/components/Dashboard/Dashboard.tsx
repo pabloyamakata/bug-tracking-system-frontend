@@ -7,7 +7,18 @@ import DoughnutChart from '../Charts/DoughnutChart/DoughnutChart';
 import PieChart from '../Charts/PieChart/PieChart';
 import BarChart from '../Charts/BarChart/BarChart';
 
-import { CustomPaper, DashboardGreeting, ChartContainer } from './DashboardStyles';
+import {
+    CustomPaper,
+    DashboardGreeting,
+    ChartContainer,
+    TotalsContainer,
+    TotalsBox,
+    Totals,
+    TotalsTitle,
+    TotalsData,
+    BugIcon,
+    ProjectIcon
+} from './DashboardStyles';
 
 const bugs_URL = 'https://bug-tracking-system-backend.000webhostapp.com/bugs.php';
 const projects_URL = 'https://bug-tracking-system-backend.000webhostapp.com/projects.php';
@@ -161,6 +172,23 @@ function Dashboard() {
             : location.search === '?new=0' ?
             <DashboardGreeting variant='h5'>{`Welcome back ${userData.username}!`}</DashboardGreeting>
             : null}
+
+            <TotalsContainer>
+                <TotalsBox>
+                    <Totals>
+                        <TotalsData>{bugArray.length}</TotalsData>
+                        <TotalsTitle>Total Bugs</TotalsTitle>
+                    </Totals>
+                    <BugIcon />
+                </TotalsBox>
+                <TotalsBox>
+                    <Totals>
+                        <TotalsData>{projectArray.length}</TotalsData>
+                        <TotalsTitle>Total Projects</TotalsTitle>
+                    </Totals>
+                    <ProjectIcon />
+                </TotalsBox>
+            </TotalsContainer>
             
             <ChartContainer>
                 
