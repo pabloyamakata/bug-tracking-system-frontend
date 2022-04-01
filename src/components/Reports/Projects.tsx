@@ -149,9 +149,9 @@ function Projects() {
                                 <TableCell align='center'>{project.current_status}</TableCell>
                                 <TableCell align='center'>{formatDate(project.start_date)}</TableCell>
                                 <TableCell align='center'>{formatDate(project.deadline)}</TableCell>
-                                <TableCell align='center'>{project.frontend}</TableCell>
-                                <TableCell align='center'>{project.backend}</TableCell>
-                                <TableCell align='center'>{project.ddbb}</TableCell>
+                                <TableCell align='center'>{project.frontend ? project.frontend : '-'}</TableCell>
+                                <TableCell align='center'>{project.backend ? project.backend : '-'}</TableCell>
+                                <TableCell align='center'>{project.ddbb ? project.ddbb : '-'}</TableCell>
                                 <TableCell align='center'>
                                     <DescriptionModal description={project.description} />
                                 </TableCell>

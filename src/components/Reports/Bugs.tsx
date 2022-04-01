@@ -70,10 +70,12 @@ function Bugs() {
     };
 
     const formatDate = (date: Date) => {
-        const dateIsArray = date.toString().split('-');
-        dateIsArray.reverse();
-        const formattedDate = dateIsArray.join('-');
-        return formattedDate;
+        if(date) {
+            const dateIsArray = date.toString().split('-');
+            dateIsArray.reverse();
+            const formattedDate = dateIsArray.join('-');
+            return formattedDate;
+        } else return '-';
     };
 
     const handleBugEdition = (id: number) => {
