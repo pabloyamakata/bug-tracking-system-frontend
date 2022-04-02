@@ -17,7 +17,9 @@ import {
     StatName,
     Stats,
     BugIcon,
-    ProjectIcon
+    ProjectIcon,
+    ThirdIcon,
+    FourthIcon
 } from './DashboardStyles';
 
 const bugs_URL = 'https://bug-tracking-system-backend.000webhostapp.com/bugs.php';
@@ -187,6 +189,20 @@ function Dashboard() {
                         <StatName>Total Projects</StatName>
                     </StatBody>
                     <ProjectIcon />
+                </StatBox>
+                <StatBox>
+                    <StatBody>
+                        <Stats>{projectArray.length}</Stats>
+                        <StatName>Reported Today</StatName>
+                    </StatBody>
+                    <ThirdIcon />
+                </StatBox>
+                <StatBox>
+                    <StatBody>
+                        <Stats>{projectArray.length}</Stats>
+                        <StatName>Placeholder</StatName>
+                    </StatBody>
+                    <FourthIcon />
                 </StatBox>
             </StatContainer>
             
