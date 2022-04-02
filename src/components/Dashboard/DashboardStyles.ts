@@ -87,7 +87,7 @@ export const ProjectIcon = styled(ArticleIcon)({
 });
 
 export const ThirdIcon = styled(QueryStatsIcon)({
-    fontSize: '100px',
+    fontSize: '80px',
     color: '#00143b'
 });
 
