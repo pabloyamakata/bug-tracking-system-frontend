@@ -26,38 +26,39 @@ export const DashboardGreeting = styled(Typography)({
 export const ChartContainer = styled(Box)({
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    paddingTop: '20px'
 });
 
-export const TotalsContainer = styled(Box)({
-    display: 'flex'
+export const StatContainer = styled(Box)({
+    display: 'flex',
+    flexWrap: 'wrap',
+    maxWidth: '100vw',
+    paddingTop: '20px'
 });
 
-export const TotalsBox = styled(Box)({
+export const StatBox = styled(Box)({
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
-    width: '50%',
+    flexGrow: 1,
+    flexShrink: 1,
     maxWidth: '250px',
     borderRadius: '5px',
     backgroundColor: '#e30f00',
     boxShadow: `0px 1px 2px 0px rgba(60, 64, 67, 0.3),
-                0px 1px 3px 1px rgba(60, 64, 67, 0.15)`,
-    '&:nth-of-type(1)': {
-        marginLeft: '20px',
-        marginRight: '10px'
-    }
+                0px 1px 3px 1px rgba(60, 64, 67, 0.15)`
 });
 
-export const Totals = styled(Box)({
+export const StatBody = styled(Box)({
 
 });
 
-export const TotalsTitle = styled(Typography)({
+export const StatName = styled(Typography)({
     color: '#efefef'
 });
 
-export const TotalsData = styled(Typography)({
+export const Stats = styled(Typography)({
     fontSize: '30px',
     fontWeight: 'bold',
     color: '#efefef'

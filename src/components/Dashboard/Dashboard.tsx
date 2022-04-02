@@ -11,11 +11,11 @@ import {
     CustomPaper,
     DashboardGreeting,
     ChartContainer,
-    TotalsContainer,
-    TotalsBox,
-    Totals,
-    TotalsTitle,
-    TotalsData,
+    StatContainer,
+    StatBox,
+    StatBody,
+    StatName,
+    Stats,
     BugIcon,
     ProjectIcon
 } from './DashboardStyles';
@@ -173,22 +173,22 @@ function Dashboard() {
             <DashboardGreeting variant='h5'>{`Welcome back ${userData.username}!`}</DashboardGreeting>
             : null}
 
-            <TotalsContainer>
-                <TotalsBox>
-                    <Totals>
-                        <TotalsData>{bugArray.length}</TotalsData>
-                        <TotalsTitle>Total Bugs</TotalsTitle>
-                    </Totals>
+            <StatContainer>
+                <StatBox>
+                    <StatBody>
+                        <Stats>{bugArray.length}</Stats>
+                        <StatName>Total Bugs</StatName>
+                    </StatBody>
                     <BugIcon />
-                </TotalsBox>
-                <TotalsBox>
-                    <Totals>
-                        <TotalsData>{projectArray.length}</TotalsData>
-                        <TotalsTitle>Total Projects</TotalsTitle>
-                    </Totals>
+                </StatBox>
+                <StatBox>
+                    <StatBody>
+                        <Stats>{projectArray.length}</Stats>
+                        <StatName>Total Projects</StatName>
+                    </StatBody>
                     <ProjectIcon />
-                </TotalsBox>
-            </TotalsContainer>
+                </StatBox>
+            </StatContainer>
             
             <ChartContainer>
                 
