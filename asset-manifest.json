@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/bug-tracking-system-frontend/static/css/main.3f2f7117.css",
-    "main.js": "/bug-tracking-system-frontend/static/js/main.6dda347b.js",
+    "main.js": "/bug-tracking-system-frontend/static/js/main.4355985c.js",
     "static/media/bg-login.jpg": "/bug-tracking-system-frontend/static/media/bg-login.39167248597dc2257083.jpg",
     "static/media/bg-registration.jpg": "/bug-tracking-system-frontend/static/media/bg-registration.3e58d01dca93a3e8775e.jpg",
     "index.html": "/bug-tracking-system-frontend/index.html",
     "main.3f2f7117.css.map": "/bug-tracking-system-frontend/static/css/main.3f2f7117.css.map",
-    "main.6dda347b.js.map": "/bug-tracking-system-frontend/static/js/main.6dda347b.js.map"
+    "main.4355985c.js.map": "/bug-tracking-system-frontend/static/js/main.4355985c.js.map"
   },
   "entrypoints": [
     "static/css/main.3f2f7117.css",
-    "static/js/main.6dda347b.js"
+    "static/js/main.4355985c.js"
   ]
 }
