@@ -106,6 +106,7 @@ function BarChart({ nameOfMonths, bugsResolvedPerMonth, bugsCreatedPerMonth }: B
             }}
             options={{
                 responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
                     legend: {
                         position: 'bottom'

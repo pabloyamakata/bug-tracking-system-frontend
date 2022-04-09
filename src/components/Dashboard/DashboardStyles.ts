@@ -28,13 +28,13 @@ export const ChartContainer = styled(Box)({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    paddingTop: '20px'
+    paddingTop: '45px'
 });
 
 export const StatContainer = styled(Box)({
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
     maxWidth: '100vw',
     paddingTop: '20px'
 });

@@ -175,7 +175,7 @@ function Dashboard() {
             <DashboardGreeting variant='h5'>{`Welcome back ${userData.username}!`}</DashboardGreeting>
             : null}
 
-            <StatContainer>
+            <StatContainer sx={{ paddingTop: !location.search ? '60px' : '20px' }}>
                 <StatBox>
                     <StatBody>
                         <Stats>{bugArray.length}</Stats>
