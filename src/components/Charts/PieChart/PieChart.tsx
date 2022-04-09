@@ -33,10 +33,10 @@ function PieChart({ bugsByPriority }: PieChartProps) {
                         bugsByPriority.criticalPriorityBugs
                     ],
                     backgroundColor: [
-                        'rgba(118, 255, 3, .8)',
-                        'rgba(41, 121, 255, .8)',
-                        'rgba(255, 145, 0, .8)',
-                        'rgba(255, 23, 68, .8)'
+                        'rgb(0, 171, 85)',
+                        'rgb(24, 144, 255)',
+                        'rgb(255, 193, 7)',
+                        'rgb(255, 72, 66)'
                     ],
                     borderWidth: 1,
                     hoverOffset: 10,

@@ -27,9 +27,9 @@ function DoughnutChart({ bugsByStatus: { pendingBugs, solvedBugs, closedBugs } }
                 datasets: [{
                     data: [pendingBugs, solvedBugs, closedBugs],
                     backgroundColor: [
-                        'rgba(255, 23, 68, .8)',
-                        'rgba(118, 255, 3, .8)',
-                        'rgba(41, 121, 255, .8)'
+                        'rgb(255, 72, 66)',
+                        'rgb(0, 171, 85)',
+                        'rgb(24, 144, 255)'
                     ],
                     borderWidth: 1,
                     hoverOffset: 10,

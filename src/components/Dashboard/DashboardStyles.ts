@@ -21,7 +21,8 @@ export const CustomPaper = styled(Paper)({
 
 export const DashboardGreeting = styled(Typography)({
     marginLeft: '20px',
-    paddingTop: '25px'
+    paddingTop: '25px',
+    fontWeight: '700'
 });
 
 export const ChartContainer = styled(Box)({
@@ -48,17 +49,15 @@ export const StatBox = styled(Box)({
     maxWidth: '250px',
     minHeight: '100px',
     borderRadius: '5px',
-    backgroundColor: '#e30f00',
-    boxShadow: `0px 1px 2px 0px rgba(60, 64, 67, 0.3),
-                0px 1px 3px 1px rgba(60, 64, 67, 0.15)`,
+    backgroundColor: 'rgb(255, 231, 217)',
     '&:nth-of-type(2)': {
-        backgroundColor: '#018003'
+        backgroundColor: 'rgb(200, 250, 205)'
     },
     '&:nth-of-type(3)': {
-        backgroundColor: '#002b82'
+        backgroundColor: 'rgb(208, 242, 255)'
     },
     '&:nth-of-type(4)': {
-        backgroundColor: '#ef6c00'
+        backgroundColor: 'rgb(255, 247, 205)'
     }
 });
 
@@ -66,32 +65,62 @@ export const StatBody = styled(Box)({
 
 });
 
-export const StatName = styled(Typography)({
-    color: '#efefef'
+export const TotalBugsTitle = styled(Typography)({
+    color: 'rgb(122, 12, 46)'
 });
 
-export const Stats = styled(Typography)({
+export const TotalProjectsTitle = styled(Typography)({
+    color: 'rgb(0, 82, 73)'
+});
+
+export const ReportedTodayTitle = styled(Typography)({
+    color: 'rgb(4, 41, 122)'
+});
+
+export const EfficiencyRateTitle = styled(Typography)({
+    color: 'rgb(122, 79, 1)'
+});
+
+export const TotalBugs = styled(Typography)({
     fontSize: '30px',
     fontWeight: 'bold',
-    color: '#efefef'
+    color: 'rgb(122, 12, 46)'
+});
+
+export const TotalProjects = styled(Typography)({
+    fontSize: '30px',
+    fontWeight: 'bold',
+    color: 'rgb(0, 82, 73)'
+});
+
+export const ReportedToday = styled(Typography)({
+    fontSize: '30px',
+    fontWeight: 'bold',
+    color: 'rgb(4, 41, 122)'
+});
+
+export const EfficiencyRate = styled(Typography)({
+    fontSize: '30px',
+    fontWeight: 'bold',
+    color: 'rgb(122, 79, 1)'
 });
 
 export const BugIcon = styled(EmojiNatureIcon)({
     fontSize: '100px',
-    color: '#990a00'
+    color: 'rgb(183, 33, 54)'
 });
 
 export const ProjectIcon = styled(ArticleIcon)({
     fontSize: '100px',
-    color: '#004701'
+    color: 'rgb(0, 123, 85)'
 });
 
 export const ThirdIcon = styled(QueryStatsIcon)({
     fontSize: '80px',
-    color: '#00143b'
+    color: 'rgb(12, 83, 183)'
 });
 
 export const FourthIcon = styled(ArticleIcon)({
     fontSize: '100px',
-    color: '#8f4700'
+    color: 'rgb(183, 129, 3)'
 });

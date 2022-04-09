@@ -2,6 +2,9 @@ import { createTheme } from '@mui/material';
 import { deepPurple, blue, indigo, yellow, amber, grey } from '@mui/material/colors';
 
 export const lightTheme = createTheme({
+    typography: {
+        fontFamily: 'Public Sans, sans-serif'
+    },
     palette: {
         mode: 'light',
         primary: {
@@ -23,6 +26,9 @@ export const lightTheme = createTheme({
 });
 
 export const darkTheme = createTheme({
+    typography: {
+        fontFamily: 'Public Sans, sans-serif'
+    },
     palette: {
         mode: 'dark',
         primary: {

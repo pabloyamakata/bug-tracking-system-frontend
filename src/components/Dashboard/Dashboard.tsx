@@ -14,8 +14,14 @@ import {
     StatContainer,
     StatBox,
     StatBody,
-    StatName,
-    Stats,
+    TotalBugsTitle,
+    TotalProjectsTitle,
+    ReportedTodayTitle,
+    EfficiencyRateTitle,
+    TotalBugs,
+    TotalProjects,
+    ReportedToday,
+    EfficiencyRate,
     BugIcon,
     ProjectIcon,
     ThirdIcon,
@@ -178,29 +184,29 @@ function Dashboard() {
             <StatContainer sx={{ paddingTop: !location.search ? '60px' : '20px' }}>
                 <StatBox>
                     <StatBody>
-                        <Stats>{bugArray.length}</Stats>
-                        <StatName>Total Bugs</StatName>
+                        <TotalBugs>{bugArray.length}</TotalBugs>
+                        <TotalBugsTitle>Total Bugs</TotalBugsTitle>
                     </StatBody>
                     <BugIcon />
                 </StatBox>
                 <StatBox>
                     <StatBody>
-                        <Stats>{projectArray.length}</Stats>
-                        <StatName>Total Projects</StatName>
+                        <TotalProjects>{projectArray.length}</TotalProjects>
+                        <TotalProjectsTitle>Total Projects</TotalProjectsTitle>
                     </StatBody>
                     <ProjectIcon />
                 </StatBox>
                 <StatBox>
                     <StatBody>
-                        <Stats>{projectArray.length}</Stats>
-                        <StatName>Reported Today</StatName>
+                        <ReportedToday>{projectArray.length}</ReportedToday>
+                        <ReportedTodayTitle>Reported Today</ReportedTodayTitle>
                     </StatBody>
                     <ThirdIcon />
                 </StatBox>
                 <StatBox>
                     <StatBody>
-                        <Stats>{projectArray.length}</Stats>
-                        <StatName>Placeholder</StatName>
+                        <EfficiencyRate>{projectArray.length}</EfficiencyRate>
+                        <EfficiencyRateTitle>Efficiency Rate</EfficiencyRateTitle>
                     </StatBody>
                     <FourthIcon />
                 </StatBox>

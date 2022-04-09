@@ -83,8 +83,8 @@ function BarChart({ nameOfMonths, bugsResolvedPerMonth, bugsCreatedPerMonth }: B
                             bugsCreatedPerMonth.oneMonthAgo,
                             bugsCreatedPerMonth.thisMonth
                         ],
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgb(255, 99, 132)',
+                        backgroundColor: 'rgba(255, 72, 66, .2)',
+                        borderColor: 'rgb(255, 72, 66)',
                         borderWidth: 1
                     }, 
                     {
@@ -98,8 +98,8 @@ function BarChart({ nameOfMonths, bugsResolvedPerMonth, bugsCreatedPerMonth }: B
                             bugsResolvedPerMonth.oneMonthAgo,
                             bugsResolvedPerMonth.thisMonth
                         ],
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)', 
-                        borderColor: 'rgb(54, 162, 235)',
+                        backgroundColor: 'rgba(24, 144, 255, .2)', 
+                        borderColor: 'rgb(24, 144, 255)',
                         borderWidth: 1
                     }
                 ]
