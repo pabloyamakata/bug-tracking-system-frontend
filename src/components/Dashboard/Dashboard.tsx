@@ -15,19 +15,22 @@ import {
     ChartContainer,
     StatContainer,
     StatBox,
-    TotalBugsTitle,
-    TotalProjectsTitle,
+    BugReportsTitle,
+    ProjectReportsTitle,
     BugsReportedTodayTitle,
-    EfficiencyRateTitle,
-    TotalBugs,
-    TotalProjects,
+    ProjectsCreatedTodayTitle,
+    PlaceholderTitle,
+    BugReports,
+    ProjectReports,
     BugsReportedToday,
-    EfficiencyRate,
+    ProjectsCreatedToday,
+    Placeholder,
     IconBox,
-    BugWithFlowerIcon,
-    ProjectIcon,
     BugIcon,
-    EfficiencyRateIcon
+    ProjectIcon,
+    WarningSignIcon,
+    CheckIcon,
+    FifthIcon
 } from './DashboardStyles';
 
 const bugs_URL = 'https://bug-tracking-system-backend.000webhostapp.com/bugs.php';
@@ -52,7 +55,7 @@ interface ProjectInterface {
     name: string;
     description: string;
     project_leader: string;
-    start_date: Date;
+    start_date: string;
     deadline: Date;
     current_status: string;
     frontend: string;
@@ -176,7 +179,17 @@ function Dashboard() {
     };
 
     const calculateBugsReportedToday = () => {
-        
+        const date = dayjs();
+        const currentDate = date.format('DD/MM/YYYY').replace(/\//g, '-');
+        const bugsReportedToday = bugArray.filter(bug => formatDate(bug.initial_date) === currentDate).length;
+        return bugsReportedToday;
+    };
+
+    const calculateProjectsReportedToday = () => {
+        const date = dayjs();
+        const currentDate = date.format('DD/MM/YYYY').replace(/\//g, '-');
+        const projectsReportedToday = projectArray.filter(project => formatDate(project.start_date) === currentDate).length;
+        return projectsReportedToday;
     };
 
     return(
@@ -193,11 +206,11 @@ function Dashboard() {
                     sx={{
                         backgroundImage: 'linear-gradient(135deg, rgba(183, 33, 54, 0) 0%, rgba(183, 33, 54, 0.24) 100%)'
                     }}>
-                        <BugWithFlowerIcon />
+                        <BugIcon />
                     </IconBox>
                     <Box>
-                        <TotalBugs>{bugArray.length}</TotalBugs>
-                        <TotalBugsTitle>Total Bugs</TotalBugsTitle>
+                        <BugReports>{bugArray.length}</BugReports>
+                        <BugReportsTitle>Bug Reports</BugReportsTitle>
                     </Box>
                 </StatBox>
                 <StatBox>
@@ -208,8 +221,8 @@ function Dashboard() {
                         <ProjectIcon />
                     </IconBox>
                     <Box>
-                        <TotalProjects>{projectArray.length}</TotalProjects>
-                        <TotalProjectsTitle>Total Projects</TotalProjectsTitle>
+                        <ProjectReports>{projectArray.length}</ProjectReports>
+                        <ProjectReportsTitle>Project Reports</ProjectReportsTitle>
                     </Box>
                 </StatBox>
                 <StatBox>
@@ -217,10 +230,10 @@ function Dashboard() {
                     sx={{
                         backgroundImage: 'linear-gradient(135deg, rgba(12, 83, 183, 0) 0%, rgba(12, 83, 183, 0.24) 100%)'
                     }}>
-                        <BugIcon />
+                        <WarningSignIcon />
                     </IconBox>
                     <Box>
-                        <BugsReportedToday>{projectArray.length}</BugsReportedToday>
+                        <BugsReportedToday>{calculateBugsReportedToday()}</BugsReportedToday>
                         <BugsReportedTodayTitle>Bugs Reported Today</BugsReportedTodayTitle>
                     </Box>
                 </StatBox>
@@ -229,11 +242,23 @@ function Dashboard() {
                     sx={{
                         backgroundImage: 'linear-gradient(135deg, rgba(183, 129, 3, 0) 0%, rgba(183, 129, 3, 0.24) 100%)'
                     }}>
-                        <EfficiencyRateIcon />
+                        <CheckIcon />
                     </IconBox>
                     <Box>
-                        <EfficiencyRate>{projectArray.length}</EfficiencyRate>
-                        <EfficiencyRateTitle>Efficiency Rate</EfficiencyRateTitle>
+                        <ProjectsCreatedToday>{calculateProjectsReportedToday()}</ProjectsCreatedToday>
+                        <ProjectsCreatedTodayTitle>Projects Created Today</ProjectsCreatedTodayTitle>
+                    </Box>
+                </StatBox>
+                <StatBox>
+                    <IconBox
+                    sx={{
+                        backgroundImage: 'linear-gradient(135deg, rgba(183, 33, 163, 0) 0%, rgba(183, 33, 163, 0.24) 100%)'
+                    }}>
+                        <FifthIcon />
+                    </IconBox>
+                    <Box>
+                        <Placeholder>{bugArray.length}</Placeholder>
+                        <PlaceholderTitle>Placeholder</PlaceholderTitle>
                     </Box>
                 </StatBox>
             </StatContainer>

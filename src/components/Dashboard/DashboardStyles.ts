@@ -1,9 +1,10 @@
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import EmojiNatureIcon from '@mui/icons-material/EmojiNature';
+import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import ArticleIcon from '@mui/icons-material/Article';
 import PestControlIcon from '@mui/icons-material/PestControl';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import { styled } from '@mui/material';
 
@@ -35,7 +36,7 @@ export const ChartContainer = styled(Box)({
 
 export const StatContainer = styled(Box)({
     display: 'flex',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
     maxWidth: '100vw',
     paddingTop: '20px'
 });
@@ -57,16 +58,19 @@ export const StatBox = styled(Box)({
     },
     '&:nth-of-type(4)': {
         backgroundColor: 'rgb(255, 247, 205)'
+    },
+    '&:nth-of-type(5)': {
+        backgroundColor: 'rgb(243, 217, 255)'
     }
 });
 
-export const TotalBugsTitle = styled(Typography)({
+export const BugReportsTitle = styled(Typography)({
     color: 'rgb(122, 12, 46)',
     fontSize: '14px',
     textAlign: 'center'
 });
 
-export const TotalProjectsTitle = styled(Typography)({
+export const ProjectReportsTitle = styled(Typography)({
     color: 'rgb(0, 82, 73)',
     fontSize: '14px',
     textAlign: 'center'
@@ -78,20 +82,26 @@ export const BugsReportedTodayTitle = styled(Typography)({
     textAlign: 'center'
 });
 
-export const EfficiencyRateTitle = styled(Typography)({
+export const ProjectsCreatedTodayTitle = styled(Typography)({
     color: 'rgb(122, 79, 1)',
     fontSize: '14px',
     textAlign: 'center'
 });
 
-export const TotalBugs = styled(Typography)({
+export const PlaceholderTitle = styled(Typography)({
+    color: 'rgb(93, 0, 140)',
+    fontSize: '14px',
+    textAlign: 'center'
+});
+
+export const BugReports = styled(Typography)({
     fontSize: '32px',
     fontWeight: 'bold',
     color: 'rgb(122, 12, 46)',
     textAlign: 'center'
 });
 
-export const TotalProjects = styled(Typography)({
+export const ProjectReports = styled(Typography)({
     fontSize: '32px',
     fontWeight: 'bold',
     color: 'rgb(0, 82, 73)',
@@ -105,10 +115,17 @@ export const BugsReportedToday = styled(Typography)({
     textAlign: 'center'
 });
 
-export const EfficiencyRate = styled(Typography)({
+export const ProjectsCreatedToday = styled(Typography)({
     fontSize: '32px',
     fontWeight: 'bold',
     color: 'rgb(122, 79, 1)',
+    textAlign: 'center'
+});
+
+export const Placeholder = styled(Typography)({
+    fontSize: '32px',
+    fontWeight: 'bold',
+    color: 'rgb(93, 0, 140)',
     textAlign: 'center'
 });
 
@@ -122,8 +139,8 @@ export const IconBox = styled(Box)({
     borderRadius: '50%'
 });
 
-export const BugWithFlowerIcon = styled(EmojiNatureIcon)({
-    fontSize: '40px',
+export const BugIcon = styled(PestControlIcon)({
+    fontSize: '30px',
     color: 'rgb(183, 33, 54)'
 });
 
@@ -132,12 +149,17 @@ export const ProjectIcon = styled(ArticleIcon)({
     color: 'rgb(0, 123, 85)'
 });
 
-export const BugIcon = styled(PestControlIcon)({
+export const WarningSignIcon = styled(ReportProblemIcon)({
     fontSize: '30px',
     color: 'rgb(12, 83, 183)'
 });
 
-export const EfficiencyRateIcon = styled(QueryStatsIcon)({
+export const CheckIcon = styled(CheckCircleIcon)({
     fontSize: '35px',
     color: 'rgb(183, 129, 3)'
+});
+
+export const FifthIcon = styled(QueryStatsIcon)({
+    fontSize: '35px',
+    color: 'rgb(136, 0, 207)'
 });
