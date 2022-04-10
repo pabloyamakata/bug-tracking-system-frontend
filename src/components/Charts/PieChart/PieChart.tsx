@@ -54,7 +54,8 @@ function PieChart({ bugsByPriority }: PieChartProps) {
                         display: true,
                         text: 'Bugs by Priority',
                         font: {
-                            size: 20
+                            size: 20,
+                            family: 'Public Sans, sans-serif'
                         },
                         padding: {
                             top: 15,

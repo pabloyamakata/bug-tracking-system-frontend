@@ -47,7 +47,8 @@ function DoughnutChart({ bugsByStatus: { pendingBugs, solvedBugs, closedBugs } }
                         display: true,
                         text: 'Bugs by Status',
                         font: {
-                            size: 20
+                            size: 20,
+                            family: 'Public Sans, sans-serif'
                         },
                         padding: {
                             top: 15,

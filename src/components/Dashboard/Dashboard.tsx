@@ -7,25 +7,27 @@ import DoughnutChart from '../Charts/DoughnutChart/DoughnutChart';
 import PieChart from '../Charts/PieChart/PieChart';
 import BarChart from '../Charts/BarChart/BarChart';
 
+import Box from '@mui/material/Box';
+
 import {
     CustomPaper,
     DashboardGreeting,
     ChartContainer,
     StatContainer,
     StatBox,
-    StatBody,
     TotalBugsTitle,
     TotalProjectsTitle,
-    ReportedTodayTitle,
+    BugsReportedTodayTitle,
     EfficiencyRateTitle,
     TotalBugs,
     TotalProjects,
-    ReportedToday,
+    BugsReportedToday,
     EfficiencyRate,
-    BugIcon,
+    IconBox,
+    BugWithFlowerIcon,
     ProjectIcon,
-    ThirdIcon,
-    FourthIcon
+    BugIcon,
+    EfficiencyRateIcon
 } from './DashboardStyles';
 
 const bugs_URL = 'https://bug-tracking-system-backend.000webhostapp.com/bugs.php';
@@ -173,6 +175,10 @@ function Dashboard() {
         return bugsByPriority;
     };
 
+    const calculateBugsReportedToday = () => {
+        
+    };
+
     return(
         <CustomPaper elevation={0}>
             {location.search === '?new=1' ? 
@@ -181,34 +187,54 @@ function Dashboard() {
             <DashboardGreeting variant='h5'>{`Welcome back ${userData.username}!`}</DashboardGreeting>
             : null}
 
-            <StatContainer sx={{ paddingTop: !location.search ? '60px' : '20px' }}>
+            <StatContainer sx={{ paddingTop: !location.search ? '60px' : '40px' }}>
                 <StatBox>
-                    <StatBody>
+                    <IconBox
+                    sx={{
+                        backgroundImage: 'linear-gradient(135deg, rgba(183, 33, 54, 0) 0%, rgba(183, 33, 54, 0.24) 100%)'
+                    }}>
+                        <BugWithFlowerIcon />
+                    </IconBox>
+                    <Box>
                         <TotalBugs>{bugArray.length}</TotalBugs>
                         <TotalBugsTitle>Total Bugs</TotalBugsTitle>
-                    </StatBody>
-                    <BugIcon />
+                    </Box>
                 </StatBox>
                 <StatBox>
-                    <StatBody>
+                    <IconBox
+                    sx={{
+                        backgroundImage: 'linear-gradient(135deg, rgba(0, 123, 85, 0) 0%, rgba(0, 123, 85, 0.24) 100%)'
+                    }}>
+                        <ProjectIcon />
+                    </IconBox>
+                    <Box>
                         <TotalProjects>{projectArray.length}</TotalProjects>
                         <TotalProjectsTitle>Total Projects</TotalProjectsTitle>
-                    </StatBody>
-                    <ProjectIcon />
+                    </Box>
                 </StatBox>
                 <StatBox>
-                    <StatBody>
-                        <ReportedToday>{projectArray.length}</ReportedToday>
-                        <ReportedTodayTitle>Reported Today</ReportedTodayTitle>
-                    </StatBody>
-                    <ThirdIcon />
+                    <IconBox
+                    sx={{
+                        backgroundImage: 'linear-gradient(135deg, rgba(12, 83, 183, 0) 0%, rgba(12, 83, 183, 0.24) 100%)'
+                    }}>
+                        <BugIcon />
+                    </IconBox>
+                    <Box>
+                        <BugsReportedToday>{projectArray.length}</BugsReportedToday>
+                        <BugsReportedTodayTitle>Bugs Reported Today</BugsReportedTodayTitle>
+                    </Box>
                 </StatBox>
                 <StatBox>
-                    <StatBody>
+                    <IconBox
+                    sx={{
+                        backgroundImage: 'linear-gradient(135deg, rgba(183, 129, 3, 0) 0%, rgba(183, 129, 3, 0.24) 100%)'
+                    }}>
+                        <EfficiencyRateIcon />
+                    </IconBox>
+                    <Box>
                         <EfficiencyRate>{projectArray.length}</EfficiencyRate>
                         <EfficiencyRateTitle>Efficiency Rate</EfficiencyRateTitle>
-                    </StatBody>
-                    <FourthIcon />
+                    </Box>
                 </StatBox>
             </StatContainer>
             

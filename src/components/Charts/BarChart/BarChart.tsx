@@ -115,7 +115,8 @@ function BarChart({ nameOfMonths, bugsResolvedPerMonth, bugsCreatedPerMonth }: B
                         display: true,
                         text: 'Created vs Solved Bugs',
                         font: {
-                            size: 20
+                            size: 20,
+                            family: 'Public Sans, sans-serif'
                         },
                         padding: {
                             top: 15,

@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import EmojiNatureIcon from '@mui/icons-material/EmojiNature';
 import ArticleIcon from '@mui/icons-material/Article';
+import PestControlIcon from '@mui/icons-material/PestControl';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import { styled } from '@mui/material';
 
@@ -20,8 +21,8 @@ export const CustomPaper = styled(Paper)({
 });
 
 export const DashboardGreeting = styled(Typography)({
-    marginLeft: '20px',
-    paddingTop: '25px',
+    marginLeft: '30px',
+    paddingTop: '40px',
     fontWeight: '700'
 });
 
@@ -34,21 +35,19 @@ export const ChartContainer = styled(Box)({
 
 export const StatContainer = styled(Box)({
     display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     maxWidth: '100vw',
     paddingTop: '20px'
 });
 
 export const StatBox = styled(Box)({
     display: 'flex',
-    justifyContent: 'space-around',
+    flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
-    flexGrow: 1,
-    flexShrink: 1,
-    maxWidth: '250px',
-    minHeight: '100px',
-    borderRadius: '5px',
+    width: '225px',
+    height: '238px',
+    borderRadius: '16px',
     backgroundColor: 'rgb(255, 231, 217)',
     '&:nth-of-type(2)': {
         backgroundColor: 'rgb(200, 250, 205)'
@@ -61,66 +60,84 @@ export const StatBox = styled(Box)({
     }
 });
 
-export const StatBody = styled(Box)({
-
-});
-
 export const TotalBugsTitle = styled(Typography)({
-    color: 'rgb(122, 12, 46)'
+    color: 'rgb(122, 12, 46)',
+    fontSize: '14px',
+    textAlign: 'center'
 });
 
 export const TotalProjectsTitle = styled(Typography)({
-    color: 'rgb(0, 82, 73)'
+    color: 'rgb(0, 82, 73)',
+    fontSize: '14px',
+    textAlign: 'center'
 });
 
-export const ReportedTodayTitle = styled(Typography)({
-    color: 'rgb(4, 41, 122)'
+export const BugsReportedTodayTitle = styled(Typography)({
+    color: 'rgb(4, 41, 122)',
+    fontSize: '14px',
+    textAlign: 'center'
 });
 
 export const EfficiencyRateTitle = styled(Typography)({
-    color: 'rgb(122, 79, 1)'
+    color: 'rgb(122, 79, 1)',
+    fontSize: '14px',
+    textAlign: 'center'
 });
 
 export const TotalBugs = styled(Typography)({
-    fontSize: '30px',
+    fontSize: '32px',
     fontWeight: 'bold',
-    color: 'rgb(122, 12, 46)'
+    color: 'rgb(122, 12, 46)',
+    textAlign: 'center'
 });
 
 export const TotalProjects = styled(Typography)({
-    fontSize: '30px',
+    fontSize: '32px',
     fontWeight: 'bold',
-    color: 'rgb(0, 82, 73)'
+    color: 'rgb(0, 82, 73)',
+    textAlign: 'center'
 });
 
-export const ReportedToday = styled(Typography)({
-    fontSize: '30px',
+export const BugsReportedToday = styled(Typography)({
+    fontSize: '32px',
     fontWeight: 'bold',
-    color: 'rgb(4, 41, 122)'
+    color: 'rgb(4, 41, 122)',
+    textAlign: 'center'
 });
 
 export const EfficiencyRate = styled(Typography)({
-    fontSize: '30px',
+    fontSize: '32px',
     fontWeight: 'bold',
-    color: 'rgb(122, 79, 1)'
+    color: 'rgb(122, 79, 1)',
+    textAlign: 'center'
 });
 
-export const BugIcon = styled(EmojiNatureIcon)({
-    fontSize: '100px',
+export const IconBox = styled(Box)({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '64px',
+    height: '64px',
+    marginBottom: '24px',
+    borderRadius: '50%'
+});
+
+export const BugWithFlowerIcon = styled(EmojiNatureIcon)({
+    fontSize: '40px',
     color: 'rgb(183, 33, 54)'
 });
 
 export const ProjectIcon = styled(ArticleIcon)({
-    fontSize: '100px',
+    fontSize: '30px',
     color: 'rgb(0, 123, 85)'
 });
 
-export const ThirdIcon = styled(QueryStatsIcon)({
-    fontSize: '80px',
+export const BugIcon = styled(PestControlIcon)({
+    fontSize: '30px',
     color: 'rgb(12, 83, 183)'
 });
 
-export const FourthIcon = styled(ArticleIcon)({
-    fontSize: '100px',
+export const EfficiencyRateIcon = styled(QueryStatsIcon)({
+    fontSize: '35px',
     color: 'rgb(183, 129, 3)'
 });
