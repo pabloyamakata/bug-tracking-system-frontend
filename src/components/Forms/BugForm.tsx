@@ -94,7 +94,11 @@ function BugForm() {
             priorityLevel: yup.string().required('Priority level required'),
             severityLevel: yup.string().required('Severity level required'),
             initialDate: yup.date().required('Initial date is required'),
-            finalDate: yup.date()
+            finalDate: yup.date().when('currentStatus', {
+                is: (currentStatus: string) => currentStatus === 'Pending' || currentStatus === undefined,
+                then: yup.date(),
+                otherwise: yup.date().required('Final date is required')
+            })
         }),
         onSubmit: values => {
             setIsLoading(true);
