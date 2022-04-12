@@ -10,8 +10,7 @@ export const PieBox = styled(Box)({
     paddingTop: '10px',
     paddingBottom: '15px',
     borderRadius: '16px',
-    boxShadow: `0px 1px 2px 0px rgba(60, 64, 67, 0.3),
-                0px 1px 3px 1px rgba(60, 64, 67, 0.15)`
+    boxShadow: `0px 0px 0px 3px rgba(3, 102, 214, 0.3)`
 });
 
 export const ChartMessage = styled(Typography)(({ theme }) => ({
