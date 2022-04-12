@@ -82,7 +82,7 @@ export const BugsReportedTodayTitle = styled(Typography)({
     textAlign: 'center'
 });
 
-export const ProjectsCreatedTodayTitle = styled(Typography)({
+export const ProjectsReportedTodayTitle = styled(Typography)({
     color: 'rgb(122, 79, 1)',
     fontSize: '14px',
     textAlign: 'center'
@@ -115,7 +115,7 @@ export const BugsReportedToday = styled(Typography)({
     textAlign: 'center'
 });
 
-export const ProjectsCreatedToday = styled(Typography)({
+export const ProjectsReportedToday = styled(Typography)({
     fontSize: '32px',
     fontWeight: 'bold',
     color: 'rgb(122, 79, 1)',

@@ -75,9 +75,9 @@ function ProjectForm() {
         }),
         onSubmit: values => {
             setIsLoading(true);
-            const projectCreationDate = date.format('DD/MM/YYYY').replace(/\//g, '-');
+            const projectReportingDate = date.format('DD/MM/YYYY').replace(/\//g, '-');
             formData.append('values', JSON.stringify(values));
-            formData.append('project_creation_date', JSON.stringify({ date: projectCreationDate }));
+            formData.append('project_reporting_date', JSON.stringify({ date: projectReportingDate }));
             axios({
                 method: 'post',
                 url: newProjectURL,

@@ -18,12 +18,12 @@ import {
     BugReportsTitle,
     ProjectReportsTitle,
     BugsReportedTodayTitle,
-    ProjectsCreatedTodayTitle,
+    ProjectsReportedTodayTitle,
     PlaceholderTitle,
     BugReports,
     ProjectReports,
     BugsReportedToday,
-    ProjectsCreatedToday,
+    ProjectsReportedToday,
     Placeholder,
     IconBox,
     BugIcon,
@@ -53,7 +53,7 @@ interface BugInterface {
 
 interface ProjectInterface {
     id: number;
-    creation_date: string;
+    reporting_date: string;
     name: string;
     description: string;
     project_leader: string;
@@ -187,11 +187,11 @@ function Dashboard() {
         return bugsReportedToday;
     };
 
-    const calculateProjectsCreatedToday = () => {
+    const calculateProjectsReportedToday = () => {
         const date = dayjs();
         const currentDate = date.format('DD/MM/YYYY').replace(/\//g, '-');
-        const projectsCreatedToday = projectArray.filter(project => project.creation_date === currentDate).length;
-        return projectsCreatedToday;
+        const projectsReportedToday = projectArray.filter(project => project.reporting_date === currentDate).length;
+        return projectsReportedToday;
     };
 
     return(
@@ -247,8 +247,8 @@ function Dashboard() {
                         <CheckIcon />
                     </IconBox>
                     <Box>
-                        <ProjectsCreatedToday>{calculateProjectsCreatedToday()}</ProjectsCreatedToday>
-                        <ProjectsCreatedTodayTitle>Projects Created Today</ProjectsCreatedTodayTitle>
+                        <ProjectsReportedToday>{calculateProjectsReportedToday()}</ProjectsReportedToday>
+                        <ProjectsReportedTodayTitle>Projects Reported Today</ProjectsReportedTodayTitle>
                     </Box>
                 </StatBox>
                 <StatBox>
