@@ -4,6 +4,7 @@ import { AppContext } from '../../context/AppContext';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
+import dayjs from 'dayjs';
 
 import {
     CustomPaper,
@@ -22,12 +23,14 @@ import SendIcon from '@mui/icons-material/Send';
 import CircularProgress from '@mui/material/CircularProgress';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
+const date = dayjs();
 const formData = new FormData();
 const projects_URL = 'https://bug-tracking-system-backend.000webhostapp.com/projects.php';
 const newBugURL = 'https://bug-tracking-system-backend.000webhostapp.com/newbug.php';
 
 interface ProjectInterface {
     id: number;
+    creation_date: string;
     name: string;
     description: string;
     project_leader: string;
@@ -102,8 +105,10 @@ function BugForm() {
         }),
         onSubmit: values => {
             setIsLoading(true);
+            const bugReportingDate = date.format('DD/MM/YYYY').replace(/\//g, '-');
             formData.append('values', JSON.stringify(values));
             formData.append('project_id', JSON.stringify({ id: projectId }));
+            formData.append('bug_reporting_date', JSON.stringify({ date: bugReportingDate }));
             axios({
                 method: 'post',
                 url: newBugURL,

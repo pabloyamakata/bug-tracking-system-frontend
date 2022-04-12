@@ -39,6 +39,7 @@ const userNameURL = 'https://bug-tracking-system-backend.000webhostapp.com/usern
 
 interface BugInterface {
     id: number;
+    reporting_date: string;
     name: string;
     description: string;
     project: string;
@@ -52,6 +53,7 @@ interface BugInterface {
 
 interface ProjectInterface {
     id: number;
+    creation_date: string;
     name: string;
     description: string;
     project_leader: string;
@@ -181,15 +183,15 @@ function Dashboard() {
     const calculateBugsReportedToday = () => {
         const date = dayjs();
         const currentDate = date.format('DD/MM/YYYY').replace(/\//g, '-');
-        const bugsReportedToday = bugArray.filter(bug => formatDate(bug.initial_date) === currentDate).length;
+        const bugsReportedToday = bugArray.filter(bug => bug.reporting_date === currentDate).length;
         return bugsReportedToday;
     };
 
-    const calculateProjectsReportedToday = () => {
+    const calculateProjectsCreatedToday = () => {
         const date = dayjs();
         const currentDate = date.format('DD/MM/YYYY').replace(/\//g, '-');
-        const projectsReportedToday = projectArray.filter(project => formatDate(project.start_date) === currentDate).length;
-        return projectsReportedToday;
+        const projectsCreatedToday = projectArray.filter(project => project.creation_date === currentDate).length;
+        return projectsCreatedToday;
     };
 
     return(
@@ -245,7 +247,7 @@ function Dashboard() {
                         <CheckIcon />
                     </IconBox>
                     <Box>
-                        <ProjectsCreatedToday>{calculateProjectsReportedToday()}</ProjectsCreatedToday>
+                        <ProjectsCreatedToday>{calculateProjectsCreatedToday()}</ProjectsCreatedToday>
                         <ProjectsCreatedTodayTitle>Projects Created Today</ProjectsCreatedTodayTitle>
                     </Box>
                 </StatBox>

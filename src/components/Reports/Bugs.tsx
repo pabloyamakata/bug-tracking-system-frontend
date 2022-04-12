@@ -30,6 +30,7 @@ const bugDeletionURL = 'https://bug-tracking-system-backend.000webhostapp.com/bu
 
 interface BugInterface {
     id: number;
+    reporting_date: string;
     name: string;
     description: string;
     project: string;

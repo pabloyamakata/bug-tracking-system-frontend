@@ -28,6 +28,7 @@ const editProjectURL = 'https://bug-tracking-system-backend.000webhostapp.com/ed
 
 interface ProjectInterface {
     id: number;
+    creation_date: string;
     name: string;
     description: string;
     project_leader: string;
@@ -41,6 +42,7 @@ interface ProjectInterface {
 
 const resetValues: ProjectInterface = {
     id: 0,
+    creation_date: '',
     name: '',
     description: '',
     project_leader: '',

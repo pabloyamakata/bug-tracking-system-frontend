@@ -30,6 +30,7 @@ const projects_URL = 'https://bug-tracking-system-backend.000webhostapp.com/proj
 
 interface ProjectInterface {
     id: number;
+    creation_date: string;
     name: string;
     description: string;
     project_leader: string;
