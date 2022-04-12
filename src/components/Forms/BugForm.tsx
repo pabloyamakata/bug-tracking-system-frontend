@@ -139,7 +139,7 @@ function BugForm() {
         <CustomPaper elevation={0}>
             <Typography 
             variant='h5' 
-            sx={{marginLeft: '20px', paddingTop: '25px'}}>
+            sx={{ marginLeft: '20px', paddingTop: '25px' }}>
             Report Bug
             </Typography>
             

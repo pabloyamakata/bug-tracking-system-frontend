@@ -50,6 +50,10 @@ export const StatBox = styled(Box)({
     height: '238px',
     borderRadius: '16px',
     backgroundColor: 'rgb(255, 231, 217)',
+    boxShadow: `0px 0.0625em 0.0625em rgba(0, 0, 0, 0.25),
+                    0px 0.125em 0.5em rgba(0, 0, 0, 0.25),
+                        0px 0px 0px 1px inset rgba(255, 255, 255, 0.1)`,
+
     '&:nth-of-type(2)': {
         backgroundColor: 'rgb(200, 250, 205)'
     },

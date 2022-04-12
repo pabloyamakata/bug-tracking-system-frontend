@@ -7,7 +7,7 @@ export const CustomNavbar = styled(AppBar)(({ theme }) => ({
     position: 'absolute',
     top: 0,
     left: 0,
-    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.secondary.dark : '#0d47a1'
+    backgroundColor: theme.palette.mode === 'dark' ? '#041126' : '#0d47a1'
 }));
 
 export const CustomAvatar = styled(Avatar)(({ theme }) => ({
@@ -15,7 +15,7 @@ export const CustomAvatar = styled(Avatar)(({ theme }) => ({
     backgroundColor: theme.palette.grey[300]
 }));
 
-export const CustomSwitch = styled(Switch)({
+export const CustomSwitch = styled(Switch)(({ theme }) => ({
     width: 57,
     height: 29,
     marginRight: '10px',
@@ -39,7 +39,7 @@ export const CustomSwitch = styled(Switch)({
         },
     },
     '& .MuiSwitch-thumb': {
-        backgroundColor: '#001e3c' ,
+        backgroundColor: theme.palette.mode === 'dark' ? '#283593' : '#001e3c',
         width: 27,
         height: 27,
         '&:before': {
@@ -64,4 +64,4 @@ export const CustomSwitch = styled(Switch)({
     '@media (max-width: 320px)': {
         marginRight: 0,
     }
-});
+}));

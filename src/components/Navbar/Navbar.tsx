@@ -84,14 +84,14 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
         });
     };
     return(
-        <CustomNavbar elevation={0}>
+        <CustomNavbar>
             <Container maxWidth='xl'>
                 <Toolbar disableGutters>
                     <Typography
                     variant='h6'
                     noWrap
                     component='div'
-                    sx={{ color: '#ffffff', mr: 2, display: { xs: 'none', md: 'flex' } }}>
+                    sx={{ color: '#ededed', mr: 2, display: { xs: 'none', md: 'flex' } }}>
                     Bug Tracker
                     </Typography>
 
@@ -138,7 +138,7 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
                     variant='h6'
                     noWrap
                     component='div'
-                    sx={{ color: '#ffffff', flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                    sx={{ color: '#ededed', flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                     Bug Tracker
                     </Typography>
                     
@@ -150,7 +150,7 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
                             sx={{
                                 display: 'block',
                                 my: 2,
-                                color: 'white',
+                                color: '#ededed',
                                 fontWeight: '300',
                                 textTransform: 'capitalize'
                             }}
