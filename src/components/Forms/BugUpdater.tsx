@@ -50,7 +50,7 @@ interface BugInterface {
     priority_level: string;
     severity_level: string;
     initial_date: string;
-    final_date: Date | null;
+    final_date: string | null;
 }
 
 const resetValues: BugInterface = {
@@ -62,8 +62,8 @@ const resetValues: BugInterface = {
     current_status: '',
     priority_level: '',
     severity_level: '',
-    initial_date: new Date().toISOString().slice(0, 10),
-    final_date: null
+    initial_date: '',
+    final_date: ''
 }
 
 function BugUpdater() {
@@ -120,7 +120,7 @@ function BugUpdater() {
             priorityLevel: bugInfo.priority_level,
             severityLevel: bugInfo.severity_level,
             initialDate: bugInfo.initial_date,
-            finalDate: bugInfo.final_date
+            finalDate: bugInfo.final_date === null ? '' : bugInfo.final_date
         },
         validationSchema: yup.object({
             name: yup.string()
@@ -138,7 +138,11 @@ function BugUpdater() {
             priorityLevel: yup.string().required('Priority level required'),
             severityLevel: yup.string().required('Severity level required'),
             initialDate: yup.date().required('Initial date is required'),
-            finalDate: yup.date().nullable(true)
+            finalDate: yup.date().when('currentStatus', {
+                is: (currentStatus: string) => currentStatus === 'Solved' || currentStatus === 'Closed',
+                then: yup.date().required('Final date is required'),
+                otherwise: yup.date()
+            })
         }),
         onSubmit: values => {
             setIsLoading(true);
