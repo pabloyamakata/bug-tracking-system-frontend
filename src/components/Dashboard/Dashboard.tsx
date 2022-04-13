@@ -19,18 +19,18 @@ import {
     ProjectReportsTitle,
     BugsReportedTodayTitle,
     ProjectsReportedTodayTitle,
-    PlaceholderTitle,
+    ResolutionRateTitle,
     BugReports,
     ProjectReports,
     BugsReportedToday,
     ProjectsReportedToday,
-    Placeholder,
+    ResolutionRate,
     IconBox,
     BugIcon,
     ProjectIcon,
     WarningSignIcon,
     CheckIcon,
-    FifthIcon
+    MagnifyingGlassIcon
 } from './DashboardStyles';
 
 const bugs_URL = 'https://bug-tracking-system-backend.000webhostapp.com/bugs.php';
@@ -194,6 +194,13 @@ function Dashboard() {
         return projectsReportedToday;
     };
 
+    const calculateMonthlyResolutionRate = () => {
+        // (Solved Bugs | Created Bugs) x 100 => Current Month.
+        // Also calculate bugs closed per month to improve bar chart.
+        const monthlyResolutionRate = 34;
+        return monthlyResolutionRate;
+    };
+
     return(
         <CustomPaper elevation={0}>
             {location.search === '?new=1' ? 
@@ -256,11 +263,11 @@ function Dashboard() {
                     sx={{
                         backgroundImage: 'linear-gradient(135deg, rgba(183, 33, 163, 0) 0%, rgba(183, 33, 163, 0.24) 100%)'
                     }}>
-                        <FifthIcon />
+                        <MagnifyingGlassIcon />
                     </IconBox>
                     <Box>
-                        <Placeholder>{bugArray.length}</Placeholder>
-                        <PlaceholderTitle>Placeholder</PlaceholderTitle>
+                        <ResolutionRate>{calculateMonthlyResolutionRate()}%</ResolutionRate>
+                        <ResolutionRateTitle>Monthly Resolution Rate</ResolutionRateTitle>
                     </Box>
                 </StatBox>
             </StatContainer>

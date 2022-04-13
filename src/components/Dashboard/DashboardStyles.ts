@@ -21,11 +21,12 @@ export const CustomPaper = styled(Paper)({
     }
 });
 
-export const DashboardGreeting = styled(Typography)({
+export const DashboardGreeting = styled(Typography)(({ theme }) => ({
     marginLeft: '30px',
     paddingTop: '40px',
-    fontWeight: '700'
-});
+    fontWeight: '700',
+    color: theme.palette.mode === 'dark' ? 'rgba(237, 237, 237, .85)' : theme.palette.text.primary
+}));
 
 export const ChartContainer = styled(Box)({
     display: 'flex',
@@ -93,7 +94,7 @@ export const ProjectsReportedTodayTitle = styled(Typography)({
     textAlign: 'center'
 });
 
-export const PlaceholderTitle = styled(Typography)({
+export const ResolutionRateTitle = styled(Typography)({
     color: 'rgb(93, 0, 140)',
     fontSize: '14px',
     textAlign: 'center'
@@ -127,7 +128,7 @@ export const ProjectsReportedToday = styled(Typography)({
     textAlign: 'center'
 });
 
-export const Placeholder = styled(Typography)({
+export const ResolutionRate = styled(Typography)({
     fontSize: '32px',
     fontWeight: 'bold',
     color: 'rgb(93, 0, 140)',
@@ -164,7 +165,7 @@ export const CheckIcon = styled(CheckCircleIcon)({
     color: 'rgb(183, 129, 3)'
 });
 
-export const FifthIcon = styled(QueryStatsIcon)({
+export const MagnifyingGlassIcon = styled(QueryStatsIcon)({
     fontSize: '35px',
     color: 'rgb(136, 0, 207)'
 });
