@@ -6,7 +6,8 @@ import axios from 'axios';
 import {
     CustomPaper,
     CustomTableRow,
-    MessageContainer
+    MessageContainer,
+    AddBoxIcon
 } from './ReportStyles';
 
 import DescriptionModal from '../DescriptionModal/DescriptionModal';
@@ -23,7 +24,6 @@ import IconButton from '@mui/material/IconButton';
 import Skeleton from '@mui/material/Skeleton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 
 const bugs_URL = 'https://bug-tracking-system-backend.000webhostapp.com/bugs.php';
 const bugDeletionURL = 'https://bug-tracking-system-backend.000webhostapp.com/bugdeletion.php';
@@ -178,7 +178,7 @@ function Bugs() {
             {!bugArray.length && !isLoading ?
             <MessageContainer>
                 <IconButton onClick={() => navigate('/newbug')}>
-                    <AddBoxOutlinedIcon sx={{ fontSize: 120 }} />
+                    <AddBoxIcon />
                 </IconButton>
                 <Typography sx={{ pt: 1, fontSize: 20 }}>
                     This section is empty. Click to report a bug...

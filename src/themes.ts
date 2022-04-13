@@ -45,6 +45,9 @@ export const darkTheme = createTheme({
         },
         action: {
             hover: grey[800]
+        },
+        text: {
+            primary: 'rgba(237, 237, 237, .75)'
         }
     }
 });
