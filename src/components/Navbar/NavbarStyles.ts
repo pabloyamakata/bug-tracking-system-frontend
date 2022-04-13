@@ -11,8 +11,8 @@ export const CustomNavbar = styled(AppBar)(({ theme }) => ({
 }));
 
 export const CustomAvatar = styled(Avatar)(({ theme }) => ({
-    color: theme.palette.grey[700],
-    backgroundColor: theme.palette.grey[300]
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[700],
+    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[300]
 }));
 
 export const CustomSwitch = styled(Switch)(({ theme }) => ({
@@ -39,7 +39,7 @@ export const CustomSwitch = styled(Switch)(({ theme }) => ({
         },
     },
     '& .MuiSwitch-thumb': {
-        backgroundColor: theme.palette.mode === 'dark' ? '#283593' : '#001e3c',
+        backgroundColor: theme.palette.mode === 'dark' ? '#000' : '#001e3c',
         width: 27,
         height: 27,
         '&:before': {

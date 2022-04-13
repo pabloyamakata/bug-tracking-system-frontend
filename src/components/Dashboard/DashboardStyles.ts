@@ -49,22 +49,23 @@ export const StatBox = styled(Box)({
     width: '225px',
     height: '238px',
     borderRadius: '16px',
+    border: '1px solid rgba(183, 33, 54, .3)',
     backgroundColor: 'rgb(255, 231, 217)',
-    boxShadow: `0px 0.0625em 0.0625em rgba(0, 0, 0, 0.25),
-                    0px 0.125em 0.5em rgba(0, 0, 0, 0.25),
-                        0px 0px 0px 1px inset rgba(255, 255, 255, 0.1)`,
-
     '&:nth-of-type(2)': {
-        backgroundColor: 'rgb(200, 250, 205)'
+        backgroundColor: 'rgb(200, 250, 205)',
+        border: '1px solid rgba(0, 123, 85, .3)'
     },
     '&:nth-of-type(3)': {
-        backgroundColor: 'rgb(208, 242, 255)'
+        backgroundColor: 'rgb(208, 242, 255)',
+        border: '1px solid rgba(12, 83, 183, .3)'
     },
     '&:nth-of-type(4)': {
-        backgroundColor: 'rgb(255, 247, 205)'
+        backgroundColor: 'rgb(255, 247, 205)',
+        border: '1px solid rgba(183, 129, 3, .3)'
     },
     '&:nth-of-type(5)': {
-        backgroundColor: 'rgb(243, 217, 255)'
+        backgroundColor: 'rgb(243, 217, 255)',
+        border: '1px solid rgba(136, 0, 207, .3)'
     }
 });
 
