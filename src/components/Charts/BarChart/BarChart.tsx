@@ -22,6 +22,15 @@ ChartJS.register(
 );
 
 interface BarChartProps {
+    bugsCreatedPerMonth: {
+        thisMonth: number;
+        oneMonthAgo: number;
+        twoMonthsAgo: number;
+        threeMonthsAgo: number;
+        fourMonthsAgo: number;
+        fiveMonthsAgo: number;
+        sixMonthsAgo: number;
+    },
     bugsResolvedPerMonth: {
         thisMonth: number;
         oneMonthAgo: number;
@@ -31,7 +40,7 @@ interface BarChartProps {
         fiveMonthsAgo: number;
         sixMonthsAgo: number;
     },
-    bugsCreatedPerMonth: {
+    bugsClosedPerMonth: {
         thisMonth: number;
         oneMonthAgo: number;
         twoMonthsAgo: number;
@@ -51,12 +60,13 @@ interface BarChartProps {
     }
 }
 
-function BarChart({ nameOfMonths, bugsResolvedPerMonth, bugsCreatedPerMonth }: BarChartProps) {
+function BarChart({ bugsCreatedPerMonth, bugsResolvedPerMonth, bugsClosedPerMonth, nameOfMonths }: BarChartProps) {
     return(
         <BarBox>
             {
+                Object.values(bugsCreatedPerMonth).every(value => !value) &&
                 Object.values(bugsResolvedPerMonth).every(value => !value) &&
-                Object.values(bugsCreatedPerMonth).every(value => !value) ?
+                Object.values(bugsClosedPerMonth).every(value => !value) ?
                 <ChartMessage>No Data Available Yet!</ChartMessage> : null
             }
 
@@ -83,9 +93,7 @@ function BarChart({ nameOfMonths, bugsResolvedPerMonth, bugsCreatedPerMonth }: B
                             bugsCreatedPerMonth.oneMonthAgo,
                             bugsCreatedPerMonth.thisMonth
                         ],
-                        backgroundColor: 'rgba(255, 72, 66, .2)',
-                        borderColor: 'rgb(255, 72, 66)',
-                        borderWidth: 1
+                        backgroundColor: 'rgb(255, 72, 66)'
                     }, 
                     {
                         label: 'Solved',
@@ -98,9 +106,20 @@ function BarChart({ nameOfMonths, bugsResolvedPerMonth, bugsCreatedPerMonth }: B
                             bugsResolvedPerMonth.oneMonthAgo,
                             bugsResolvedPerMonth.thisMonth
                         ],
-                        backgroundColor: 'rgba(24, 144, 255, .2)', 
-                        borderColor: 'rgb(24, 144, 255)',
-                        borderWidth: 1
+                        backgroundColor: 'rgb(0, 171, 85)'
+                    },
+                    {
+                        label: 'Closed',
+                        data: [
+                            bugsClosedPerMonth.sixMonthsAgo,
+                            bugsClosedPerMonth.fiveMonthsAgo,
+                            bugsClosedPerMonth.fourMonthsAgo,
+                            bugsClosedPerMonth.threeMonthsAgo,
+                            bugsClosedPerMonth.twoMonthsAgo,
+                            bugsClosedPerMonth.oneMonthAgo,
+                            bugsClosedPerMonth.thisMonth
+                        ],
+                        backgroundColor: 'rgb(24, 144, 255)'
                     }
                 ]
             }}

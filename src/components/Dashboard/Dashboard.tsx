@@ -101,6 +101,29 @@ function Dashboard() {
         return bugsByStatus;
     };
 
+    const calculateBugsCreatedPerMonth = () => {
+        const date = dayjs();
+        const currentDate = date.format('DD/MM/YYYY').replace(/\//g, '-');
+        const dateOneMonthAgo = date.subtract(1, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
+        const dateTwoMonthsAgo = date.subtract(2, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
+        const dateThreeMonthsAgo = date.subtract(3, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
+        const dateFourMonthsAgo = date.subtract(4, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
+        const dateFiveMonthsAgo = date.subtract(5, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
+        const dateSixMonthsAgo = date.subtract(6, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
+
+        const bugsCreatedPerMonth = {
+            thisMonth: bugArray.filter(bug => formatDate(bug.initial_date).includes(currentDate.slice(3))).length,
+            oneMonthAgo: bugArray.filter(bug => formatDate(bug.initial_date).includes(dateOneMonthAgo.slice(3))).length,
+            twoMonthsAgo: bugArray.filter(bug => formatDate(bug.initial_date).includes(dateTwoMonthsAgo.slice(3))).length,
+            threeMonthsAgo: bugArray.filter(bug => formatDate(bug.initial_date).includes(dateThreeMonthsAgo.slice(3))).length,
+            fourMonthsAgo: bugArray.filter(bug => formatDate(bug.initial_date).includes(dateFourMonthsAgo.slice(3))).length,
+            fiveMonthsAgo: bugArray.filter(bug => formatDate(bug.initial_date).includes(dateFiveMonthsAgo.slice(3))).length,
+            sixMonthsAgo: bugArray.filter(bug => formatDate(bug.initial_date).includes(dateSixMonthsAgo.slice(3))).length
+        };
+        
+        return bugsCreatedPerMonth;
+    };
+
     const calculateBugsResolvedPerMonth = () => {
         const date = dayjs();
         const currentDate = date.format('DD/MM/YYYY').replace(/\//g, '-');
@@ -126,7 +149,7 @@ function Dashboard() {
         return bugsResolvedPerMonth;
     };
 
-    const calculateBugsCreatedPerMonth = () => {
+    const calculateBugsClosedPerMonth = () => {
         const date = dayjs();
         const currentDate = date.format('DD/MM/YYYY').replace(/\//g, '-');
         const dateOneMonthAgo = date.subtract(1, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
@@ -135,18 +158,20 @@ function Dashboard() {
         const dateFourMonthsAgo = date.subtract(4, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
         const dateFiveMonthsAgo = date.subtract(5, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
         const dateSixMonthsAgo = date.subtract(6, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
+        
+        const totalBugsClosed = bugArray.filter(bug => bug.current_status === 'Closed');
 
-        const bugsCreatedPerMonth = {
-            thisMonth: bugArray.filter(bug => formatDate(bug.initial_date).includes(currentDate.slice(3))).length,
-            oneMonthAgo: bugArray.filter(bug => formatDate(bug.initial_date).includes(dateOneMonthAgo.slice(3))).length,
-            twoMonthsAgo: bugArray.filter(bug => formatDate(bug.initial_date).includes(dateTwoMonthsAgo.slice(3))).length,
-            threeMonthsAgo: bugArray.filter(bug => formatDate(bug.initial_date).includes(dateThreeMonthsAgo.slice(3))).length,
-            fourMonthsAgo: bugArray.filter(bug => formatDate(bug.initial_date).includes(dateFourMonthsAgo.slice(3))).length,
-            fiveMonthsAgo: bugArray.filter(bug => formatDate(bug.initial_date).includes(dateFiveMonthsAgo.slice(3))).length,
-            sixMonthsAgo: bugArray.filter(bug => formatDate(bug.initial_date).includes(dateSixMonthsAgo.slice(3))).length
+        const bugsClosedPerMonth = {
+            thisMonth: totalBugsClosed.filter(bug => formatDate(bug.final_date).includes(currentDate.slice(3))).length,
+            oneMonthAgo: totalBugsClosed.filter(bug => formatDate(bug.final_date).includes(dateOneMonthAgo.slice(3))).length,
+            twoMonthsAgo: totalBugsClosed.filter(bug => formatDate(bug.final_date).includes(dateTwoMonthsAgo.slice(3))).length,
+            threeMonthsAgo: totalBugsClosed.filter(bug => formatDate(bug.final_date).includes(dateThreeMonthsAgo.slice(3))).length,
+            fourMonthsAgo: totalBugsClosed.filter(bug => formatDate(bug.final_date).includes(dateFourMonthsAgo.slice(3))).length,
+            fiveMonthsAgo: totalBugsClosed.filter(bug => formatDate(bug.final_date).includes(dateFiveMonthsAgo.slice(3))).length,
+            sixMonthsAgo: totalBugsClosed.filter(bug => formatDate(bug.final_date).includes(dateSixMonthsAgo.slice(3))).length
         };
         
-        return bugsCreatedPerMonth;
+        return bugsClosedPerMonth;
     };
 
     const getNameOfMonths = () => {
@@ -195,9 +220,16 @@ function Dashboard() {
     };
 
     const calculateMonthlyResolutionRate = () => {
-        // (Solved Bugs | Created Bugs) x 100 => Current Month.
-        // Also calculate bugs closed per month to improve bar chart.
-        const monthlyResolutionRate = 34;
+        const date = dayjs();
+        const currentDate = date.format('DD/MM/YYYY').replace(/\//g, '-');
+        const totalBugsResolved = bugArray.filter(bug => bug.current_status === 'Solved');
+        const bugsResolvedThisMonth = totalBugsResolved.filter(bug => formatDate(bug.final_date).includes(currentDate.slice(3))).length;
+        const bugsCreatedThisMonth = bugArray.filter(bug => formatDate(bug.initial_date).includes(currentDate.slice(3))).length;
+        let monthlyResolutionRate: string;
+        
+        if(bugsCreatedThisMonth === 0) monthlyResolutionRate = '0';
+        else monthlyResolutionRate = ((bugsResolvedThisMonth / bugsCreatedThisMonth) * 100).toFixed(1);
+        
         return monthlyResolutionRate;
     };
 
@@ -279,8 +311,9 @@ function Dashboard() {
                 <PieChart bugsByPriority={calculateBugsByPriority()} />
 
                 <BarChart
-                bugsResolvedPerMonth={calculateBugsResolvedPerMonth()}
                 bugsCreatedPerMonth={calculateBugsCreatedPerMonth()}
+                bugsResolvedPerMonth={calculateBugsResolvedPerMonth()}
+                bugsClosedPerMonth={calculateBugsClosedPerMonth()}
                 nameOfMonths={getNameOfMonths()} />
 
             </ChartContainer>
