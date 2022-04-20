@@ -1,6 +1,7 @@
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import ArticleIcon from '@mui/icons-material/Article';
 import PestControlIcon from '@mui/icons-material/PestControl';
@@ -35,20 +36,13 @@ export const ChartContainer = styled(Box)({
     paddingTop: '45px'
 });
 
-export const StatContainer = styled(Box)({
-    display: 'flex',
-    justifyContent: 'space-around',
-    maxWidth: '100vw',
-    paddingTop: '20px'
-});
-
-export const StatBox = styled(Box)({
+export const StatBox = styled(Grid)({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '225px',
-    height: '238px',
+    minWidth: '200px',
+    height: '220px',
     borderRadius: '16px',
     border: '1px solid rgba(183, 33, 54, .3)',
     backgroundColor: 'rgb(255, 231, 217)',

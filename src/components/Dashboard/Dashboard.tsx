@@ -7,13 +7,13 @@ import DoughnutChart from '../Charts/DoughnutChart/DoughnutChart';
 import PieChart from '../Charts/PieChart/PieChart';
 import BarChart from '../Charts/BarChart/BarChart';
 
+import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 
 import {
     CustomPaper,
     DashboardGreeting,
     ChartContainer,
-    StatContainer,
     StatBox,
     BugReportsTitle,
     ProjectReportsTitle,
@@ -241,8 +241,12 @@ function Dashboard() {
             <DashboardGreeting variant='h5'>{`Welcome back ${userData.username}!`}</DashboardGreeting>
             : null}
 
-            <StatContainer sx={{ paddingTop: !location.search ? '60px' : '40px' }}>
-                <StatBox>
+            <Grid
+            container
+            justifyContent='space-evenly'
+            alignItems='center'
+            sx={{ paddingTop: !location.search ? '60px' : '40px' }}>
+                <StatBox item xs={12} sm={4} md={4} lg={1}>
                     <IconBox
                     sx={{
                         backgroundImage: 'linear-gradient(135deg, rgba(183, 33, 54, 0) 0%, rgba(183, 33, 54, 0.24) 100%)'
@@ -254,7 +258,7 @@ function Dashboard() {
                         <BugReportsTitle>Bug Reports</BugReportsTitle>
                     </Box>
                 </StatBox>
-                <StatBox>
+                <StatBox item xs={12} sm={4} md={4} lg={1}>
                     <IconBox
                     sx={{
                         backgroundImage: 'linear-gradient(135deg, rgba(0, 123, 85, 0) 0%, rgba(0, 123, 85, 0.24) 100%)'
@@ -266,7 +270,7 @@ function Dashboard() {
                         <ProjectReportsTitle>Project Reports</ProjectReportsTitle>
                     </Box>
                 </StatBox>
-                <StatBox>
+                <StatBox item xs={12} sm={4} md={4} lg={1}>
                     <IconBox
                     sx={{
                         backgroundImage: 'linear-gradient(135deg, rgba(12, 83, 183, 0) 0%, rgba(12, 83, 183, 0.24) 100%)'
@@ -278,7 +282,7 @@ function Dashboard() {
                         <BugsReportedTodayTitle>Bugs Reported Today</BugsReportedTodayTitle>
                     </Box>
                 </StatBox>
-                <StatBox>
+                <StatBox item xs={12} sm={4} md={4} lg={1}>
                     <IconBox
                     sx={{
                         backgroundImage: 'linear-gradient(135deg, rgba(183, 129, 3, 0) 0%, rgba(183, 129, 3, 0.24) 100%)'
@@ -290,7 +294,7 @@ function Dashboard() {
                         <ProjectsReportedTodayTitle>Projects Reported Today</ProjectsReportedTodayTitle>
                     </Box>
                 </StatBox>
-                <StatBox>
+                <StatBox item xs={12} sm={4} md={4} lg={1}>
                     <IconBox
                     sx={{
                         backgroundImage: 'linear-gradient(135deg, rgba(183, 33, 163, 0) 0%, rgba(183, 33, 163, 0.24) 100%)'
@@ -302,7 +306,19 @@ function Dashboard() {
                         <ResolutionRateTitle>Monthly Resolution Rate</ResolutionRateTitle>
                     </Box>
                 </StatBox>
-            </StatContainer>
+                <StatBox item xs={12} sm={4} md={4} lg={1}>
+                    <IconBox
+                    sx={{
+                        backgroundImage: 'linear-gradient(135deg, rgba(183, 33, 163, 0) 0%, rgba(183, 33, 163, 0.24) 100%)'
+                    }}>
+                        <MagnifyingGlassIcon />
+                    </IconBox>
+                    <Box>
+                        <ResolutionRate>{calculateMonthlyResolutionRate()}%</ResolutionRate>
+                        <ResolutionRateTitle>Monthly Resolution Rate</ResolutionRateTitle>
+                    </Box>
+                </StatBox>
+            </Grid>
             
             <ChartContainer>
                 
