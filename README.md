@@ -1,46 +1,55 @@
-# Getting Started with Create React App
+<h3>Sistema de Seguimiento de Errores</h3>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicación full stack de tipo SPA que permite dar seguimiento a errores de software en proyectos ya sean empresariales o personales. El usuario podrá crear una nueva cuenta, añadir proyectos, reportar, editar y eliminar errores. La aplicación cuenta, además, con un dashboard para visualizar estadísticas relativas a estos defectos de programación.
 
-## Available Scripts
+Las tecnologías utilizadas en el frontend de este proyecto son:
 
-In the project directory, you can run:
+<ul>
+  <li>TypeScript</li>
+  <li>React</li>
+  <li>React Router</li>
+  <li>Material UI</li>
+  <li>Axios</li>
+  <li>Chartjs</li>
+  <li>Dayjs</li>
+  <li>Formik</li>
+  <li>Yup</li>
+</ul>
 
-### `npm start`
+Las tecnologías utilizadas en el backend de este proyecto son:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<ul>
+  <li>PHP</li>
+  <li>MySQL</li>
+</ul>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+¡Haz click [aquí](https://pabloyamakata.github.io/bug-tracking-system-frontend/) para ver la aplicación!
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<h3>Bug Tracking System</h3>
 
-### `npm run build`
+SPA-type full stack application that allows monitoring software bugs in projects whether they are business or personal. The user will be able to create a new account, add projects, report, edit and delete bugs. The application also has a dashboard to display statistics related to these programming defects.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The technologies used in the frontend of this project are:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<ul>
+  <li>TypeScript</li>
+  <li>React</li>
+  <li>React Router</li>
+  <li>Material UI</li>
+  <li>Axios</li>
+  <li>Chartjs</li>
+  <li>Dayjs</li>
+  <li>Formik</li>
+  <li>Yup</li>
+</ul>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The technologies used in the backend of this project are:
 
-### `npm run eject`
+<ul>
+  <li>PHP</li>
+  <li>MySQL</li>
+</ul>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Click [here](https://pabloyamakata.github.io/bug-tracking-system-frontend/) to see the application!
