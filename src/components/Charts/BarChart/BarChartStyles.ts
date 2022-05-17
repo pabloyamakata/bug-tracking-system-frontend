@@ -6,6 +6,7 @@ export const BarBox = styled(Box)({
     position: 'relative',
     width: '97%',
     maxWidth: '640px',
+    minHeight: '300px',
     maxHeight: '360px',
     padding: '10px',
     borderRadius: '16px',

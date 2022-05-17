@@ -181,7 +181,7 @@ function Projects() {
                 <IconButton onClick={() => navigate('/newproject')}>
                     <AddBoxIcon />
                 </IconButton>
-                <Typography sx={{ pt: 1, fontSize: 20 }}>
+                <Typography sx={{ pt: 1, px: 3, fontSize: 20 }}>
                     This section is empty. Click to add a project...
                 </Typography>
             </MessageContainer> : null}

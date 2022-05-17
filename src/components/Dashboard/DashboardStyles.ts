@@ -36,6 +36,13 @@ export const ChartContainer = styled(Box)({
     paddingTop: '45px'
 });
 
+export const StatBoxWrapper = styled(Box)({
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    margin: '-10px'
+});
+
 export const StatBox = styled(Grid)({
     display: 'flex',
     flexDirection: 'column',
@@ -43,6 +50,7 @@ export const StatBox = styled(Grid)({
     alignItems: 'center',
     minWidth: '200px',
     height: '220px',
+    margin: '10px',
     borderRadius: '16px',
     border: '1px solid rgba(183, 33, 54, .3)',
     backgroundColor: 'rgb(255, 231, 217)',

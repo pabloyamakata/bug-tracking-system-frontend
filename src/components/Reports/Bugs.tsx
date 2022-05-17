@@ -180,7 +180,7 @@ function Bugs() {
                 <IconButton onClick={() => navigate('/newbug')}>
                     <AddBoxIcon />
                 </IconButton>
-                <Typography sx={{ pt: 1, fontSize: 20 }}>
+                <Typography sx={{ pt: 1, px: 3, fontSize: 20 }}>
                     This section is empty. Click to report a bug...
                 </Typography>
             </MessageContainer> : null}
