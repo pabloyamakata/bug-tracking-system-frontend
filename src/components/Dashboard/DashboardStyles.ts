@@ -1,7 +1,6 @@
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import ArticleIcon from '@mui/icons-material/Article';
 import PestControlIcon from '@mui/icons-material/PestControl';
@@ -25,6 +24,7 @@ export const CustomPaper = styled(Paper)({
 export const DashboardGreeting = styled(Typography)(({ theme }) => ({
     marginLeft: '30px',
     paddingTop: '40px',
+    paddingRight: '30px',
     fontWeight: '700',
     color: theme.palette.mode === 'dark' ? 'rgba(237, 237, 237, .85)' : theme.palette.text.primary
 }));
@@ -39,11 +39,10 @@ export const ChartContainer = styled(Box)({
 export const StatBoxWrapper = styled(Box)({
     display: 'flex',
     justifyContent: 'center',
-    flexWrap: 'wrap',
-    margin: '-10px'
+    flexWrap: 'wrap'
 });
 
-export const StatBox = styled(Grid)({
+export const StatBox = styled(Box)({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -69,6 +68,21 @@ export const StatBox = styled(Grid)({
     '&:nth-of-type(5)': {
         backgroundColor: 'rgb(243, 217, 255)',
         border: '1px solid rgba(136, 0, 207, .3)'
+    },
+    '@media (max-width: 469px)': {
+        width: '80%'
+    },
+    '@media (min-width: 560px) and (max-width: 690px)': {
+        width: '40%'
+    },
+    '@media (min-width: 800px) and (max-width: 859px)': {
+        width: '28%'
+    },
+    '@media (min-width: 860px) and (max-width: 1079px)': {
+        width: '28%'
+    },
+    '@media (min-width: 1080px) and (max-width: 1319px)': {
+        width: '30%'
     }
 });
 
