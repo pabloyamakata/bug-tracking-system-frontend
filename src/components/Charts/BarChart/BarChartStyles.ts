@@ -4,10 +4,11 @@ import { styled } from '@mui/material';
 
 export const BarBox = styled(Box)({
     position: 'relative',
-    width: '97%',
+    width: '90%',
     maxWidth: '640px',
     minHeight: '300px',
-    maxHeight: '360px',
+    // maxHeight: '325px',
+    margin: '15px',
     padding: '10px',
     borderRadius: '16px',
     boxShadow: `0px 0.0625em 0.0625em rgba(0, 0, 0, 0.25),

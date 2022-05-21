@@ -31,9 +31,10 @@ export const DashboardGreeting = styled(Typography)(({ theme }) => ({
 
 export const ChartContainer = styled(Box)({
     display: 'flex',
+    justifyContent: 'center',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    paddingTop: '45px'
+    width: '100%',
+    paddingTop: '30px'
 });
 
 export const StatBoxWrapper = styled(Box)({

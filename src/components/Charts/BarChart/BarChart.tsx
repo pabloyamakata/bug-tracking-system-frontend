@@ -126,6 +126,7 @@ function BarChart({ bugsCreatedPerMonth, bugsResolvedPerMonth, bugsClosedPerMont
             options={{
                 responsive: true,
                 maintainAspectRatio: false,
+                indexAxis: 'y',
                 plugins: {
                     legend: {
                         position: 'bottom'

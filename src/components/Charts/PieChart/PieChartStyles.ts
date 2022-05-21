@@ -4,9 +4,11 @@ import { styled } from '@mui/material';
 
 export const PieBox = styled(Box)({
     position: 'relative',
-    width: '97%',
-    maxWidth: '300px',
-    maxHeight: '325px',
+    width: '90%',
+    // maxWidth: '300px',
+    maxWidth: '400px',
+    // maxHeight: '325px',
+    margin: '15px',
     paddingTop: '10px',
     paddingBottom: '15px',
     borderRadius: '16px',

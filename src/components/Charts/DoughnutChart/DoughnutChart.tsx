@@ -58,7 +58,7 @@ function DoughnutChart({ bugsByStatus: { pendingBugs, solvedBugs, closedBugs } }
                     legend: {
                         position: 'bottom',
                         labels: {
-                            padding: 30,
+                            padding: 15,
                             usePointStyle: true,
                             pointStyle: 'circle'
                         }

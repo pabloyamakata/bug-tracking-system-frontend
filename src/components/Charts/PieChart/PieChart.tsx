@@ -65,7 +65,7 @@ function PieChart({ bugsByPriority }: PieChartProps) {
                     legend: {
                         position: 'bottom',
                         labels: {
-                            padding: 20,
+                            padding: 15,
                             usePointStyle: true,
                             pointStyle: 'circle'
                         }
