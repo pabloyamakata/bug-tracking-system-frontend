@@ -34,7 +34,15 @@ export const ChartContainer = styled(Box)({
     justifyContent: 'center',
     flexWrap: 'wrap',
     width: '100%',
-    paddingTop: '30px'
+    paddingTop: '30px',
+    '@media (min-width: 1239px)': {
+        justifyContent: 'space-around',
+        padding: '30px 20px 0'
+    },
+    '@media (min-width: 1320px)': {
+        justifyContent: 'space-between',
+        padding: '30px 10px 0'
+    }
 });
 
 export const StatBoxWrapper = styled(Box)({

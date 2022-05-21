@@ -126,14 +126,14 @@ function BarChart({ bugsCreatedPerMonth, bugsResolvedPerMonth, bugsClosedPerMont
             options={{
                 responsive: true,
                 maintainAspectRatio: false,
-                indexAxis: 'y',
+                indexAxis: 'x',
                 plugins: {
                     legend: {
                         position: 'bottom'
                     },
                     title: {
                         display: true,
-                        text: 'Created | Solved | Closed Bugs',
+                        text: 'Monthly Bug Trend',
                         font: {
                             size: 20,
                             family: 'Public Sans, sans-serif'
