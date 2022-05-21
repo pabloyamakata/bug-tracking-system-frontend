@@ -32,5 +32,17 @@ export const ChartMessage = styled(Typography)(({ theme }) => ({
     transform: 'translate(-50%, -50%)',
     fontSize: '20px',
     color: theme.palette.mode === 'dark' ? '#888' : theme.palette.info.main,
-    textAlign: 'center'
+    textAlign: 'center',
+    '@media (max-width: 349px)': {
+        top: '40%',
+        left: '55%'
+    },
+    '@media (min-width: 350px) and (max-width: 379px)': {
+        top: '45%',
+        left: '54%'
+    },
+    '@media (min-width: 380px)': {
+        top: '45%',
+        left: '53%'
+    }
 }));
