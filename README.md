@@ -25,6 +25,8 @@ The technologies used in the backend of this project are:
 
 Click [here](https://pabloyamakata.github.io/bug-tracking-system-frontend/) to see the application!
 
+You can also check the [backend](https://github.com/pabloyamakata/bug-tracking-system-backend-public) code.
+
 ---
 
 # Sistema de Seguimiento de Errores
@@ -53,3 +55,5 @@ Las tecnologías utilizadas en el backend de este proyecto son:
 </ul>
 
 ¡Haz click [aquí](https://pabloyamakata.github.io/bug-tracking-system-frontend/) para ver la aplicación!
+
+También puedes chequear el código [backend](https://github.com/pabloyamakata/bug-tracking-system-backend-public).
