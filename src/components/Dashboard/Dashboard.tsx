@@ -19,18 +19,21 @@ import {
     ProjectReportsTitle,
     BugsReportedTodayTitle,
     ProjectsReportedTodayTitle,
-    ResolutionRateTitle,
+    CurrentMonthResolutionRateTitle,
+    LastMonthResolutionRateTitle,
     BugReports,
     ProjectReports,
     BugsReportedToday,
     ProjectsReportedToday,
-    ResolutionRate,
+    CurrentMonthResolutionRate,
+    LastMonthResolutionRate,
     IconBox,
     BugIcon,
     ProjectIcon,
     WarningSignIcon,
     CheckIcon,
-    MagnifyingGlassIcon
+    MagnifyingGlassIcon,
+    ChartIcon as BarChartIcon
 } from './DashboardStyles';
 
 const bugs_URL = 'https://bug-tracking-system-backend.000webhostapp.com/bugs.php';
@@ -222,15 +225,24 @@ function Dashboard() {
     const calculateMonthlyResolutionRate = () => {
         const date = dayjs();
         const currentDate = date.format('DD/MM/YYYY').replace(/\//g, '-');
+        const dateOneMonthAgo = date.subtract(1, 'month').format('DD/MM/YYYY').replace(/\//g, '-');
+        
         const totalBugsResolved = bugArray.filter(bug => bug.current_status === 'Solved');
         const bugsResolvedThisMonth = totalBugsResolved.filter(bug => formatDate(bug.final_date).includes(currentDate.slice(3))).length;
+        const bugsResolvedLastMonth = totalBugsResolved.filter(bug => formatDate(bug.final_date).includes(dateOneMonthAgo.slice(3))).length;
         const bugsCreatedThisMonth = bugArray.filter(bug => formatDate(bug.initial_date).includes(currentDate.slice(3))).length;
-        let monthlyResolutionRate: string;
+        const bugsCreatedLastMonth = bugArray.filter(bug => formatDate(bug.initial_date).includes(dateOneMonthAgo.slice(3))).length;
         
-        if(bugsCreatedThisMonth === 0) monthlyResolutionRate = '0';
-        else monthlyResolutionRate = ((bugsResolvedThisMonth / bugsCreatedThisMonth) * 100).toFixed(1);
+        let currentMonthRate: string;
+        let lastMonthRate: string;
         
-        return monthlyResolutionRate;
+        if(bugsCreatedThisMonth === 0) currentMonthRate = '0';
+        else currentMonthRate = ((bugsResolvedThisMonth / bugsCreatedThisMonth) * 100).toFixed(1);
+
+        if(bugsCreatedLastMonth === 0) lastMonthRate = '0';
+        else lastMonthRate = ((bugsResolvedLastMonth / bugsCreatedLastMonth) * 100).toFixed(1);
+        
+        return { currentMonthRate, lastMonthRate };
     };
 
     return(
@@ -298,8 +310,11 @@ function Dashboard() {
                         <MagnifyingGlassIcon />
                     </IconBox>
                     <Box>
-                        <ResolutionRate>{calculateMonthlyResolutionRate()}%</ResolutionRate>
-                        <ResolutionRateTitle>Monthly Resolution Rate</ResolutionRateTitle>
+                        <LastMonthResolutionRate>{calculateMonthlyResolutionRate().lastMonthRate}%</LastMonthResolutionRate>
+                        <LastMonthResolutionRateTitle>
+                            Monthly Resolution Rate
+                            <Box component='span' sx={{ display: 'block' }}>{`(${getNameOfMonths().oneMonthAgo})`}</Box>
+                        </LastMonthResolutionRateTitle>
                     </Box>
                 </StatBox>
                 <StatBox>
@@ -307,11 +322,14 @@ function Dashboard() {
                     sx={{
                         backgroundImage: 'linear-gradient(135deg, rgba(183, 33, 163, 0) 0%, rgba(183, 33, 163, 0.24) 100%)'
                     }}>
-                        <MagnifyingGlassIcon />
+                        <BarChartIcon />
                     </IconBox>
                     <Box>
-                        <ResolutionRate>{calculateMonthlyResolutionRate()}%</ResolutionRate>
-                        <ResolutionRateTitle>Monthly Resolution Rate</ResolutionRateTitle>
+                        <CurrentMonthResolutionRate>{calculateMonthlyResolutionRate().currentMonthRate}%</CurrentMonthResolutionRate>
+                        <CurrentMonthResolutionRateTitle>
+                            Monthly Resolution Rate
+                            <Box component='span' sx={{ display: 'block' }}>{`(${getNameOfMonths().currentMonth})`}</Box>
+                        </CurrentMonthResolutionRateTitle>
                     </Box>
                 </StatBox>
             </StatBoxWrapper>

@@ -6,6 +6,7 @@ import ArticleIcon from '@mui/icons-material/Article';
 import PestControlIcon from '@mui/icons-material/PestControl';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
+import BarChartIcon from '@mui/icons-material/BarChart';
 import { styled } from '@mui/material';
 
 export const CustomPaper = styled(Paper)({
@@ -51,7 +52,7 @@ export const StatBoxWrapper = styled(Box)({
     flexWrap: 'wrap'
 });
 
-export const StatBox = styled(Box)({
+export const StatBox = styled(Box)(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -60,23 +61,23 @@ export const StatBox = styled(Box)({
     height: '220px',
     margin: '10px',
     borderRadius: '16px',
-    border: '1px solid rgba(183, 33, 54, .3)',
-    backgroundColor: 'rgb(255, 231, 217)',
+    border: theme.palette.mode === 'dark' ? '1px solid rgb(255, 99, 132)' : '1px solid rgba(183, 33, 54, .3)',
+    backgroundColor: theme.palette.mode === 'dark' ? 'rgba(255, 99, 132, 0.2)' : 'rgb(255, 231, 217)',
     '&:nth-of-type(2)': {
-        backgroundColor: 'rgb(200, 250, 205)',
-        border: '1px solid rgba(0, 123, 85, .3)'
+        backgroundColor: theme.palette.mode === 'dark' ? 'rgba(85, 194, 81, 0.2)' : 'rgb(200, 250, 205)',
+        border: theme.palette.mode === 'dark' ? '1px solid rgb(85, 194, 81)' : '1px solid rgba(0, 123, 85, .3)'
     },
     '&:nth-of-type(3)': {
-        backgroundColor: 'rgb(208, 242, 255)',
-        border: '1px solid rgba(12, 83, 183, .3)'
+        backgroundColor: theme.palette.mode === 'dark' ? 'rgba(75, 192, 192, 0.2)' : 'rgb(208, 242, 255)',
+        border: theme.palette.mode === 'dark' ? '1px solid rgb(75, 192, 192)' : '1px solid rgba(12, 83, 183, .3)'
     },
     '&:nth-of-type(4)': {
-        backgroundColor: 'rgb(255, 247, 205)',
-        border: '1px solid rgba(183, 129, 3, .3)'
+        backgroundColor: theme.palette.mode === 'dark' ? 'rgba(255, 205, 86, 0.2)' : 'rgb(255, 247, 205)',
+        border: theme.palette.mode === 'dark' ? '1px solid rgb(255, 205, 86)' : '1px solid rgba(183, 129, 3, .3)'
     },
     '&:nth-of-type(5)': {
-        backgroundColor: 'rgb(243, 217, 255)',
-        border: '1px solid rgba(136, 0, 207, .3)'
+        backgroundColor: theme.palette.mode === 'dark' ? 'rgba(153, 102, 255, 0.2)' : 'rgb(243, 217, 255)',
+        border: theme.palette.mode === 'dark' ? '1px solid rgb(153, 102, 255)' : '1px solid rgba(136, 0, 207, .3)'
     },
     '@media (max-width: 469px)': {
         width: '80%'
@@ -93,72 +94,85 @@ export const StatBox = styled(Box)({
     '@media (min-width: 1080px) and (max-width: 1319px)': {
         width: '30%'
     }
-});
+}));
 
-export const BugReportsTitle = styled(Typography)({
-    color: 'rgb(122, 12, 46)',
+export const BugReportsTitle = styled(Typography)(({ theme }) => ({
+    color: theme.palette.mode === 'dark' ? 'rgb(255, 99, 132)' : 'rgb(122, 12, 46)',
     fontSize: '14px',
     textAlign: 'center'
-});
+}));
 
-export const ProjectReportsTitle = styled(Typography)({
-    color: 'rgb(0, 82, 73)',
+export const ProjectReportsTitle = styled(Typography)(({ theme }) => ({
+    color: theme.palette.mode === 'dark' ? 'rgb(85, 194, 81)' : 'rgb(0, 82, 73)',
     fontSize: '14px',
     textAlign: 'center'
-});
+}));
 
-export const BugsReportedTodayTitle = styled(Typography)({
-    color: 'rgb(4, 41, 122)',
+export const BugsReportedTodayTitle = styled(Typography)(({ theme }) => ({
+    color: theme.palette.mode === 'dark' ? 'rgb(75, 192, 192)' : 'rgb(4, 41, 122)',
     fontSize: '14px',
     textAlign: 'center'
-});
+}));
 
-export const ProjectsReportedTodayTitle = styled(Typography)({
-    color: 'rgb(122, 79, 1)',
+export const ProjectsReportedTodayTitle = styled(Typography)(({ theme }) => ({
+    color: theme.palette.mode === 'dark' ? 'rgb(255, 205, 86)' : 'rgb(122, 79, 1)',
     fontSize: '14px',
     textAlign: 'center'
-});
+}));
 
-export const ResolutionRateTitle = styled(Typography)({
-    color: 'rgb(93, 0, 140)',
+export const LastMonthResolutionRateTitle = styled(Typography)(({ theme }) => ({
+    color: theme.palette.mode === 'dark' ? 'rgb(153, 102, 255)' : 'rgb(93, 0, 140)',
     fontSize: '14px',
     textAlign: 'center'
-});
+}));
 
-export const BugReports = styled(Typography)({
+export const CurrentMonthResolutionRateTitle = styled(Typography)(({ theme }) => ({
+    color: theme.palette.mode === 'dark' ? 'rgb(255, 99, 132)' : 'rgb(122, 12, 46)',
+    fontSize: '14px',
+    textAlign: 'center'
+}));
+
+export const BugReports = styled(Typography)(({ theme }) => ({
     fontSize: '32px',
     fontWeight: 'bold',
-    color: 'rgb(122, 12, 46)',
+    color: theme.palette.mode === 'dark' ? 'rgb(255, 99, 132)' : 'rgb(122, 12, 46)',
     textAlign: 'center'
-});
+}));
 
-export const ProjectReports = styled(Typography)({
+export const ProjectReports = styled(Typography)(({ theme }) => ({
     fontSize: '32px',
     fontWeight: 'bold',
-    color: 'rgb(0, 82, 73)',
+    color: theme.palette.mode === 'dark' ? 'rgb(85, 194, 81)' : 'rgb(0, 82, 73)',
     textAlign: 'center'
-});
+}));
 
-export const BugsReportedToday = styled(Typography)({
+export const BugsReportedToday = styled(Typography)(({ theme }) => ({
     fontSize: '32px',
     fontWeight: 'bold',
-    color: 'rgb(4, 41, 122)',
+    color: theme.palette.mode === 'dark' ? 'rgb(75, 192, 192)' : 'rgb(4, 41, 122)',
     textAlign: 'center'
-});
+}));
 
-export const ProjectsReportedToday = styled(Typography)({
+export const ProjectsReportedToday = styled(Typography)(({ theme }) => ({
     fontSize: '32px',
     fontWeight: 'bold',
-    color: 'rgb(122, 79, 1)',
+    color: theme.palette.mode === 'dark' ? 'rgb(255, 205, 86)' : 'rgb(122, 79, 1)',
     textAlign: 'center'
-});
+}));
 
-export const ResolutionRate = styled(Typography)({
+export const LastMonthResolutionRate = styled(Typography)(({ theme }) => ({
     fontSize: '32px',
     fontWeight: 'bold',
-    color: 'rgb(93, 0, 140)',
+    color: theme.palette.mode === 'dark' ? 'rgb(153, 102, 255)' : 'rgb(93, 0, 140)',
     textAlign: 'center'
-});
+}));
+
+export const CurrentMonthResolutionRate = styled(Typography)(({ theme }) => ({
+    fontSize: '32px',
+    fontWeight: 'bold',
+    color: theme.palette.mode === 'dark' ? 'rgb(255, 99, 132)' : 'rgb(122, 12, 46)',
+    textAlign: 'center'
+}));
 
 export const IconBox = styled(Box)({
     display: 'flex',
@@ -170,27 +184,32 @@ export const IconBox = styled(Box)({
     borderRadius: '50%'
 });
 
-export const BugIcon = styled(PestControlIcon)({
+export const BugIcon = styled(PestControlIcon)(({ theme }) => ({
     fontSize: '30px',
-    color: 'rgb(183, 33, 54)'
-});
+    color: theme.palette.mode === 'dark' ? 'rgb(255, 99, 132)' : 'rgb(183, 33, 54)'
+}));
 
-export const ProjectIcon = styled(ArticleIcon)({
+export const ProjectIcon = styled(ArticleIcon)(({ theme }) => ({
     fontSize: '30px',
-    color: 'rgb(0, 123, 85)'
-});
+    color: theme.palette.mode === 'dark' ? 'rgb(85, 194, 81)' : 'rgb(0, 123, 85)'
+}));
 
-export const WarningSignIcon = styled(ReportProblemIcon)({
+export const WarningSignIcon = styled(ReportProblemIcon)(({ theme }) => ({
     fontSize: '30px',
-    color: 'rgb(12, 83, 183)'
-});
+    color: theme.palette.mode === 'dark' ? 'rgb(75, 192, 192)' : 'rgb(12, 83, 183)'
+}));
 
-export const CheckIcon = styled(CheckCircleIcon)({
+export const CheckIcon = styled(CheckCircleIcon)(({ theme }) => ({
     fontSize: '35px',
-    color: 'rgb(183, 129, 3)'
-});
+    color: theme.palette.mode === 'dark' ? 'rgb(255, 205, 86)' : 'rgb(183, 129, 3)'
+}));
 
-export const MagnifyingGlassIcon = styled(QueryStatsIcon)({
+export const MagnifyingGlassIcon = styled(QueryStatsIcon)(({ theme }) => ({
     fontSize: '35px',
-    color: 'rgb(136, 0, 207)'
-});
+    color: theme.palette.mode === 'dark' ? 'rgb(153, 102, 255)' : 'rgb(136, 0, 207)'
+}));
+
+export const ChartIcon = styled(BarChartIcon)(({ theme }) => ({
+    fontSize: '35px',
+    color: theme.palette.mode === 'dark' ? 'rgb(255, 99, 132)' : 'rgb(122, 12, 46)'
+}));
