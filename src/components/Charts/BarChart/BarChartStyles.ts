@@ -8,7 +8,7 @@ export const BarBox = styled(Box)({
     minHeight: '300px',
     margin: '15px',
     padding: '10px',
-    borderRadius: '16px',
+    borderRadius: '3px',
     boxShadow: `0px 0.0625em 0.0625em rgba(0, 0, 0, 0.25),
                 0px 0.125em 0.5em rgba(0, 0, 0, 0.25),
                 0px 0px 0px 1px inset rgba(255, 255, 255, 0.1)`,

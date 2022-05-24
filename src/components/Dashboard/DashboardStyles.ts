@@ -60,7 +60,7 @@ export const StatBox = styled(Box)(({ theme }) => ({
     minWidth: '200px',
     height: '220px',
     margin: '10px',
-    borderRadius: '16px',
+    borderRadius: '3px',
     border: theme.palette.mode === 'dark' ? '1px solid rgb(255, 99, 132)' : '1px solid rgba(183, 33, 54, .3)',
     backgroundColor: theme.palette.mode === 'dark' ? 'rgba(255, 99, 132, 0.2)' : 'rgb(255, 231, 217)',
     '&:nth-of-type(2)': {
