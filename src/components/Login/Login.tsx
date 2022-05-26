@@ -99,7 +99,7 @@ function Login() {
         value={formik.values.username}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-        autoComplete='off' 
+        autoComplete='on' 
         variant='outlined' 
         size='small'
         InputProps={{
@@ -128,7 +128,7 @@ function Login() {
         value={formik.values.password}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-        autoComplete='off'
+        autoComplete='on'
         variant='outlined' 
         size='small'
         InputProps={{

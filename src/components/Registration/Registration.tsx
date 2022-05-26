@@ -95,13 +95,13 @@ function Registration() {
                 value={formik.values.username}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                autoComplete='off' 
+                autoComplete='on' 
                 variant='outlined' 
                 size='small'
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">
-                            <PersonIcon sx={{color: 'var(--primary-color)'}} />
+                            <PersonIcon sx={{color: 'rgb(255, 255, 255)'}} />
                         </InputAdornment>
                     )
                 }} />
@@ -124,7 +124,7 @@ function Registration() {
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                autoComplete='off'
+                autoComplete='on'
                 variant='outlined' 
                 size='small'
                 InputProps={{
@@ -135,8 +135,8 @@ function Registration() {
                             sx={{padding: 0}}>
                                 {
                                     isPasswordVisible ? 
-                                    <KeyOffIcon sx={{color: 'var(--primary-color)'}} /> : 
-                                    <KeyIcon sx={{color: 'var(--primary-color)'}} /> 
+                                    <KeyOffIcon sx={{color: 'rgb(255, 255, 255)'}} /> : 
+                                    <KeyIcon sx={{color: 'rgb(255, 255, 255)'}} /> 
                                 }
                             </IconButton>
                         </InputAdornment>
