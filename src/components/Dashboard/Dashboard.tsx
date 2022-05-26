@@ -312,10 +312,7 @@ function Dashboard() {
                     </IconBox>
                     <Box>
                         <LastMonthResolutionRate>{calculateMonthlyResolutionRate().lastMonthRate}%</LastMonthResolutionRate>
-                        <LastMonthResolutionRateTitle>
-                            Monthly Resolution Rate
-                            <Box component='span' sx={{ display: 'block' }}>{`(${getNameOfMonths().oneMonthAgo})`}</Box>
-                        </LastMonthResolutionRateTitle>
+                        <LastMonthResolutionRateTitle>Resolution Rate {`(${getNameOfMonths().oneMonthAgo.slice(0, 3)})`}</LastMonthResolutionRateTitle>
                     </Box>
                 </StatBox>
                 <StatBox>
@@ -327,10 +324,7 @@ function Dashboard() {
                     </IconBox>
                     <Box>
                         <CurrentMonthResolutionRate>{calculateMonthlyResolutionRate().currentMonthRate}%</CurrentMonthResolutionRate>
-                        <CurrentMonthResolutionRateTitle>
-                            Monthly Resolution Rate
-                            <Box component='span' sx={{ display: 'block' }}>{`(${getNameOfMonths().currentMonth})`}</Box>
-                        </CurrentMonthResolutionRateTitle>
+                        <CurrentMonthResolutionRateTitle>Resolution Rate {`(${getNameOfMonths().currentMonth.slice(0, 3)})`}</CurrentMonthResolutionRateTitle>
                     </Box>
                 </StatBox>
             </StatBoxWrapper>
