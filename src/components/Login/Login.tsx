@@ -105,7 +105,7 @@ function Login() {
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <PersonIcon sx={{color: 'var(--primary-color)'}} />
+              <PersonIcon sx={{color: 'rgb(255, 255, 255)'}} />
             </InputAdornment>
           )
         }} />
@@ -139,8 +139,8 @@ function Login() {
               sx={{padding: 0}}>
                 {
                   isPasswordVisible ? 
-                  <KeyOffIcon sx={{color: 'var(--primary-color)'}} /> : 
-                  <KeyIcon sx={{color: 'var(--primary-color)'}} /> 
+                  <KeyOffIcon sx={{color: 'rgb(255, 255, 255)'}} /> : 
+                  <KeyIcon sx={{color: 'rgb(255, 255, 255)'}} /> 
                 }
               </IconButton>
             </InputAdornment>
