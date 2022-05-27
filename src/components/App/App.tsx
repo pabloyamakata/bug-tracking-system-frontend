@@ -12,6 +12,7 @@ import {
 } from 'react-router-dom';
 
 import Navbar from '../Navbar/Navbar';
+import Homepage from '../Homepage/Homepage';
 import Login from '../Login/Login';
 import Registration from '../Registration/Registration';
 import Dashboard from '../Dashboard/Dashboard';
@@ -29,11 +30,13 @@ function App() {
         <ContextProvider>
             <ThemeProvider theme={isModeDark ? darkTheme : lightTheme}>
                 {location.pathname === '/login' || 
-                location.pathname ==='/registration' ? null : 
+                location.pathname === '/registration' ||
+                location.pathname === '/homepage' ? null :
                 <Navbar 
                 isModeDark={isModeDark} 
                 setIsModeDark={setIsModeDark} />}
                 <Routes>
+                    <Route path='homepage' element={<Homepage />} />
                     <Route path='login' element={<Login />} />
                     <Route path='registration' element={<Registration />} />
                     <Route path='dashboard' element={<Dashboard />} />
