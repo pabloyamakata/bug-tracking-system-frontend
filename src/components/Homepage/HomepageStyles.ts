@@ -26,12 +26,8 @@ export const Header = styled(Box)({
     }
 });
 
-export const LogoContainer = styled(Box)({
-    width: '48px'
-});
-
 export const LogoTitle = styled(Typography)({
-    marginLeft: '5px',
+    marginLeft: '10px',
     fontWeight: '600'
 });
 
