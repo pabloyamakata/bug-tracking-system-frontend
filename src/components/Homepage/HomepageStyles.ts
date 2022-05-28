@@ -22,6 +22,11 @@ export const Header = styled(Box)({
         paddingBottom: '50px'
     },
     '@media (min-width: 521px) and (max-width: 662px)': {
+        paddingLeft: '50px',
+        paddingBottom: '50px'
+    },
+    '@media (min-width: 663px) and (max-width: 900px)': {
+        paddingLeft: '20px',
         paddingBottom: '50px'
     }
 });
@@ -40,7 +45,11 @@ export const ContentWrapper = styled(Box)({
     flexDirection: 'column',
     alignItems: 'center',
     width: '100%',
-    maxWidth: '800px'
+    maxWidth: '800px',
+    '@media (min-width: 663px) and (max-width: 900px)': {
+        paddingLeft: '80px',
+        paddingRight: '80px'
+    }
 });
 
 export const Title = styled(Typography)({
@@ -60,6 +69,9 @@ export const Title = styled(Typography)({
         padding: '0 80px 20px',
         fontSize: '2.5rem',
         lineHeight: '1'
+    },
+    '@media (min-width: 663px) and (max-width: 900px)': {
+        paddingBottom: '30px'
     }
 });
 
@@ -76,6 +88,10 @@ export const Subtitle = styled(Typography)({
     '@media (min-width: 521px) and (max-width: 662px)': {
         padding: '0 80px 20px',
         fontSize: '2.5rem',
+        lineHeight: '1'
+    },
+    '@media (min-width: 663px) and (max-width: 900px)': {
+        textAlign: 'center',
         lineHeight: '1'
     }
 });
@@ -95,6 +111,9 @@ export const Description = styled(Typography)({
         paddingLeft: '80px',
         paddingRight: '80px',
         textAlign: 'left'
+    },
+    '@media (min-width: 663px) and (max-width: 900px)': {
+        paddingTop: '20px'
     }
 });
 
