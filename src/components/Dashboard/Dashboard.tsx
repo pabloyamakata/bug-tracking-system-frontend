@@ -236,10 +236,10 @@ function Dashboard() {
         let currentMonthRate: string;
         let lastMonthRate: string;
         
-        if(bugsCreatedThisMonth === 0) currentMonthRate = '0';
+        if(bugsCreatedThisMonth === 0) currentMonthRate = '0.0';
         else currentMonthRate = ((bugsResolvedThisMonth / bugsCreatedThisMonth) * 100).toFixed(1);
 
-        if(bugsCreatedLastMonth === 0) lastMonthRate = '0';
+        if(bugsCreatedLastMonth === 0) lastMonthRate = '0.0';
         else lastMonthRate = ((bugsResolvedLastMonth / bugsCreatedLastMonth) * 100).toFixed(1);
         
         return { currentMonthRate, lastMonthRate };
