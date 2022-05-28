@@ -4,6 +4,7 @@ import homepage_logo from '../../assets/homepage-logo.png';
 import {
     HomeContainer,
     Header,
+    Logo,
     LogoTitle,
     ContentWrapper,
     Title,
@@ -24,7 +25,7 @@ function Homepage() {
         <HomeContainer>
             <Header>
                 {/* Attribute to <a href="https://www.flaticon.com/free-icons/malware" title="malware icons">Malware icons created by Freepik - Flaticon</a> */}
-                <img src={homepage_logo} alt="Homepage logo" />
+                <Logo src={homepage_logo} alt="Homepage logo" />
                 <LogoTitle>BugFlix</LogoTitle>
             </Header>
             <ContentWrapper>

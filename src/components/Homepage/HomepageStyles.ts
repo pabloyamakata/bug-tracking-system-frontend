@@ -26,6 +26,10 @@ export const Header = styled(Box)({
     }
 });
 
+export const Logo = styled('img')({
+    width: '32px'
+});
+
 export const LogoTitle = styled(Typography)({
     marginLeft: '10px',
     fontWeight: '600'
