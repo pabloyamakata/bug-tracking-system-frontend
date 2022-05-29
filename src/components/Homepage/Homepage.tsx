@@ -18,13 +18,12 @@ import Box from '@mui/material/Box';
 
 function Homepage() {
     const navigate = useNavigate();
-    const openGitHubRepo = () => {
+    const openProjectRepo = () => {
         window.open('https://github.com/pabloyamakata/bug-tracking-system-frontend', 'new');
     };
     return(
         <HomeContainer>
             <Header>
-                {/* Attribute to <a href="https://www.flaticon.com/free-icons/malware" title="malware icons">Malware icons created by Freepik - Flaticon</a> */}
                 <Logo src={homepage_logo} alt="Homepage logo" />
                 <LogoTitle>BugFlix</LogoTitle>
             </Header>
@@ -33,11 +32,11 @@ function Homepage() {
                 <Subtitle>Deliver Products On Time</Subtitle>
                 <Description>BugFlix is a free web-based bug tracking system that allows developers to monitor bugs during software development. Start by adding your first project and then report bugs as needed</Description>
                 <ButtonGroup>
-                    <Btn onClick={openGitHubRepo}>Github</Btn>
+                    <Btn onClick={openProjectRepo}>Github</Btn>
                     <Btn onClick={() => navigate('/login')}>Get Started</Btn>
                 </ButtonGroup>
             </ContentWrapper>
-            <Box sx={{width: '100vw', height: '40px', border: '1px solid black' }}></Box>
+            <Box sx={{ position: 'relative', width: '100vw', height: '40px' }} />
         </HomeContainer>
     )
 }
