@@ -9,7 +9,7 @@ export const FooterContainer = styled(Box)({
     position: 'absolute',
     bottom: '0',
     zIndex: '20',
-    width: '100vw',
+    width: '100%',
     height: '40px',
     padding: '0 40px',
     color: '#FAFAFA',

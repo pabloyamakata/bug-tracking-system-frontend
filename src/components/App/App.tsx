@@ -50,7 +50,7 @@ function App() {
                         <Route path='editproject' element={<ProjectUpdater />} />
                         <Route path='bugreports' element={<Bugs />} />
                         <Route path='projectreports' element={<Projects />} />
-                        <Route path='*' element={<Navigate to='login' />} />
+                        <Route path='*' element={<Navigate to='homepage' />} />
                     </Routes>
                     <Footer />
                 </ThemeProvider>
