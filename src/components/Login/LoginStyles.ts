@@ -17,7 +17,10 @@ export const MainContainer = styled(Box)({
     backgroundSize: 'cover',
     backgroundPosition: 'bottom',
     backgroundAttachment: 'fixed',
-    backgroundRepeat: 'no-repeat'
+    backgroundRepeat: 'no-repeat',
+    '@media (max-width: 350px)': {
+        paddingBottom: '60px'
+    }
 });
 
 export const LoginForm = styled('form')({

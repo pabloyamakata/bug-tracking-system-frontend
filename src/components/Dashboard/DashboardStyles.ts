@@ -14,6 +14,9 @@ export const CustomPaper = styled(Paper)({
     paddingTop: '65px',
     paddingBottom: '70px',
     borderRadius: 0,
+    '@media (max-width: 350px)': {
+        paddingBottom: '120px'
+    },
     '@media (max-width: 599px)': {
         paddingTop: '58px'
     },
