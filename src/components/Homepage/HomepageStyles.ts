@@ -9,6 +9,12 @@ export const HomeContainer = styled(Box)({
     justifyContent: 'space-between',
     alignItems: 'center',
     minHeight: '100vh'
+    // '@media (max-width: 536px)': {
+    //     paddingBottom: '50px'
+    // },
+    // '@media (min-width: 537px) and (max-width: 900px)': {
+    //     paddingBottom: '60px'
+    // }
 });
 
 export const Header = styled(Box)({

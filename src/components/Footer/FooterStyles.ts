@@ -13,7 +13,15 @@ export const FooterContainer = styled(Box)({
     height: '40px',
     padding: '0 40px',
     color: '#FAFAFA',
-    backgroundColor: '#20232A'
+    backgroundColor: '#20232A',
+    '@media (max-width: 350px)': {
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        height: '75px'
+    },
+    '@media (max-width: 400px)': {
+        padding: '0 20px'
+    }
 });
 
 export const Copyright = styled(Typography)({
