@@ -2,7 +2,7 @@
 
 SPA-type full stack application that allows monitoring software bugs in projects whether they are business or personal. The user will be able to create a new account, add projects, report, edit and delete bugs. The application also has a dashboard to display statistics related to these programming defects.
 
-The technologies used in the frontend of this project are:
+Frontend Technologies:
 
 <ul>
   <li>TypeScript</li>
@@ -11,12 +11,13 @@ The technologies used in the frontend of this project are:
   <li>Material UI</li>
   <li>Axios</li>
   <li>Chartjs</li>
+  <li>React-Chartjs-2</li>
   <li>Dayjs</li>
   <li>Formik</li>
   <li>Yup</li>
 </ul>
 
-The technologies used in the backend of this project are:
+Backend Technologies:
 
 <ul>
   <li>PHP</li>
@@ -33,7 +34,7 @@ You can also check the [backend](https://github.com/pabloyamakata/bug-tracking-s
 
 Aplicación full stack de tipo SPA que permite dar seguimiento a errores de software en proyectos ya sean empresariales o personales. El usuario podrá crear una nueva cuenta, añadir proyectos, reportar, editar y eliminar errores. La aplicación cuenta, además, con un dashboard para visualizar estadísticas relativas a estos defectos de programación.
 
-Las tecnologías utilizadas en el frontend de este proyecto son:
+Tecnologías Frontend:
 
 <ul>
   <li>TypeScript</li>
@@ -42,12 +43,13 @@ Las tecnologías utilizadas en el frontend de este proyecto son:
   <li>Material UI</li>
   <li>Axios</li>
   <li>Chartjs</li>
+  <li>React-Chartjs-2</li>
   <li>Dayjs</li>
   <li>Formik</li>
   <li>Yup</li>
 </ul>
 
-Las tecnologías utilizadas en el backend de este proyecto son:
+Tecnologías Backend:
 
 <ul>
   <li>PHP</li>
