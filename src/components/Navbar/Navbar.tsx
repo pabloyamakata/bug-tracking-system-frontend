@@ -92,7 +92,7 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
                     noWrap
                     component='div'
                     sx={{ color: '#ededed', mr: 2, display: { xs: 'none', md: 'flex' } }}>
-                    Bug Tracker
+                    BugFlix
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -139,7 +139,7 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
                     noWrap
                     component='div'
                     sx={{ color: '#ededed', flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                    Bug Tracker
+                    BugFlix
                     </Typography>
                     
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
