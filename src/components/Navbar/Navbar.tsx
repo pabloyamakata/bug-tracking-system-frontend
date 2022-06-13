@@ -32,6 +32,8 @@ function Navbar({isModeDark, setIsModeDark}: ThemeModeProps) {
     const navigate = useNavigate();
 
     useEffect(() => {
+        if(!sessionStorage.getItem('userAuth')) navigate('/login');
+
         const promiseForUserName = axios.get(userNameURL, { withCredentials: true });
         const promiseForThemeMode = axios.get(themeModeURL, { withCredentials: true });
 
